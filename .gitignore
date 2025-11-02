@@ -1,0 +1,54 @@
+# Godot-specific
+.import/
+export.cfg
+
+# Exported builds
+# Web (HTML5 export)
+*.html
+!index_template.html
+*.wasm
+*.pck
+*.zip
+
+# Other platform exports
+*.exe
+*.apk
+*.dmg
+*.app
+*.x86_64
+*.so
+*.dll
+
+# OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+nul
+
+# Editor / IDE junk
+*.swp
+*.tmp
+*.log
+.idea/
+.vscode/
+*.user
+*.suo
+*.userprefs
+*.csproj
+*.sln
+*.pidb
+*.mdb
+*.opendb
+*.VC.db
+*.pdb
+
+# Godot 4 editor cache
+.godot/
+
+# Build systems
+bin/
+obj/
+
+# Export folder
+export/

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Ragged Sails"
-run/main_scene="uid://dbmcexe3yo8ls"
+run/main_scene="uid://cafgygletq80s"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://config/default_bus_layout.tres"
 
 [display]
 
@@ -21,6 +25,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/custom="uid://cseb1gjfktk5q"
 
 [input]
 

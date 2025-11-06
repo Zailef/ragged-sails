@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://c0ye55wo25ngh"]
+[gd_scene load_steps=38 format=3 uid="uid://c0ye55wo25ngh"]
 
 [ext_resource type="Texture2D" uid="uid://crmdf2gefhb2k" path="res://sprites/enemies/Shark/Shark_Down.png" id="1_3ka7b"]
 [ext_resource type="Texture2D" uid="uid://douhv2v7c61mx" path="res://sprites/enemies/Shark/Shark_Left.png" id="1_6n8or"]
 [ext_resource type="Texture2D" uid="uid://ckhlc0jg530xe" path="res://sprites/enemies/Shark/Shark_Right.png" id="2_3tede"]
+[ext_resource type="Texture2D" uid="uid://cayy447rinrfm" path="res://sprites/enemies/Shark/Shark_Up.png" id="4_vgs2x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgs2x"]
 atlas = ExtResource("1_3ka7b")
@@ -100,6 +101,38 @@ region = Rect2(576, 0, 96, 32)
 atlas = ExtResource("2_3tede")
 region = Rect2(672, 0, 96, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmwum"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03gsn"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(96, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emm6n"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(192, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxxyj"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(288, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30wly"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(384, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1ha4"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(480, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eng36"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(576, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk5hx"]
+atlas = ExtResource("4_vgs2x")
+region = Rect2(672, 0, 96, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2myjp"]
 animations = [{
 "frames": [{
@@ -188,6 +221,35 @@ animations = [{
 "loop": true,
 "name": &"swimming right",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmwum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03gsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emm6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxxyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30wly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1ha4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eng36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk5hx")
+}],
+"loop": true,
+"name": &"swimming up",
+"speed": 5.0
 }]
 
 [node name="Shark" type="Node2D"]
@@ -196,3 +258,4 @@ animations = [{
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2myjp")
 animation = &"swimming right"
+frame_progress = 0.35588232

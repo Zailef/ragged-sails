@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://4l4nsd6j6i86"]
+
+[ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="1_w0kai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2pf4"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfd83"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urj1h"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1riu"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44uih"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n4fr"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5scaf"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udiba"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnamo"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83l1g"]
+atlas = ExtResource("1_w0kai")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rt2nv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2pf4")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfd83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urj1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1riu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44uih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n4fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5scaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udiba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnamo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83l1g")
+}],
+"loop": false,
+"name": &"splash",
+"speed": 5.0
+}]
+
+[node name="Canonball" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rt2nv")
+animation = &"splash"
+frame = 8
+frame_progress = 1.0

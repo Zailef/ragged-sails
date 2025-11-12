@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dbmcexe3yo8ls"]
+[gd_scene load_steps=7 format=4 uid="uid://ddnu2h0canibh"]
 
 [ext_resource type="PackedScene" uid="uid://cyhtcxisq357" path="res://scenes/player/player.tscn" id="1_6ivci"]
 [ext_resource type="Texture2D" uid="uid://svdcv4myo7sj" path="res://sprites/environment/sea-tile-sheet.png" id="1_h320y"]
@@ -22,6 +22,11 @@ sources/10 = SubResource("TileSetAtlasSource_h320y")
 
 [node name="Sandbox" type="Node2D"]
 
+[node name="Ocean" parent="." instance=ExtResource("3_xf1sy")]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -7)
+
 [node name="SeaLayer" type="TileMapLayer" parent="."]
 visible = false
 texture_filter = 1
@@ -30,11 +35,6 @@ tile_set = SubResource("TileSet_osokm")
 
 [node name="Player" parent="." instance=ExtResource("1_6ivci")]
 position = Vector2(305, 181)
-
-[node name="Ocean" parent="." instance=ExtResource("3_xf1sy")]
-z_index = -1
-texture_filter = 1
-position = Vector2(0, -7)
 
 [node name="SeaRock1" type="Sprite2D" parent="."]
 position = Vector2(178, 69)

@@ -1,0 +1,120 @@
+[gd_scene load_steps=19 format=3 uid="uid://c5q0dl2bqugwq"]
+
+[ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_1jete"]
+[ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_aa5oc"]
+[ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/Urchin/Urchin.png" id="3_mfrgb"]
+
+[sub_resource type="Resource" id="Resource_mfrgb"]
+script = ExtResource("2_aa5oc")
+name = &"Urchin"
+move_speed = 30.0
+damage = 5
+damage_rate = 0.5
+metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0os5"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3w6h"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctbf3"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fi80"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1faj"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk2ww"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im4i5"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwg8f"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01sr5"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rksdw"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a6sr"]
+atlas = ExtResource("3_mfrgb")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jete"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0os5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3w6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctbf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fi80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1faj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk2ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im4i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwg8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01sr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rksdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a6sr")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa5oc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfrgb"]
+
+[node name="Urchin" instance=ExtResource("1_1jete")]
+scale = Vector2(0.5, 0.5)
+stats = SubResource("Resource_mfrgb")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1jete")
+animation = &"move"
+autoplay = "move"
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_aa5oc")
+
+[node name="CollisionShape2D" parent="HitArea" index="0"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mfrgb")
+debug_color = Color(0.9642418, 4.813075e-07, 0.49680513, 0.41960785)

@@ -27,10 +27,9 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	_handle_animations(direction)
-	_handle_damage()
+	_handle_damage(delta)
 
 	move_and_slide()
-	damage_rate_timer += delta
 
 func _set_has_directional_animations() -> void:
 	var frames = sprite.sprite_frames
@@ -61,10 +60,11 @@ func _on_hit_area_area_exited(_area: Area2D) -> void:
 	is_player_in_hurt_area = false
 	damage_rate_timer = 0.0
 
-func _handle_damage() -> void:
-	if not is_player_in_hurt_area or damage_rate_timer < stats.damage_rate:
+func _handle_damage(delta: float) -> void:
+	if not is_player_in_hurt_area:
 		return
 
+	damage_rate_timer += delta
 	if damage_rate_timer >= stats.damage_rate:
 		player.take_damage(stats.damage)
 		damage_rate_timer = 0.0

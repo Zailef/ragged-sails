@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-var player: Node = null
+var player: Player = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 

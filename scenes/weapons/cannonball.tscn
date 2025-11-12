@@ -1,48 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://4l4nsd6j6i86"]
+[gd_scene load_steps=15 format=3 uid="uid://c2rjp1l2ncjnr"]
 
-[ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="1_w0kai"]
+[ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="1_56isn"]
+[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_xqvtj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r2pf4"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfd83"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urj1h"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1riu"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44uih"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n4fr"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5scaf"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udiba"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnamo"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_83l1g"]
-atlas = ExtResource("1_w0kai")
+atlas = ExtResource("1_56isn")
 region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rt2nv"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bi4j3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -85,11 +86,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Canonball" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_esydl"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_rt2nv")
+[node name="Cannonball" instance=ExtResource("1_xqvtj")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_bi4j3")
 animation = &"splash"
-frame = 8
-frame_progress = 1.0
+
+[node name="DamageArea" parent="." index="1"]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_esydl")

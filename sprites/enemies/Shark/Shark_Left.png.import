@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://douhv2v7c61mx"
-path="res://.godot/imported/Shark_Left.png-399a49159996ddf5ff23c03c6f7b78d2.ctex"
+uid="uid://bxhky3lmd7vrh"
+path="res://.godot/imported/Shark_Left.png-f6ad91ee3380a7cc0d901f1437b9c072.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/Shark/Shark_Left.png"
-dest_files=["res://.godot/imported/Shark_Left.png-399a49159996ddf5ff23c03c6f7b78d2.ctex"]
+source_file="res://sprites/enemies/shark/Shark_Left.png"
+dest_files=["res://.godot/imported/Shark_Left.png-f6ad91ee3380a7cc0d901f1437b9c072.ctex"]
 
 [params]
 

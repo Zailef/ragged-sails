@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cox8lr44cipgf"
-path="res://.godot/imported/Shark_Up.png-d6db003b7f99a14902da9891cd2a86e3.ctex"
+path="res://.godot/imported/Shark_Up.png-4eb79478989f4910152295f11e443207.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/shark/Shark_Up.png"
-dest_files=["res://.godot/imported/Shark_Up.png-d6db003b7f99a14902da9891cd2a86e3.ctex"]
+source_file="res://sprites/enemies/Shark/Shark_Up.png"
+dest_files=["res://.godot/imported/Shark_Up.png-4eb79478989f4910152295f11e443207.ctex"]
 
 [params]
 

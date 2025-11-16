@@ -3,16 +3,30 @@ class_name Enemy
 
 var player: Player = null
 
+enum MotionAnimationMode {
+	SINGLE,
+	UDLR,
+	LR,
+}
+
+enum AttackAnimationMode {
+	NONE,
+	LR,
+}
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: EnemyStats
+@export var animation_mode: MotionAnimationMode = MotionAnimationMode.SINGLE
+@export var attack_strategy: AttackAnimationMode = AttackAnimationMode.NONE
 
-var has_directional_animations: bool = false
+var is_target_left: bool = false:
+	get: return player != null and player.global_position.x < global_position.x
+
 var is_player_in_hurt_area: bool = false
 var damage_rate_timer: float = 0.0
 
 func _ready() -> void:
-	_set_has_directional_animations()
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
@@ -28,30 +42,44 @@ func _physics_process(delta: float) -> void:
 
 	_handle_animations(direction)
 	_handle_damage(delta)
-
 	move_and_slide()
 
-func _set_has_directional_animations() -> void:
-	var frames = sprite.sprite_frames
-	has_directional_animations = (
-		frames.has_animation("move_up") and
-		frames.has_animation("move_down") and
-		frames.has_animation("move_left") and
-		frames.has_animation("move_right"))
+var _animation_strategies = {
+	MotionAnimationMode.SINGLE: _animation_single,
+	MotionAnimationMode.UDLR: _animation_udlr,
+	MotionAnimationMode.LR: _animation_lr
+}
+
+var _attack_strategies = {
+	AttackAnimationMode.NONE: _attack_none,
+	AttackAnimationMode.LR: _attack_lr
+}
 
 func _handle_animations(direction: Vector2) -> void:
-	var new_animation: String
-	
-	if has_directional_animations:
-		if abs(direction.x) > abs(direction.y):
-			new_animation = "move_right" if direction.x > 0 else "move_left"
-		else:
-			new_animation = "move_down" if direction.y > 0 else "move_up"
+	var new_animation: String = ""
+
+	if is_player_in_hurt_area:
+		var strategy = _attack_strategies.get(attack_strategy, _attack_none)
+		new_animation = strategy.call()
 	else:
-		new_animation = "move"
-	
-	if sprite.animation != new_animation:
+		var strategy = _animation_strategies.get(animation_mode, _animation_single)
+		new_animation = strategy.call(direction)
+
+	if sprite.animation != new_animation and new_animation != "":
 		sprite.animation = new_animation
+		sprite.play()
+
+func _animation_single(_direction: Vector2) -> String:
+	return "move"
+
+func _animation_udlr(direction: Vector2) -> String:
+	if abs(direction.x) > abs(direction.y):
+		return "move_right" if direction.x > 0 else "move_left"
+	else:
+		return "move_down" if direction.y > 0 else "move_up"
+
+func _animation_lr(direction: Vector2) -> String:
+	return "move_right" if direction.x > 0 else "move_left"
 
 func _on_hit_area_area_entered(_area: Area2D) -> void:
 	is_player_in_hurt_area = true
@@ -59,6 +87,12 @@ func _on_hit_area_area_entered(_area: Area2D) -> void:
 func _on_hit_area_area_exited(_area: Area2D) -> void:
 	is_player_in_hurt_area = false
 	damage_rate_timer = 0.0
+
+func _attack_none() -> String:
+	return ""
+
+func _attack_lr() -> String:
+	return "attack_left" if is_target_left else "attack_right"
 
 func _handle_damage(delta: float) -> void:
 	if not is_player_in_hurt_area:

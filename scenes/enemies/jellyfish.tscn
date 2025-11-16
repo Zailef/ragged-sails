@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbfge6esrcl45"]
+
+[ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_tgu21"]
+[ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_m05u0"]
+[ext_resource type="Texture2D" uid="uid://cv1olu3q4a22" path="res://sprites/enemies/jellyfish/jellyfish.png" id="2_uhsk6"]
+
+[sub_resource type="Resource" id="Resource_1egoa"]
+script = ExtResource("2_m05u0")
+name = &"jellyfish"
+metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m05u0"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1egoa"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywsy2"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_undyx"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2knwg"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cv0g"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45h6e"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i47tk"]
+atlas = ExtResource("2_uhsk6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dda0u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m05u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1egoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywsy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_undyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2knwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cv0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45h6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i47tk")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ctx0m"]
+radius = 7.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cuhdu"]
+radius = 6.0
+height = 24.0
+
+[node name="Jellyfish" instance=ExtResource("1_tgu21")]
+stats = SubResource("Resource_1egoa")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_dda0u")
+animation = &"move"
+autoplay = "move"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_ctx0m")
+
+[node name="CollisionShape2D" parent="HitArea" index="0"]
+shape = SubResource("CapsuleShape2D_cuhdu")
+debug_color = Color(0.9280878, 0.20468053, 0.44594193, 0.41960785)

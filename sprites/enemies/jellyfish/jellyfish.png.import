@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4jcgem4cre60"
-path="res://.godot/imported/Urchin.png-329960c880f94e1906c2ec6c31315d47.ctex"
+uid="uid://cv1olu3q4a22"
+path="res://.godot/imported/jellyfish.png-4483408b6c8d370e22dbe161ff14ed56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/Urchin/Urchin.png"
-dest_files=["res://.godot/imported/Urchin.png-329960c880f94e1906c2ec6c31315d47.ctex"]
+source_file="res://sprites/enemies/jellyfish/jellyfish.png"
+dest_files=["res://.godot/imported/jellyfish.png-4483408b6c8d370e22dbe161ff14ed56.ctex"]
 
 [params]
 

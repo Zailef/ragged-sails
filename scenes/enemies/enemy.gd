@@ -67,6 +67,7 @@ func _handle_animations(direction: Vector2) -> void:
 
 	if sprite.animation != new_animation and new_animation != "":
 		sprite.animation = new_animation
+		sprite.play()
 
 func _animation_single(_direction: Vector2) -> String:
 	return "move"

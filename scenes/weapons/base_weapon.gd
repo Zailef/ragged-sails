@@ -14,7 +14,6 @@ var current_state: WeaponState = WeaponState.READY
 func _ready() -> void:
 	_initialise_timers()
 	_reset_weapon()
-	current_state = WeaponState.READY
 	_start_weapon_cycle()
 
 func _initialise_timers() -> void:

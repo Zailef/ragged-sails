@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		return
 
 	global_position += direction * weapon_stats.speed * delta
-	distance_traveled += direction.length() * weapon_stats.speed * delta
+	distance_traveled += weapon_stats.speed * delta
 
 func _fire_weapon() -> void:
 	var context: TargetingContext = TargetingContext.new()

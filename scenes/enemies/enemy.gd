@@ -24,7 +24,6 @@ var is_target_left: bool = false:
 	get: return player != null and player.global_position.x < global_position.x
 
 var is_on_screen: bool = false
-var has_directional_animations: bool = false
 var is_player_in_hurt_area: bool = false
 var damage_rate_timer: float = 0.0
 var current_health: int

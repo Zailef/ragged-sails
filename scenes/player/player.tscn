@@ -1,8 +1,10 @@
-[gd_scene load_steps=122 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=124 format=3 uid="uid://cyhtcxisq357"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="2_gmlin"]
+[ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="4_lvxji"]
+[ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="5_p47bc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1241,6 +1243,7 @@ sprite_frames = SubResource("SpriteFrames_x7p2l")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_dovo2")
 
@@ -1259,6 +1262,7 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="HurtArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 4
 
@@ -1276,3 +1280,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gmlin")
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Cannonball" parent="Weapons" instance=ExtResource("4_lvxji")]
+
+[node name="Anchor" parent="Weapons" instance=ExtResource("5_p47bc")]

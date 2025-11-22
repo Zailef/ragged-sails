@@ -26,6 +26,10 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+enemies=""
+
 [gui]
 
 theme/custom="uid://cseb1gjfktk5q"

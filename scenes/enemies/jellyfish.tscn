@@ -93,7 +93,7 @@ height = 24.0
 
 [node name="Jellyfish" instance=ExtResource("1_tgu21")]
 stats = SubResource("Resource_1egoa")
-animation_motion_strategy = SubResource("Resource_ywsy2")
+motion_animation_strategy = SubResource("Resource_ywsy2")
 attack_animation_strategy = SubResource("Resource_undyx")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

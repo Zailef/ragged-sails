@@ -277,7 +277,7 @@ radius = 6.0
 
 [node name="Shark" instance=ExtResource("1_bmp7b")]
 stats = SubResource("Resource_y838i")
-animation_motion_strategy = SubResource("Resource_7flyy")
+motion_animation_strategy = SubResource("Resource_7flyy")
 attack_animation_strategy = SubResource("Resource_wsy3x")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

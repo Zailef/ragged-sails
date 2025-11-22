@@ -15,7 +15,7 @@ damage = 5
 damage_rate = 0.5
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
 
-[sub_resource type="Resource" id="Resource_mlp20"]
+[sub_resource type="Resource" id="Resource_xahdf"]
 script = ExtResource("3_xahdf")
 metadata/_custom_type_script = "uid://drw5rsr1p71sf"
 
@@ -115,7 +115,7 @@ animations = [{
 [node name="Urchin" instance=ExtResource("1_1jete")]
 scale = Vector2(0.5, 0.5)
 stats = SubResource("Resource_mfrgb")
-animation_motion_strategy = SubResource("Resource_mlp20")
+motion_animation_strategy = SubResource("Resource_xahdf")
 attack_animation_strategy = SubResource("Resource_e0os5")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

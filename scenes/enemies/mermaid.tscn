@@ -219,7 +219,7 @@ height = 40.0
 
 [node name="Mermaid" instance=ExtResource("1_p344i")]
 stats = SubResource("Resource_rdap4")
-animation_motion_strategy = SubResource("Resource_pe30f")
+motion_animation_strategy = SubResource("Resource_pe30f")
 attack_animation_strategy = SubResource("Resource_qj0dc")
 
 [node name="AnimatedSprite2D" parent="." index="0"]

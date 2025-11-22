@@ -18,6 +18,7 @@ class_name Player
 @onready var health_bar: ProgressBar = $HealthBar
 
 var is_dead: bool = false
+var current_experience: int = 0
 
 var current_health: int = max_health:
 	set(value):

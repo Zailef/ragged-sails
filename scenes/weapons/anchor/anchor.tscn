@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://su7hs53sdh0c" path="res://scenes/weapons/anchor/anchor.gd" id="2_6ht3v"]
 [ext_resource type="Texture2D" uid="uid://dk5hymkh3nl0y" path="res://sprites/weapons/AnchorNoOutline.png" id="2_rubcm"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_mdv63"]
-[ext_resource type="Script" uid="uid://d4e42y4hmo6wi" path="res://scenes/weapons/targeting/targeting_strategy_closest.gd" id="4_576yj"]
+[ext_resource type="Script" uid="uid://cmf4n5dio7gxd" path="res://scenes/weapons/targeting/targeting_strategy_none.gd" id="4_576yj"]
 
 [sub_resource type="Resource" id="Resource_576yj"]
 script = ExtResource("3_mdv63")
@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://dfpkint1tllcj"
 
 [sub_resource type="Resource" id="Resource_jivo3"]
 script = ExtResource("4_576yj")
-metadata/_custom_type_script = "uid://d4e42y4hmo6wi"
+metadata/_custom_type_script = "uid://cmf4n5dio7gxd"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6ht3v"]
 animations = [{

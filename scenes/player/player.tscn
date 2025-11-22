@@ -1248,7 +1248,6 @@ sprite_frames = SubResource("SpriteFrames_x7p2l")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_dovo2")
 
@@ -1267,7 +1266,6 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="HurtArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 4
 

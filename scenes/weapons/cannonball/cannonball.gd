@@ -64,4 +64,3 @@ func _activate() -> void:
 	damage_area.monitoring = true
 	animated_sprite.play("moving")
 	show()
-	print("AnimatedSprite scale: ", animated_sprite.scale)

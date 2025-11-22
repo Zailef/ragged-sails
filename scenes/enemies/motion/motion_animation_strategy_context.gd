@@ -1,4 +1,4 @@
-extends Resource
+extends RefCounted
 class_name MotionAnimationStrategyContext
 
-@export var direction: Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO

@@ -89,15 +89,15 @@ func _animation_lr(direction: Vector2) -> String:
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = true
+	
+	if area.get_owner() is BaseWeapon:
+		var weapon: BaseWeapon = area.get_owner() as BaseWeapon
+		_handle_self_damage(weapon.weapon_stats.damage)
 
 func _on_hit_area_area_exited(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = false
 		damage_rate_timer = 0.0
-	
-	if area.get_owner() is BaseWeapon:
-		var weapon: BaseWeapon = area.get_owner() as BaseWeapon
-		_handle_self_damage(weapon.weapon_stats.damage)
 
 func _attack_none() -> String:
 	return ""

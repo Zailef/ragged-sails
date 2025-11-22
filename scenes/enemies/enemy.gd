@@ -6,7 +6,7 @@ var player: Player = null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: EnemyStats
-@export var animation_motion_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
+@export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
 
 var is_on_screen: bool = false
@@ -45,7 +45,7 @@ func _handle_animations(direction: Vector2) -> void:
 	else:
 		var context = MotionAnimationStrategyContext.new()
 		context.direction = direction
-		new_animation = animation_motion_strategy.get_movement_animation(context)
+		new_animation = motion_animation_strategy.get_movement_animation(context)
 
 	if sprite.animation != new_animation and new_animation != "":
 		sprite.animation = new_animation

@@ -3,19 +3,11 @@ class_name Enemy
 
 var player: Player = null
 
-enum AttackAnimationMode {
-	NONE,
-	LR,
-}
-
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: EnemyStats
 @export var animation_motion_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
-@export var attack_strategy: AttackAnimationMode = AttackAnimationMode.NONE
-
-var is_target_left: bool = false:
-	get: return player != null and player.global_position.x < global_position.x
+@export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
 
 var is_on_screen: bool = false
 var is_player_in_hurt_area: bool = false
@@ -42,17 +34,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-var _attack_strategies = {
-	AttackAnimationMode.NONE: _attack_none,
-	AttackAnimationMode.LR: _attack_lr
-}
-
 func _handle_animations(direction: Vector2) -> void:
 	var new_animation: String = ""
 
 	if is_player_in_hurt_area:
-		var strategy = _attack_strategies.get(attack_strategy, _attack_none)
-		new_animation = strategy.call()
+		var context = AttackAnimationStrategyContext.new()
+		context.subject = self
+		context.target = player
+		new_animation = attack_animation_strategy.get_attack_animation(context)
 	else:
 		var context = MotionAnimationStrategyContext.new()
 		context.direction = direction
@@ -74,12 +63,6 @@ func _on_hit_area_area_exited(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = false
 		damage_rate_timer = 0.0
-
-func _attack_none() -> String:
-	return ""
-
-func _attack_lr() -> String:
-	return "attack_left" if is_target_left else "attack_right"
 
 func _handle_player_damage(delta: float) -> void:
 	if not is_player_in_hurt_area:

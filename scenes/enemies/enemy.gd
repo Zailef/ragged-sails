@@ -3,12 +3,6 @@ class_name Enemy
 
 var player: Player = null
 
-enum MotionAnimationMode {
-	SINGLE,
-	UDLR,
-	LR,
-}
-
 enum AttackAnimationMode {
 	NONE,
 	LR,
@@ -17,7 +11,7 @@ enum AttackAnimationMode {
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: EnemyStats
-@export var animation_mode: MotionAnimationMode = MotionAnimationMode.SINGLE
+@export var animation_motion_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_strategy: AttackAnimationMode = AttackAnimationMode.NONE
 
 var is_target_left: bool = false:
@@ -48,12 +42,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-var _animation_strategies = {
-	MotionAnimationMode.SINGLE: _animation_single,
-	MotionAnimationMode.UDLR: _animation_udlr,
-	MotionAnimationMode.LR: _animation_lr
-}
-
 var _attack_strategies = {
 	AttackAnimationMode.NONE: _attack_none,
 	AttackAnimationMode.LR: _attack_lr
@@ -66,24 +54,13 @@ func _handle_animations(direction: Vector2) -> void:
 		var strategy = _attack_strategies.get(attack_strategy, _attack_none)
 		new_animation = strategy.call()
 	else:
-		var strategy = _animation_strategies.get(animation_mode, _animation_single)
-		new_animation = strategy.call(direction)
+		var context = MotionAnimationStrategyContext.new()
+		context.direction = direction
+		new_animation = animation_motion_strategy.get_movement_animation(context)
 
 	if sprite.animation != new_animation and new_animation != "":
 		sprite.animation = new_animation
 		sprite.play()
-
-func _animation_single(_direction: Vector2) -> String:
-	return "move"
-
-func _animation_udlr(direction: Vector2) -> String:
-	if abs(direction.x) > abs(direction.y):
-		return "move_right" if direction.x > 0 else "move_left"
-	else:
-		return "move_down" if direction.y > 0 else "move_up"
-
-func _animation_lr(direction: Vector2) -> String:
-	return "move_right" if direction.x > 0 else "move_left"
 
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	if area.get_owner() is Player:

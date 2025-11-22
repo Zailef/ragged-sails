@@ -1,13 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbfge6esrcl45"]
+[gd_scene load_steps=18 format=3 uid="uid://bbfge6esrcl45"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_tgu21"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_m05u0"]
 [ext_resource type="Texture2D" uid="uid://cv1olu3q4a22" path="res://sprites/enemies/jellyfish/jellyfish.png" id="2_uhsk6"]
+[ext_resource type="Script" uid="uid://drw5rsr1p71sf" path="res://scenes/enemies/motion/motion_animation_strategy_single.gd" id="3_m05u0"]
 
 [sub_resource type="Resource" id="Resource_1egoa"]
 script = ExtResource("2_m05u0")
 name = &"jellyfish"
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="Resource" id="Resource_ywsy2"]
+script = ExtResource("3_m05u0")
+metadata/_custom_type_script = "uid://drw5rsr1p71sf"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m05u0"]
 atlas = ExtResource("2_uhsk6")
@@ -83,6 +88,8 @@ height = 24.0
 
 [node name="Jellyfish" instance=ExtResource("1_tgu21")]
 stats = SubResource("Resource_1egoa")
+animation_motion_strategy = SubResource("Resource_ywsy2")
+attack_strategy = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dda0u")

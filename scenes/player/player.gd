@@ -16,6 +16,7 @@ class_name Player
 @onready var health_bar: ProgressBar = $HealthBar
 
 var is_dead: bool = false
+var current_experience: int = 0
 
 var current_health: int = max_health:
 	set(value):
@@ -55,3 +56,7 @@ func _die() -> void:
 	set_process(false)
 	hide()
 	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene.call_deferred())
+
+func add_experience(amount: int) -> void:
+	current_experience += amount
+	print("Gained %d experience points." % amount)

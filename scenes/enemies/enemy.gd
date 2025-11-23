@@ -116,6 +116,7 @@ func _handle_player_damage(delta: float) -> void:
 func _handle_self_damage(amount: int) -> void:
 	current_health -= amount
 	if current_health <= 0:
+		SignalManager.enemy_defeated.emit()
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

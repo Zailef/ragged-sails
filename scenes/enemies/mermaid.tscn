@@ -224,3 +224,6 @@ shape = SubResource("CapsuleShape2D_p783r")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4ecc8")
 debug_color = Color(0.8489705, 0.34218907, 0.40922636, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+rect = Rect2(-32, -16, 64, 32)

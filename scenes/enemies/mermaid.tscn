@@ -1,12 +1,22 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4dl3taqnso0s"]
+[gd_scene load_steps=36 format=3 uid="uid://c4dl3taqnso0s"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_p344i"]
 [ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid/mermaid_sheet.png" id="2_lujby"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_wol66"]
+[ext_resource type="Script" uid="uid://b1800rc5cg4cq" path="res://scenes/enemies/motion/motion_animation_strategy_lr.gd" id="3_rdap4"]
+[ext_resource type="Script" uid="uid://g5bs1wnrma2c" path="res://scenes/enemies/attack/attack_animation_strategy_lr.gd" id="4_pe30f"]
 
 [sub_resource type="Resource" id="Resource_rdap4"]
 script = ExtResource("2_wol66")
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="Resource" id="Resource_pe30f"]
+script = ExtResource("3_rdap4")
+metadata/_custom_type_script = "uid://b1800rc5cg4cq"
+
+[sub_resource type="Resource" id="Resource_qj0dc"]
+script = ExtResource("4_pe30f")
+metadata/_custom_type_script = "uid://g5bs1wnrma2c"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgd0g"]
 atlas = ExtResource("2_lujby")
@@ -209,8 +219,8 @@ height = 40.0
 
 [node name="Mermaid" instance=ExtResource("1_p344i")]
 stats = SubResource("Resource_rdap4")
-animation_mode = 2
-attack_strategy = 1
+motion_animation_strategy = SubResource("Resource_pe30f")
+attack_animation_strategy = SubResource("Resource_qj0dc")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1mrfq")

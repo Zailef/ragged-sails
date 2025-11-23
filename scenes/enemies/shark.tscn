@@ -1,9 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://ctuwgqlchklqy"]
+[gd_scene load_steps=47 format=3 uid="uid://ctuwgqlchklqy"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_bmp7b"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_1el3g"]
 [ext_resource type="Texture2D" uid="uid://byvwckcxo7aay" path="res://sprites/enemies/shark/Shark_Down.png" id="2_jof6d"]
 [ext_resource type="Texture2D" uid="uid://bxhky3lmd7vrh" path="res://sprites/enemies/shark/Shark_Left.png" id="3_1el3g"]
+[ext_resource type="Script" uid="uid://yni0r61mhe5h" path="res://scenes/enemies/motion/motion_animation_strategy_udlr.gd" id="3_y838i"]
+[ext_resource type="Script" uid="uid://dxv0vun5p6jl1" path="res://scenes/enemies/attack/attack_animation_strategy_none.gd" id="4_7flyy"]
 [ext_resource type="Texture2D" uid="uid://i5bfykdq70fo" path="res://sprites/enemies/shark/Shark_Right.png" id="4_y838i"]
 [ext_resource type="Texture2D" uid="uid://cox8lr44cipgf" path="res://sprites/enemies/shark/Shark_Up.png" id="5_7flyy"]
 
@@ -11,6 +13,14 @@
 script = ExtResource("2_1el3g")
 max_health = 50
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="Resource" id="Resource_7flyy"]
+script = ExtResource("3_y838i")
+metadata/_custom_type_script = "uid://yni0r61mhe5h"
+
+[sub_resource type="Resource" id="Resource_wsy3x"]
+script = ExtResource("4_7flyy")
+metadata/_custom_type_script = "uid://dxv0vun5p6jl1"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgs2x"]
 atlas = ExtResource("2_jof6d")
@@ -267,7 +277,8 @@ radius = 6.0
 
 [node name="Shark" instance=ExtResource("1_bmp7b")]
 stats = SubResource("Resource_y838i")
-animation_mode = 1
+motion_animation_strategy = SubResource("Resource_7flyy")
+attack_animation_strategy = SubResource("Resource_wsy3x")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_bmp7b")

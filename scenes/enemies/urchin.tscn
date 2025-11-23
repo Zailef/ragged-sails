@@ -2,12 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_1jete"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_aa5oc"]
-[ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/Urchin/Urchin.png" id="3_mfrgb"]
+[ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/urchin/Urchin.png" id="3_mfrgb"]
 
 [sub_resource type="Resource" id="Resource_mfrgb"]
 script = ExtResource("2_aa5oc")
 name = &"Urchin"
-move_speed = 30.0
+move_speed = 50.0
+max_health = 10
 damage = 5
 damage_rate = 0.5
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"

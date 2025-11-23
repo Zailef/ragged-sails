@@ -1,8 +1,10 @@
-[gd_scene load_steps=122 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=124 format=3 uid="uid://cyhtcxisq357"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="2_gmlin"]
+[ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="4_lvxji"]
+[ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="5_p47bc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1218,17 +1220,22 @@ radius = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmlin"]
-bg_color = Color(0.57254905, 0.3137255, 0.24705882, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+bg_color = Color(0.3764706, 0.37254903, 0.2, 0.78431374)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.57254905, 0.3137255, 0.24705882, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -1268,7 +1275,7 @@ debug_color = Color(0.9818738, 0, 0.3713596, 0.41960785)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -32.0
-offset_top = 32.0
+offset_top = 34.0
 offset_right = 32.0
 offset_bottom = 40.0
 theme_override_styles/background = SubResource("StyleBoxFlat_lvxji")
@@ -1276,3 +1283,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gmlin")
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Cannonball" parent="Weapons" instance=ExtResource("4_lvxji")]
+
+[node name="Anchor" parent="Weapons" instance=ExtResource("5_p47bc")]

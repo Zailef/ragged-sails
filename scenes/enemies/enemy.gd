@@ -23,11 +23,14 @@ enum AttackAnimationMode {
 var is_target_left: bool = false:
 	get: return player != null and player.global_position.x < global_position.x
 
+var is_on_screen: bool = false
 var is_player_in_hurt_area: bool = false
 var damage_rate_timer: float = 0.0
+var current_health: int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	current_health = stats.max_health
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -41,7 +44,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	_handle_animations(direction)
-	_handle_damage(delta)
+	_handle_player_damage(delta)
+
 	move_and_slide()
 
 var _animation_strategies = {
@@ -81,12 +85,18 @@ func _animation_udlr(direction: Vector2) -> String:
 func _animation_lr(direction: Vector2) -> String:
 	return "move_right" if direction.x > 0 else "move_left"
 
-func _on_hit_area_area_entered(_area: Area2D) -> void:
-	is_player_in_hurt_area = true
+func _on_hit_area_area_entered(area: Area2D) -> void:
+	if area.get_owner() is Player:
+		is_player_in_hurt_area = true
+	
+	if area.get_owner() is BaseWeapon:
+		var weapon: BaseWeapon = area.get_owner() as BaseWeapon
+		_handle_self_damage(weapon.weapon_stats.damage)
 
-func _on_hit_area_area_exited(_area: Area2D) -> void:
-	is_player_in_hurt_area = false
-	damage_rate_timer = 0.0
+func _on_hit_area_area_exited(area: Area2D) -> void:
+	if area.get_owner() is Player:
+		is_player_in_hurt_area = false
+		damage_rate_timer = 0.0
 
 func _attack_none() -> String:
 	return ""
@@ -94,7 +104,7 @@ func _attack_none() -> String:
 func _attack_lr() -> String:
 	return "attack_left" if is_target_left else "attack_right"
 
-func _handle_damage(delta: float) -> void:
+func _handle_player_damage(delta: float) -> void:
 	if not is_player_in_hurt_area:
 		return
 
@@ -102,3 +112,14 @@ func _handle_damage(delta: float) -> void:
 	if damage_rate_timer >= stats.damage_rate:
 		player.take_damage(stats.damage)
 		damage_rate_timer = 0.0
+
+func _handle_self_damage(amount: int) -> void:
+	current_health -= amount
+	if current_health <= 0:
+		queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_on_screen = false
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	is_on_screen = true

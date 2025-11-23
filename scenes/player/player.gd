@@ -4,6 +4,7 @@ class_name Player
 @export_group("player stats")
 @export var move_speed = 50.0
 @export var max_health = 100
+@export var level_progress: PlayerLevelProgress
 
 @export_group("damage feedback")
 @export var damage_flash_duration = 0.5
@@ -16,7 +17,6 @@ class_name Player
 @onready var health_bar: ProgressBar = $HealthBar
 
 var is_dead: bool = false
-var current_experience: int = 0
 
 var current_health: int = max_health:
 	set(value):
@@ -58,5 +58,5 @@ func _die() -> void:
 	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene.call_deferred())
 
 func add_experience(amount: int) -> void:
-	current_experience += amount
+	level_progress.add_experience(amount)
 	print("Gained %d experience points." % amount)

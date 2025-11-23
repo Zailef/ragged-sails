@@ -50,10 +50,10 @@ func _choose_enemy_spawn_position() -> Vector2:
 func _spawn_random_enemy() -> void:
 	var spawn_position = _choose_enemy_spawn_position()
 	spawn_urchin(spawn_position)
-	get_tree().create_timer(1.0).timeout.connect(_spawn_random_enemy)
+	get_tree().create_timer(1.0).timeout.connect(_spawn_random_enemy, CONNECT_ONE_SHOT)
 
 func _on_scene_changed() -> void:
 	if get_tree().get_current_scene().name != "Sandbox":
 		return
 
-	get_tree().create_timer(1.0).timeout.connect(_spawn_random_enemy)
+	get_tree().create_timer(1.0).timeout.connect(_spawn_random_enemy, CONNECT_ONE_SHOT)

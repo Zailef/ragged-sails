@@ -1,14 +1,26 @@
-[gd_scene load_steps=36 format=3 uid="uid://c4dl3taqnso0s"]
+[gd_scene load_steps=42 format=3 uid="uid://c4dl3taqnso0s"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_p344i"]
 [ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid/mermaid_sheet.png" id="2_lujby"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_wol66"]
 [ext_resource type="Script" uid="uid://b1800rc5cg4cq" path="res://scenes/enemies/motion/motion_animation_strategy_lr.gd" id="3_rdap4"]
+[ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="3_wgd0g"]
+[ext_resource type="PackedScene" uid="uid://cg3t5ee803vm7" path="res://scenes/pickups/exp_pickup.tscn" id="4_52sw7"]
 [ext_resource type="Script" uid="uid://g5bs1wnrma2c" path="res://scenes/enemies/attack/attack_animation_strategy_lr.gd" id="4_pe30f"]
+[ext_resource type="PackedScene" uid="uid://b07qgtxwwcm16" path="res://scenes/pickups/life_ring_pickup.tscn" id="5_h0e5o"]
+[ext_resource type="Script" uid="uid://drywn3wbujex2" path="res://scenes/enemies/drops/drop_strategy_default.gd" id="6_r5ocs"]
 
 [sub_resource type="Resource" id="Resource_rdap4"]
 script = ExtResource("2_wol66")
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="Resource" id="Resource_7cfag"]
+script = ExtResource("3_wgd0g")
+metadata/_custom_type_script = "uid://vy46impuqjhp"
+
+[sub_resource type="Resource" id="Resource_5erkt"]
+script = ExtResource("6_r5ocs")
+metadata/_custom_type_script = "uid://drywn3wbujex2"
 
 [sub_resource type="Resource" id="Resource_pe30f"]
 script = ExtResource("3_rdap4")
@@ -219,6 +231,8 @@ height = 40.0
 
 [node name="Mermaid" instance=ExtResource("1_p344i")]
 stats = SubResource("Resource_rdap4")
+loot_table = SubResource("Resource_7cfag")
+drop_strategy = SubResource("Resource_5erkt")
 motion_animation_strategy = SubResource("Resource_pe30f")
 attack_animation_strategy = SubResource("Resource_qj0dc")
 

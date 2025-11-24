@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://b07qgtxwwcm16"]
+
+[ext_resource type="PackedScene" uid="uid://c655ix3xi0swj" path="res://scenes/pickups/pickup.tscn" id="1_upsts"]
+[ext_resource type="Script" uid="uid://dkb0m4ga54vko" path="res://scenes/pickups/effects/life_ring_pickup_effect.gd" id="2_crr1c"]
+[ext_resource type="Texture2D" uid="uid://wf5x0bnkl2rv" path="res://sprites/collectables/life_ring.png" id="2_qbx2g"]
+
+[sub_resource type="Resource" id="Resource_34v6a"]
+script = ExtResource("2_crr1c")
+metadata/_custom_type_script = "uid://dkb0m4ga54vko"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crr1c"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34v6a"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbtxb"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cicmq"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_122jk"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyxnc"]
+atlas = ExtResource("2_qbx2g")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhbcx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crr1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34v6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbtxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cicmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_122jk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyxnc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qbx2g"]
+radius = 14.0
+
+[node name="LifeRingPickup" instance=ExtResource("1_upsts")]
+effect = SubResource("Resource_34v6a")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_nhbcx")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+shape = SubResource("CircleShape2D_qbx2g")

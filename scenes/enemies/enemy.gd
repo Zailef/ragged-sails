@@ -1,13 +1,13 @@
 extends CharacterBody2D
 class_name Enemy
 
-const EXPERIENCE_PACKED_SCENE: PackedScene = preload("res://scenes/pickups/exp_pickup.tscn")
-
 var player: Player = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var stats: EnemyStats
+@export var loot_table: LootTable
+@export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
 
@@ -79,9 +79,9 @@ func _handle_self_damage(amount: int) -> void:
 	current_health -= amount
 	if current_health <= 0:
 		SignalManager.enemy_defeated.emit()
-		var exp_pickup = EXPERIENCE_PACKED_SCENE.instantiate() as Pickup
-		exp_pickup.global_position = global_position
-		get_parent().add_child.call_deferred(exp_pickup)
+		var context = DropStrategyContext.new()
+		context.enemy = self
+		drop_strategy.perform_drops(context)
 		queue_free.call_deferred()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

@@ -1,15 +1,27 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbfge6esrcl45"]
+[gd_scene load_steps=26 format=3 uid="uid://bbfge6esrcl45"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_tgu21"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_m05u0"]
 [ext_resource type="Texture2D" uid="uid://cv1olu3q4a22" path="res://sprites/enemies/jellyfish/jellyfish.png" id="2_uhsk6"]
+[ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="3_4cv0g"]
 [ext_resource type="Script" uid="uid://drw5rsr1p71sf" path="res://scenes/enemies/motion/motion_animation_strategy_single.gd" id="3_m05u0"]
 [ext_resource type="Script" uid="uid://dxv0vun5p6jl1" path="res://scenes/enemies/attack/attack_animation_strategy_none.gd" id="4_1egoa"]
+[ext_resource type="PackedScene" uid="uid://cg3t5ee803vm7" path="res://scenes/pickups/exp_pickup.tscn" id="4_45h6e"]
+[ext_resource type="PackedScene" uid="uid://b07qgtxwwcm16" path="res://scenes/pickups/life_ring_pickup.tscn" id="5_i47tk"]
+[ext_resource type="Script" uid="uid://drywn3wbujex2" path="res://scenes/enemies/drops/drop_strategy_default.gd" id="6_dda0u"]
 
 [sub_resource type="Resource" id="Resource_1egoa"]
 script = ExtResource("2_m05u0")
 name = &"jellyfish"
 metadata/_custom_type_script = "uid://ccb5xuvqsxeik"
+
+[sub_resource type="Resource" id="Resource_ctx0m"]
+script = ExtResource("3_4cv0g")
+metadata/_custom_type_script = "uid://vy46impuqjhp"
+
+[sub_resource type="Resource" id="Resource_cuhdu"]
+script = ExtResource("6_dda0u")
+metadata/_custom_type_script = "uid://drywn3wbujex2"
 
 [sub_resource type="Resource" id="Resource_ywsy2"]
 script = ExtResource("3_m05u0")
@@ -93,6 +105,8 @@ height = 24.0
 
 [node name="Jellyfish" instance=ExtResource("1_tgu21")]
 stats = SubResource("Resource_1egoa")
+loot_table = SubResource("Resource_ctx0m")
+drop_strategy = SubResource("Resource_cuhdu")
 motion_animation_strategy = SubResource("Resource_ywsy2")
 attack_animation_strategy = SubResource("Resource_undyx")
 

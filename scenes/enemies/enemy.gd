@@ -4,12 +4,17 @@ class_name Enemy
 var player: Player = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var damage_shader_material: ShaderMaterial = sprite.material as ShaderMaterial
 
 @export var stats: EnemyStats
 @export var loot_table: LootTable
 @export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
+
+@export_group("damage feedback")
+@export var damage_flash_duration = 0.5
+@export var damage_flash_strength = 0.5
 
 var is_on_screen: bool = false
 var is_player_in_hurt_area: bool = false
@@ -56,7 +61,7 @@ func _handle_animations(direction: Vector2) -> void:
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = true
-	
+
 	if area.get_owner() is BaseWeapon:
 		var weapon: BaseWeapon = area.get_owner() as BaseWeapon
 		_handle_self_damage(weapon.weapon_stats.damage)
@@ -77,6 +82,12 @@ func _handle_player_damage(delta: float) -> void:
 
 func _handle_self_damage(amount: int) -> void:
 	current_health -= amount
+
+	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)
+	var tween := create_tween()
+	tween.tween_property(damage_shader_material, "shader_parameter/flash_strength", 0.0, damage_flash_duration) \
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 	if current_health <= 0:
 		SignalManager.enemy_defeated.emit()
 		var context = DropStrategyContext.new()

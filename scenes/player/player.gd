@@ -2,8 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 @export_group("player stats")
+@export var is_immortal: bool = false
 @export var move_speed = 50.0
 @export var max_health = 100
+@export var level_progress: PlayerLevelProgress
 
 @export_group("damage feedback")
 @export var damage_flash_duration = 0.5
@@ -22,6 +24,9 @@ var current_health: int = max_health:
 		current_health = clamp(value, 0, max_health)
 		health_bar.value = current_health
 
+func _ready() -> void:
+	SignalManager.exp_gained.connect(_on_exp_gained)
+
 func _physics_process(_delta: float) -> void:
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
@@ -37,6 +42,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func take_damage(amount: int) -> void:
+	if is_immortal or is_dead:
+		return
+
 	current_health -= amount
 
 	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)
@@ -55,3 +63,6 @@ func _die() -> void:
 	set_process(false)
 	hide()
 	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene.call_deferred())
+
+func _on_exp_gained(amount: int) -> void:
+	level_progress.add_experience(amount)

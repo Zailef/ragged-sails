@@ -83,5 +83,9 @@ position = Vector2(113, 274)
 [node name="Jellyfish" parent="Enemies" instance=ExtResource("8_harsw")]
 position = Vector2(222, 150)
 
-[node name="Mermaid" parent="Enemies" instance=ExtResource("9_uq7s3")]
+[node name="BossMermaid" parent="Enemies" instance=ExtResource("9_uq7s3")]
 position = Vector2(232, 76)
+is_boss = true
+
+[node name="Mermaid2" parent="Enemies" instance=ExtResource("9_uq7s3")]
+position = Vector2(367, 355)

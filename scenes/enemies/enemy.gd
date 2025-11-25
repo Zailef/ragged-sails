@@ -1,12 +1,15 @@
 extends CharacterBody2D
 class_name Enemy
 
+const BOSS_DAMAGE_OUTLINE_SHADER = preload("res://sprites/shaders/boss_damage_outline.gdshader")
+
 var player: Player = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_shader_material: ShaderMaterial = sprite.material as ShaderMaterial
 
 @export var stats: EnemyStats
+@export var is_boss: bool = false
 @export var loot_table: LootTable
 @export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
@@ -23,7 +26,11 @@ var current_health: int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	current_health = stats.max_health
+	current_health = stats.get_max_health(is_boss)
+	scale *= stats.get_scale(is_boss)
+	
+	if is_boss:
+		_apply_boss_outline()
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -32,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	var direction = (player.global_position - global_position).normalized()
 
 	if not is_player_in_hurt_area:
-		velocity = direction * stats.move_speed
+		velocity = direction * stats.get_move_speed(is_boss)
 	else:
 		velocity = Vector2.ZERO
 
@@ -76,8 +83,8 @@ func _handle_player_damage(delta: float) -> void:
 		return
 
 	damage_rate_timer += delta
-	if damage_rate_timer >= stats.damage_rate:
-		player.take_damage(stats.damage)
+	if damage_rate_timer >= stats.get_damage_rate(is_boss):
+		player.take_damage(stats.get_damage(is_boss))
 		damage_rate_timer = 0.0
 
 func _handle_self_damage(amount: int) -> void:
@@ -97,6 +104,12 @@ func _handle_self_damage(amount: int) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	is_on_screen = false
+
+func _apply_boss_outline() -> void:
+	var boss_material = ShaderMaterial.new()
+	boss_material.shader = BOSS_DAMAGE_OUTLINE_SHADER
+	sprite.material = boss_material
+	damage_shader_material = boss_material
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_on_screen = true

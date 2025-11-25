@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyijjk252n0j5"]
+
+[ext_resource type="Texture2D" uid="uid://b3a415iist1k1" path="res://sprites/menu/ItemFrame.png" id="1_6ehou"]
+[ext_resource type="Script" uid="uid://dukf7iqpanowe" path="res://scenes/ui/item_frame.gd" id="2_gp2cq"]
+[ext_resource type="Shader" uid="uid://ciljihr1886mr" path="res://sprites/shaders/Shiny.gdshader" id="3_gp2cq"]
+[ext_resource type="Texture2D" uid="uid://ck742cjvwfurm" path="res://sprites/menu/ItemFrame_Focused.png" id="4_r1ttv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ehou"]
+shader = ExtResource("3_gp2cq")
+shader_parameter/strength = 0.014000000665
+shader_parameter/speed = 0.3090000146775
+shader_parameter/angle = 72.00000342
+
+[node name="ItemFrame" type="NinePatchRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 124.0
+offset_top = 64.0
+offset_right = -128.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("1_6ehou")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+script = ExtResource("2_gp2cq")
+focused_material = SubResource("ShaderMaterial_6ehou")
+focused_texture = ExtResource("4_r1ttv")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,5 +1,5 @@
 extends TargetingStrategy
 class_name TargetingStrategyNone
 
-func get_target(_context: TargetingContext) -> Node:
-	return null
+func get_target(_context: TargetingContext) -> TargetingResult:
+	return TargetingResult.new()

@@ -33,13 +33,13 @@ func _fire_weapon() -> void:
 	context.enemies = get_tree().get_nodes_in_group("enemies")
 	context.weapon_stats = weapon_stats
 
-	var nearest_enemy: Enemy = targeting_strategy.get_target(context)
+	var result: TargetingResult = targeting_strategy.get_target(context)
 
-	if nearest_enemy:
+	if result.has_target():
 		# Reset position to player before firing
 		global_position = get_owner().global_position
 		distance_traveled = 0.0
-		direction = Vector2(nearest_enemy.global_position - global_position).normalized()
+		direction = Vector2(result.target.global_position - global_position).normalized()
 	else:
 		# No target, so reset direction to prevent firing
 		direction = Vector2.ZERO

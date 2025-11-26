@@ -1,7 +1,7 @@
 extends TargetingStrategy
 class_name TargetingStrategyClosest
 
-func get_target(context: TargetingContext) -> Node:
+func get_target(context: TargetingContext) -> TargetingResult:
 	var enemies = context.enemies
 	var nearest_enemy: Enemy = null
 	var nearest_distance: float = INF
@@ -15,4 +15,4 @@ func get_target(context: TargetingContext) -> Node:
 			nearest_distance = distance
 			nearest_enemy = enemy
 
-	return nearest_enemy
+	return TargetingResult.new(nearest_enemy)

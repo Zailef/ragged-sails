@@ -87,6 +87,9 @@ func _handle_player_damage(delta: float) -> void:
 		player.take_damage(stats.get_damage(is_boss))
 		damage_rate_timer = 0.0
 
+func take_damage(amount: int) -> void:
+	_handle_self_damage(amount)
+
 func _handle_self_damage(amount: int) -> void:
 	current_health -= amount
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=129 format=3 uid="uid://cyhtcxisq357"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://dbe7acbfy602p" path="res://scenes/ui/experience_bar.tscn" id="6_75vfg"]
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
+[ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="7_5gtgg"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1297,6 +1298,8 @@ show_percentage = false
 [node name="Cannonball" parent="Weapons" instance=ExtResource("4_lvxji")]
 
 [node name="Anchor" parent="Weapons" instance=ExtResource("5_p47bc")]
+
+[node name="Grapeshot" parent="Weapons" instance=ExtResource("7_5gtgg")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 

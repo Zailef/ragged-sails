@@ -10,6 +10,7 @@
 script = ExtResource("3_lk600")
 cooldown = 3.0
 duration = 10.0
+max_range = 200.0
 metadata/_custom_type_script = "uid://dfpkint1tllcj"
 
 [sub_resource type="Resource" id="Resource_i3cox"]
@@ -35,7 +36,6 @@ animations = [{
 script = ExtResource("2_gcysc")
 damage_rate = 0.5
 flight_speed = 300.0
-max_range = 200.0
 weapon_stats = SubResource("Resource_4td4i")
 targeting_strategy = SubResource("Resource_i3cox")
 

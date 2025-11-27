@@ -10,7 +10,6 @@ var is_flying: bool = false
 var target: Enemy = null
 var target_marker: Marker2D = null
 var damage_timer: float = 0.0
-var flight_direction: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	super ()
@@ -71,14 +70,12 @@ func _fire_weapon() -> void:
 		
 		var to_target: Vector2 = (target_marker.global_position - global_position).normalized()
 		rotation = to_target.angle()
-		flight_direction = to_target
 		is_flying = true
 		is_pinned = false
 	else:
 		# No target found, don't activate
 		is_flying = false
 		is_pinned = false
-		print("  No target found")
 
 func _activate() -> void:
 	if not is_flying:

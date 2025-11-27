@@ -1,11 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5q0dl2bqugwq"]
+[gd_scene load_steps=29 format=3 uid="uid://c5q0dl2bqugwq"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_1jete"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_aa5oc"]
 [ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/urchin/Urchin.png" id="3_mfrgb"]
 [ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="3_mlp20"]
 [ext_resource type="Script" uid="uid://drw5rsr1p71sf" path="res://scenes/enemies/motion/motion_animation_strategy_single.gd" id="3_xahdf"]
+[ext_resource type="PackedScene" uid="uid://cg3t5ee803vm7" path="res://scenes/pickups/exp_pickup.tscn" id="4_ctbf3"]
 [ext_resource type="Script" uid="uid://dxv0vun5p6jl1" path="res://scenes/enemies/attack/attack_animation_strategy_none.gd" id="4_xahdf"]
+[ext_resource type="PackedScene" uid="uid://b07qgtxwwcm16" path="res://scenes/pickups/life_ring_pickup.tscn" id="5_4fi80"]
+[ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="8_d1faj"]
 
 [sub_resource type="Resource" id="Resource_mfrgb"]
 script = ExtResource("2_aa5oc")
@@ -27,6 +30,12 @@ metadata/_custom_type_script = "uid://drw5rsr1p71sf"
 [sub_resource type="Resource" id="Resource_e0os5"]
 script = ExtResource("4_xahdf")
 metadata/_custom_type_script = "uid://dxv0vun5p6jl1"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk2ww"]
+resource_local_to_scene = true
+shader = ExtResource("8_d1faj")
+shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
+shader_parameter/flash_strength = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0os5"]
 atlas = ExtResource("3_mfrgb")
@@ -125,9 +134,13 @@ motion_animation_strategy = SubResource("Resource_xahdf")
 attack_animation_strategy = SubResource("Resource_e0os5")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_sk2ww")
 sprite_frames = SubResource("SpriteFrames_1jete")
 animation = &"move"
 autoplay = "move"
+
+[node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
+position = Vector2(0, 4)
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 1.5707964

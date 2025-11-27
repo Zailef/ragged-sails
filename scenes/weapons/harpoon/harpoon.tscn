@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlwul4srdo6yo"]
+
+[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_wsp03"]
+[ext_resource type="Script" uid="uid://bytbk5v6e66do" path="res://scenes/weapons/harpoon/harpoon.gd" id="2_gcysc"]
+[ext_resource type="Texture2D" uid="uid://b2pq6bhlo6yw2" path="res://sprites/weapons/harpoon.png" id="2_vfj41"]
+[ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_lk600"]
+[ext_resource type="Script" uid="uid://fpury8437p87" path="res://scenes/weapons/targeting/targeting_strategy_toughest.gd" id="3_qffnh"]
+
+[sub_resource type="Resource" id="Resource_4td4i"]
+script = ExtResource("3_lk600")
+cooldown = 3.0
+duration = 10.0
+metadata/_custom_type_script = "uid://dfpkint1tllcj"
+
+[sub_resource type="Resource" id="Resource_i3cox"]
+script = ExtResource("3_qffnh")
+metadata/_custom_type_script = "uid://fpury8437p87"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcysc"]
+atlas = ExtResource("2_vfj41")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qffnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcysc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Harpoon" instance=ExtResource("1_wsp03")]
+script = ExtResource("2_gcysc")
+damage_rate = 0.5
+flight_speed = 300.0
+max_range = 200.0
+weapon_stats = SubResource("Resource_4td4i")
+targeting_strategy = SubResource("Resource_i3cox")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_qffnh")
+
+[node name="Line2D" type="Line2D" parent="." index="5"]
+width = 1.0
+default_color = Color(0.40861896, 0.18285856, 1.4439226e-07, 1)
+joint_mode = 2

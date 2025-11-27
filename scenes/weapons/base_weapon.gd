@@ -14,7 +14,7 @@ var current_state: WeaponState = WeaponState.READY
 func _ready() -> void:
 	_initialise_timers()
 	_reset_weapon()
-	_start_weapon_cycle()
+	_start_weapon_cycle.call_deferred()
 
 func _initialise_timers() -> void:
 	cooldown_timer.wait_time = weapon_stats.cooldown

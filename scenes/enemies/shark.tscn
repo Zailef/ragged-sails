@@ -1,13 +1,13 @@
-[gd_scene load_steps=47 format=3 uid="uid://ctuwgqlchklqy"]
+[gd_scene load_steps=40 format=3 uid="uid://ctuwgqlchklqy"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_bmp7b"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_1el3g"]
 [ext_resource type="Texture2D" uid="uid://byvwckcxo7aay" path="res://sprites/enemies/shark/Shark_Down.png" id="2_jof6d"]
-[ext_resource type="Texture2D" uid="uid://bxhky3lmd7vrh" path="res://sprites/enemies/shark/Shark_Left.png" id="3_1el3g"]
 [ext_resource type="Script" uid="uid://yni0r61mhe5h" path="res://scenes/enemies/motion/motion_animation_strategy_udlr.gd" id="3_y838i"]
 [ext_resource type="Script" uid="uid://dxv0vun5p6jl1" path="res://scenes/enemies/attack/attack_animation_strategy_none.gd" id="4_7flyy"]
 [ext_resource type="Texture2D" uid="uid://i5bfykdq70fo" path="res://sprites/enemies/shark/Shark_Right.png" id="4_y838i"]
 [ext_resource type="Texture2D" uid="uid://cox8lr44cipgf" path="res://sprites/enemies/shark/Shark_Up.png" id="5_7flyy"]
+[ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="5_wsy3x"]
 
 [sub_resource type="Resource" id="Resource_y838i"]
 script = ExtResource("2_1el3g")
@@ -21,6 +21,12 @@ metadata/_custom_type_script = "uid://yni0r61mhe5h"
 [sub_resource type="Resource" id="Resource_wsy3x"]
 script = ExtResource("4_7flyy")
 metadata/_custom_type_script = "uid://dxv0vun5p6jl1"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osw5q"]
+resource_local_to_scene = true
+shader = ExtResource("5_wsy3x")
+shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
+shader_parameter/flash_strength = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgs2x"]
 atlas = ExtResource("2_jof6d")
@@ -52,38 +58,6 @@ region = Rect2(576, 0, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vblft"]
 atlas = ExtResource("2_jof6d")
-region = Rect2(672, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3tede"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(0, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2vcg"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(96, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2myjp"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(192, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5l6f5"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(288, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2wksj"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(384, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1koq"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(480, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nq4ql"]
-atlas = ExtResource("3_1el3g")
-region = Rect2(576, 0, 96, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4h13"]
-atlas = ExtResource("3_1el3g")
 region = Rect2(672, 0, 96, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36pa4"]
@@ -183,35 +157,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3tede")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2vcg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2myjp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5l6f5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2wksj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1koq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nq4ql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4h13")
-}],
-"loop": true,
-"name": &"move_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_36pa4")
 }, {
 "duration": 1.0,
@@ -281,10 +226,13 @@ motion_animation_strategy = SubResource("Resource_7flyy")
 attack_animation_strategy = SubResource("Resource_wsy3x")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_osw5q")
 sprite_frames = SubResource("SpriteFrames_bmp7b")
-animation = &"move_up"
+animation = &"move_down"
 autoplay = "move_up"
-frame_progress = 0.47284412
+
+[node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
+position = Vector2(19, 6)
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CapsuleShape2D_7flyy")

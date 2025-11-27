@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c4dl3taqnso0s"]
+[gd_scene load_steps=32 format=3 uid="uid://c4dl3taqnso0s"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_p344i"]
 [ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid/mermaid_sheet.png" id="2_lujby"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://g5bs1wnrma2c" path="res://scenes/enemies/attack/attack_animation_strategy_lr.gd" id="4_pe30f"]
 [ext_resource type="PackedScene" uid="uid://b07qgtxwwcm16" path="res://scenes/pickups/life_ring_pickup.tscn" id="5_h0e5o"]
 [ext_resource type="Script" uid="uid://drywn3wbujex2" path="res://scenes/enemies/drops/drop_strategy_default.gd" id="6_r5ocs"]
+[ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="9_52sw7"]
 
 [sub_resource type="Resource" id="Resource_rdap4"]
 script = ExtResource("2_wol66")
@@ -30,29 +31,11 @@ metadata/_custom_type_script = "uid://b1800rc5cg4cq"
 script = ExtResource("4_pe30f")
 metadata/_custom_type_script = "uid://g5bs1wnrma2c"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wgd0g"]
-atlas = ExtResource("2_lujby")
-region = Rect2(0, 96, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_52sw7"]
-atlas = ExtResource("2_lujby")
-region = Rect2(64, 96, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h0e5o"]
-atlas = ExtResource("2_lujby")
-region = Rect2(128, 96, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r5ocs"]
-atlas = ExtResource("2_lujby")
-region = Rect2(192, 96, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7cfag"]
-atlas = ExtResource("2_lujby")
-region = Rect2(256, 96, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5erkt"]
-atlas = ExtResource("2_lujby")
-region = Rect2(320, 96, 64, 32)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0e5o"]
+resource_local_to_scene = true
+shader = ExtResource("9_52sw7")
+shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
+shader_parameter/flash_strength = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wol66"]
 atlas = ExtResource("2_lujby")
@@ -77,30 +60,6 @@ region = Rect2(256, 64, 64, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nva47"]
 atlas = ExtResource("2_lujby")
 region = Rect2(320, 64, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ab4nq"]
-atlas = ExtResource("2_lujby")
-region = Rect2(0, 32, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bti23"]
-atlas = ExtResource("2_lujby")
-region = Rect2(64, 32, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yjoyb"]
-atlas = ExtResource("2_lujby")
-region = Rect2(128, 32, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vb3c4"]
-atlas = ExtResource("2_lujby")
-region = Rect2(192, 32, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6o22"]
-atlas = ExtResource("2_lujby")
-region = Rect2(256, 32, 64, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nue68"]
-atlas = ExtResource("2_lujby")
-region = Rect2(320, 32, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ld27"]
 atlas = ExtResource("2_lujby")
@@ -130,29 +89,6 @@ region = Rect2(320, 0, 64, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wgd0g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_52sw7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h0e5o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r5ocs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7cfag")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5erkt")
-}],
-"loop": true,
-"name": &"attack_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_wol66")
 }, {
 "duration": 1.0,
@@ -172,29 +108,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ab4nq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bti23")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yjoyb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vb3c4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6o22")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nue68")
-}],
-"loop": true,
-"name": &"move_left",
 "speed": 5.0
 }, {
 "frames": [{
@@ -237,8 +150,12 @@ motion_animation_strategy = SubResource("Resource_pe30f")
 attack_animation_strategy = SubResource("Resource_qj0dc")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_h0e5o")
 sprite_frames = SubResource("SpriteFrames_1mrfq")
 animation = &"attack_right"
+
+[node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
+position = Vector2(14, 7)
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 1.5707964

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="7_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="8_h17s1"]
+[ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="8_h17s2"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1304,6 +1305,7 @@ show_percentage = false
 
 [node name="Mine" parent="Weapons" instance=ExtResource("8_h17s1")]
 arm_delay = 1.5
+[node name="Harpoon" parent="Weapons" instance=ExtResource("8_h17s2")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 

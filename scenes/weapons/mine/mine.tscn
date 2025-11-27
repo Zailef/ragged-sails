@@ -136,5 +136,6 @@ enabled = false
 shape = SubResource("CircleShape2D_explosion")
 target_position = Vector2(0, 0)
 collision_mask = 4
+collide_with_areas = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

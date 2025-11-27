@@ -90,8 +90,8 @@ func _detonate() -> void:
 
 	for i in range(collision_count):
 		var collider = explosion_cast.get_collider(i)
-		if collider is Enemy:
-			var enemy = collider as Enemy
+		if collider.get_owner() is Enemy:
+			var enemy: Enemy = collider.get_owner()
 			if enemy not in damaged_enemies:
 				enemy.take_damage(weapon_stats.damage)
 				damaged_enemies.append(enemy)

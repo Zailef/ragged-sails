@@ -1,0 +1,140 @@
+[gd_scene load_steps=23 format=3 uid="uid://cjpekuumwrnu7"]
+
+[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_cd4in"]
+[ext_resource type="Texture2D" uid="uid://cobf5b1ure4gf" path="res://sprites/weapons/mine.png" id="2_s0qnc"]
+[ext_resource type="Script" uid="uid://dk6gkkgd614me" path="res://scenes/weapons/mine/mine.gd" id="2_svunn"]
+[ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_8fj20"]
+[ext_resource type="Texture2D" uid="uid://cavav653ukt1o" path="res://sprites/weapons/mine explosion.png" id="3_s0qnc"]
+[ext_resource type="Script" uid="uid://cmf4n5dio7gxd" path="res://scenes/weapons/targeting/targeting_strategy_none.gd" id="4_rmgcs"]
+
+[sub_resource type="Resource" id="Resource_rmgcs"]
+script = ExtResource("3_8fj20")
+damage = 100
+cooldown = 5.0
+metadata/_custom_type_script = "uid://dfpkint1tllcj"
+
+[sub_resource type="Resource" id="Resource_rjhsf"]
+script = ExtResource("4_rmgcs")
+metadata/_custom_type_script = "uid://cmf4n5dio7gxd"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svunn"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fj20"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmgcs"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjhsf"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pav4t"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5oxbx"]
+atlas = ExtResource("2_s0qnc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noxh0"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cg1j"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg6w6"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as136"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfc2l"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b6pw"]
+atlas = ExtResource("3_s0qnc")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_noxh0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svunn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fj20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmgcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjhsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pav4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5oxbx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noxh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cg1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg6w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as136")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfc2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b6pw")
+}],
+"loop": false,
+"name": &"detonate",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_explosion"]
+radius = 25.0
+
+[node name="Mine" instance=ExtResource("1_cd4in")]
+script = ExtResource("2_svunn")
+detonate_animation_offset = Vector2(0, -28)
+arm_delay = 1.0
+lifetime = 10.0
+damage_delay = 0.15
+weapon_stats = SubResource("Resource_rmgcs")
+targeting_strategy = SubResource("Resource_rjhsf")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_noxh0")
+animation = &"detonate"
+
+[node name="ExplosionCast" type="ShapeCast2D" parent="." index="1"]
+position = Vector2(0, 28)
+enabled = false
+shape = SubResource("CircleShape2D_explosion")
+target_position = Vector2(0, 0)
+collision_mask = 4
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

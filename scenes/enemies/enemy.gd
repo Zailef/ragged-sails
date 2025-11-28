@@ -58,6 +58,7 @@ func _handle_animations(direction: Vector2) -> void:
 		new_animation = attack_animation_strategy.get_attack_animation(context)
 	else:
 		var context = MotionAnimationStrategyContext.new()
+		context.subject = self
 		context.direction = direction
 		new_animation = motion_animation_strategy.get_movement_animation(context)
 

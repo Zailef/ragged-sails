@@ -31,6 +31,8 @@ drop_strategy = SubResource("Resource_y5th1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_jt03m")
 
+[node name="TargetMarker" type="Marker2D" parent="AnimatedSprite2D"]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="HitArea" type="Area2D" parent="."]

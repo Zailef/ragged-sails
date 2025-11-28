@@ -11,6 +11,11 @@ func get_target(context: TargetingContext) -> TargetingResult:
 			continue
 			
 		var distance: float = context.user.global_position.distance_to(enemy.global_position)
+		
+		if context.weapon_stats and context.weapon_stats.max_range > 0:
+			if distance > context.weapon_stats.max_range:
+				continue
+		
 		if distance < nearest_distance:
 			nearest_distance = distance
 			nearest_enemy = enemy

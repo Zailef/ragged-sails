@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4jcgem4cre60"
-path="res://.godot/imported/Urchin.png-329960c880f94e1906c2ec6c31315d47.ctex"
+uid="uid://bxhky3lmd7vrh"
+path="res://.godot/imported/Shark_Left.png-070ff00f485226bed5904256f2f89953.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/Urchin/Urchin.png"
-dest_files=["res://.godot/imported/Urchin.png-329960c880f94e1906c2ec6c31315d47.ctex"]
+source_file="res://sprites/enemies/shark_temp/Shark_Left.png"
+dest_files=["res://.godot/imported/Shark_Left.png-070ff00f485226bed5904256f2f89953.ctex"]
 
 [params]
 

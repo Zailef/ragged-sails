@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_1jete"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_aa5oc"]
-[ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/urchin/Urchin.png" id="3_mfrgb"]
+[ext_resource type="Texture2D" uid="uid://b4jcgem4cre60" path="res://sprites/enemies/urchin_temp/Urchin.png" id="3_mfrgb"]
 [ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="3_mlp20"]
 [ext_resource type="Script" uid="uid://drw5rsr1p71sf" path="res://scenes/enemies/motion/motion_animation_strategy_single.gd" id="3_xahdf"]
 [ext_resource type="PackedScene" uid="uid://cg3t5ee803vm7" path="res://scenes/pickups/exp_pickup.tscn" id="4_ctbf3"]

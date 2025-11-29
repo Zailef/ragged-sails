@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmx6vifiw30tp"
-path="res://.godot/imported/mermaid_sheet.png-d75c36ac7bd839bcdf88015a206bd4e5.ctex"
+uid="uid://b4jcgem4cre60"
+path="res://.godot/imported/Urchin.png-b0e5329c60f73470f65b3371070be04a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/mermaid/mermaid_sheet.png"
-dest_files=["res://.godot/imported/mermaid_sheet.png-d75c36ac7bd839bcdf88015a206bd4e5.ctex"]
+source_file="res://sprites/enemies/urchin_temp/Urchin.png"
+dest_files=["res://.godot/imported/Urchin.png-b0e5329c60f73470f65b3371070be04a.ctex"]
 
 [params]
 

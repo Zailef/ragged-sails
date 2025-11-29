@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i5bfykdq70fo"
-path="res://.godot/imported/Shark_Right.png-8cfd0cd3197ff1207604c081b3712b38.ctex"
+uid="uid://cv1olu3q4a22"
+path="res://.godot/imported/jellyfish.png-20776f0a824d96d90a2a214e2e4aa835.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/Shark/Shark_Right.png"
-dest_files=["res://.godot/imported/Shark_Right.png-8cfd0cd3197ff1207604c081b3712b38.ctex"]
+source_file="res://sprites/enemies/jellyfish_temp/jellyfish.png"
+dest_files=["res://.godot/imported/jellyfish.png-20776f0a824d96d90a2a214e2e4aa835.ctex"]
 
 [params]
 

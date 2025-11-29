@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="8_h17s2"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
+[ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="8_h17s3"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1304,6 +1305,8 @@ show_percentage = false
 [node name="Anchor" parent="Weapons" instance=ExtResource("5_p47bc")]
 
 [node name="Grapeshot" parent="Weapons" instance=ExtResource("7_5gtgg")]
+
+[node name="Trident" parent="Weapons" instance=ExtResource("8_h17s3")]
 
 [node name="Mine" parent="Weapons" instance=ExtResource("8_h17s1")]
 arm_delay = 1.5

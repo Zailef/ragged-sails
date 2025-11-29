@@ -1,0 +1,127 @@
+[gd_scene load_steps=22 format=3 uid="uid://cppck52jvbshe"]
+
+[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_7tvty"]
+[ext_resource type="Script" uid="uid://bfp43f6qjo88a" path="res://scenes/weapons/trident/trident.gd" id="2_cj6m0"]
+[ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_53yyq"]
+[ext_resource type="Texture2D" uid="uid://dl8ngqut782by" path="res://sprites/weapons/trident.png" id="3_qeedy"]
+[ext_resource type="Texture2D" uid="uid://ce3libg56mx5c" path="res://sprites/weapons/whirlpool.png" id="4_ncuix"]
+[ext_resource type="Script" uid="uid://p3crf7sugeqj" path="res://scenes/weapons/targeting/targeting_strategy_random_in_space.gd" id="4_nsyof"]
+[ext_resource type="Resource" uid="uid://byjvoxr43dxwx" path="res://scenes/weapons/trident/trident_slow_effect.tres" id="5_slow"]
+
+[sub_resource type="Resource" id="Resource_nsyof"]
+script = ExtResource("3_53yyq")
+cooldown = 2.0
+metadata/_custom_type_script = "uid://dfpkint1tllcj"
+
+[sub_resource type="Resource" id="Resource_j6yre"]
+script = ExtResource("4_nsyof")
+metadata/_custom_type_script = "uid://p3crf7sugeqj"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx75x"]
+atlas = ExtResource("4_ncuix")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj8qc"]
+atlas = ExtResource("4_ncuix")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t0k4"]
+atlas = ExtResource("4_ncuix")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpxmh"]
+atlas = ExtResource("4_ncuix")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grucx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx75x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj8qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t0k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpxmh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncuix"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53yyq"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsyof"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6yre"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qb3tp"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adrh0"]
+atlas = ExtResource("3_qeedy")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ophr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncuix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53yyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsyof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6yre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qb3tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adrh0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
+[node name="Trident" instance=ExtResource("1_7tvty")]
+script = ExtResource("2_cj6m0")
+drop_speed = 200.0
+drop_height_offset = 200.0
+targeting_radius = 150.0
+slow_effect = ExtResource("5_slow")
+weapon_stats = SubResource("Resource_nsyof")
+targeting_strategy = SubResource("Resource_j6yre")
+
+[node name="WhirlpoolSprite" type="AnimatedSprite2D" parent="." index="0"]
+z_index = -1
+z_as_relative = false
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_grucx")
+autoplay = "default"
+frame_progress = 0.8399866
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ophr6")
+autoplay = "default"
+frame_progress = 0.19065218

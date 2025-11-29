@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SlowEffect" load_steps=2 format=3 uid="uid://byjvoxr43dxwx"]
+
+[ext_resource type="Script" uid="uid://b0ywlsp4mgiby" path="res://scenes/enemies/status_effects/slow_effect.gd" id="1_slow"]
+
+[resource]
+script = ExtResource("1_slow")
+id = &"slow"

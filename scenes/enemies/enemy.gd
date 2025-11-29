@@ -7,6 +7,7 @@ var player: Player = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_shader_material: ShaderMaterial = sprite.material as ShaderMaterial
+@onready var status_effects: StatusEffectManager = $StatusEffectManager
 
 @export var stats: EnemyStats
 @export var is_boss: bool = false
@@ -39,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	var direction = (player.global_position - global_position).normalized()
 
 	if not is_player_in_hurt_area:
-		velocity = direction * stats.get_move_speed(is_boss)
+		velocity = direction * get_effective_speed()
 	else:
 		velocity = Vector2.ZERO
 
@@ -47,6 +48,21 @@ func _physics_process(delta: float) -> void:
 	_handle_player_damage(delta)
 
 	move_and_slide()
+	
+## Gets the effective movement speed after applying all status effects
+func get_effective_speed() -> float:
+	return stats.get_move_speed(is_boss) * status_effects.get_speed_multiplier()
+
+## Gets the effective damage taken multiplier after applying all status effects
+func get_damage_taken_multiplier() -> float:
+	return status_effects.get_damage_taken_multiplier()
+
+## Gets the effective damage dealt multiplier after applying all status effects
+func get_damage_dealt_multiplier() -> float:
+	return status_effects.get_damage_dealt_multiplier()
+
+func take_damage(amount: int) -> void:
+	_handle_self_damage(amount)
 
 func _handle_animations(direction: Vector2) -> void:
 	var new_animation: String = ""
@@ -87,9 +103,6 @@ func _handle_player_damage(delta: float) -> void:
 	if damage_rate_timer >= stats.get_damage_rate(is_boss):
 		player.take_damage(stats.get_damage(is_boss))
 		damage_rate_timer = 0.0
-
-func take_damage(amount: int) -> void:
-	_handle_self_damage(amount)
 
 func _handle_self_damage(amount: int) -> void:
 	current_health -= amount

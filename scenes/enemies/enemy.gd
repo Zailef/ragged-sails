@@ -29,7 +29,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	current_health = stats.get_max_health(is_boss)
 	scale *= stats.get_scale(is_boss)
-	
+
 	if is_boss:
 		_apply_boss_outline()
 
@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	_handle_player_damage(delta)
 
 	move_and_slide()
-	
+
 ## Gets the effective movement speed after applying all status effects
 func get_effective_speed() -> float:
 	return stats.get_move_speed(is_boss) * status_effects.get_speed_multiplier()

@@ -1,13 +1,16 @@
 extends CharacterBody2D
 class_name Player
 
-@export_group("player stats")
+@export_group("Debug")
 @export var is_immortal: bool = false
+@export var debug_mobile_controls: bool = false
+
+@export_group("Player Stats")
 @export var move_speed = 50.0
 @export var max_health = 100
 @export var level_progress: PlayerLevelProgress
 
-@export_group("damage feedback")
+@export_group("Damage Feedback")
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
@@ -18,8 +21,10 @@ class_name Player
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var hurt_sound: AudioStreamPlayer = %DamageSound
 @onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
+@onready var virtual_joystick: Node2D = %VirtualJoystick
 
 var is_dead: bool = false
+var is_mobile: bool = false
 
 var current_health: int = max_health:
 	set(value):
@@ -29,9 +34,14 @@ var current_health: int = max_health:
 func _ready() -> void:
 	SignalManager.exp_gained.connect(_on_exp_gained)
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
+	_setup_mobile_controls()
+
+func _setup_mobile_controls() -> void:
+	is_mobile = OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls
+	virtual_joystick.visible = is_mobile
 
 func _physics_process(_delta: float) -> void:
-	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_direction = _get_input_direction()
 
 	if input_direction:
 		velocity = input_direction * move_speed
@@ -43,6 +53,12 @@ func _physics_process(_delta: float) -> void:
 		animation_state.travel("Idle")
 
 	move_and_slide()
+
+func _get_input_direction() -> Vector2:
+	# Use virtual joystick on mobile, keyboard/gamepad otherwise
+	if is_mobile and virtual_joystick and virtual_joystick.is_pressed:
+		return virtual_joystick.position_vector.normalized()
+	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func take_damage(amount: int) -> void:
 	if is_immortal or is_dead:

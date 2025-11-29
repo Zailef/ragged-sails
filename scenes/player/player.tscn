@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="8_h17s3"]
+[ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="12_fm80t"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1332,3 +1333,6 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("13_gx1jg")
 bus = &"SFX"
+
+[node name="VirtualJoystick" parent="UI" instance=ExtResource("12_fm80t")]
+unique_name_in_owner = true

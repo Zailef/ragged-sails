@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://br475udsfkbu3"]
+
+[ext_resource type="Script" uid="uid://bg5woo0fh58s3" path="res://scenes/ui/joystick/virtual_joystick.gd" id="1_h1yv7"]
+[ext_resource type="Texture2D" uid="uid://be8nd7as6w56t" path="res://sprites/ui/virtual_joystick_inner.png" id="2_cl83h"]
+[ext_resource type="Script" uid="uid://cdy181bu8arv5" path="res://scenes/ui/joystick/joystick_inner.gd" id="2_s8cih"]
+[ext_resource type="Texture2D" uid="uid://b85segy0l6k81" path="res://sprites/ui/virtual_joystick_outer.png" id="4_iqi4o"]
+
+[node name="VirtualJoystick" type="Node2D"]
+script = ExtResource("1_h1yv7")
+colour_override = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
+
+[node name="JoystickInner" type="Sprite2D" parent="."]
+texture = ExtResource("2_cl83h")
+script = ExtResource("2_s8cih")
+
+[node name="JoystickOuter" type="Sprite2D" parent="."]
+texture = ExtResource("4_iqi4o")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="JoystickInner" to="." method="_on_joystick_inner_button_down"]
+[connection signal="button_up" from="JoystickInner" to="." method="_on_joystick_inner_button_up"]
+[connection signal="button_down" from="Button" to="JoystickInner" method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="JoystickInner" method="_on_button_button_up"]

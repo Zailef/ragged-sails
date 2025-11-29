@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cox8lr44cipgf"
-path="res://.godot/imported/Shark_Up.png-5fb6d087eb58e5e4e1fcfe909da97e8f.ctex"
+uid="uid://i5bfykdq70fo"
+path="res://.godot/imported/Shark_Right.png-e2b35594f85a9c591fac61fc1725abc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/shark_temp/Shark_Up.png"
-dest_files=["res://.godot/imported/Shark_Up.png-5fb6d087eb58e5e4e1fcfe909da97e8f.ctex"]
+source_file="res://sprites/enemies/shark/Shark_Right.png"
+dest_files=["res://.godot/imported/Shark_Right.png-e2b35594f85a9c591fac61fc1725abc8.ctex"]
 
 [params]
 

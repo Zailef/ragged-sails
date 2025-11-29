@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmx6vifiw30tp"
-path="res://.godot/imported/mermaid_sheet.png-b6d6d3b5ae235f77040da913ec222c7f.ctex"
+uid="uid://cv1olu3q4a22"
+path="res://.godot/imported/jellyfish.png-4483408b6c8d370e22dbe161ff14ed56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/mermaid_temp/mermaid_sheet.png"
-dest_files=["res://.godot/imported/mermaid_sheet.png-b6d6d3b5ae235f77040da913ec222c7f.ctex"]
+source_file="res://sprites/enemies/jellyfish/jellyfish.png"
+dest_files=["res://.godot/imported/jellyfish.png-4483408b6c8d370e22dbe161ff14ed56.ctex"]
 
 [params]
 

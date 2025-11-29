@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://c4dl3taqnso0s"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_p344i"]
-[ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid_temp/mermaid_sheet.png" id="2_lujby"]
+[ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid/mermaid_sheet.png" id="2_lujby"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_wol66"]
 [ext_resource type="Script" uid="uid://b1800rc5cg4cq" path="res://scenes/enemies/motion/motion_animation_strategy_lr.gd" id="3_rdap4"]
 [ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="3_wgd0g"]

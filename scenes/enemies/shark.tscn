@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_bmp7b"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_1el3g"]
-[ext_resource type="Texture2D" uid="uid://byvwckcxo7aay" path="res://sprites/enemies/shark_temp/Shark_Down.png" id="2_jof6d"]
+[ext_resource type="Texture2D" uid="uid://byvwckcxo7aay" path="res://sprites/enemies/shark/Shark_Down.png" id="2_jof6d"]
 [ext_resource type="Script" uid="uid://yni0r61mhe5h" path="res://scenes/enemies/motion/motion_animation_strategy_udlr.gd" id="3_y838i"]
 [ext_resource type="Script" uid="uid://dxv0vun5p6jl1" path="res://scenes/enemies/attack/attack_animation_strategy_none.gd" id="4_7flyy"]
-[ext_resource type="Texture2D" uid="uid://i5bfykdq70fo" path="res://sprites/enemies/shark_temp/Shark_Right.png" id="4_y838i"]
-[ext_resource type="Texture2D" uid="uid://cox8lr44cipgf" path="res://sprites/enemies/shark_temp/Shark_Up.png" id="5_7flyy"]
+[ext_resource type="Texture2D" uid="uid://i5bfykdq70fo" path="res://sprites/enemies/shark/Shark_Right.png" id="4_y838i"]
+[ext_resource type="Texture2D" uid="uid://cox8lr44cipgf" path="res://sprites/enemies/shark/Shark_Up.png" id="5_7flyy"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="5_wsy3x"]
 
 [sub_resource type="Resource" id="Resource_y838i"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3a415iist1k1" path="res://sprites/menu/ItemFrame.png" id="1_6ehou"]
 [ext_resource type="Script" uid="uid://dukf7iqpanowe" path="res://scenes/ui/item_frame.gd" id="2_gp2cq"]
-[ext_resource type="Shader" uid="uid://ciljihr1886mr" path="res://sprites/shaders/Shiny.gdshader" id="3_gp2cq"]
+[ext_resource type="Shader" uid="uid://ciljihr1886mr" path="res://sprites/shaders/shiny.gdshader" id="3_gp2cq"]
 [ext_resource type="Texture2D" uid="uid://ck742cjvwfurm" path="res://sprites/menu/ItemFrame_Focused.png" id="4_r1ttv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ehou"]

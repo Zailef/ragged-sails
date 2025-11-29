@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cyhtcxisq357" path="res://scenes/player/player.tscn" id="1_6ivci"]
 [ext_resource type="Texture2D" uid="uid://svdcv4myo7sj" path="res://sprites/environment/sea-tile-sheet.png" id="1_h320y"]
 [ext_resource type="Texture2D" uid="uid://drw4sat31flsb" path="res://sprites/environment/SeaRock2.png" id="2_ea3gy"]
-[ext_resource type="PackedScene" uid="uid://on4oio1ejyxn" path="res://sprites/environment/Ocean.tscn" id="3_xf1sy"]
+[ext_resource type="PackedScene" uid="uid://on4oio1ejyxn" path="res://scenes/environment/ocean.tscn" id="3_xf1sy"]
 [ext_resource type="Texture2D" uid="uid://dtwnrrxeukiis" path="res://sprites/environment/SeaRock1.png" id="4_a64th"]
 [ext_resource type="PackedScene" uid="uid://c5q0dl2bqugwq" path="res://scenes/enemies/urchin.tscn" id="5_qm7gn"]
 [ext_resource type="PackedScene" uid="uid://ctuwgqlchklqy" path="res://scenes/enemies/shark.tscn" id="6_ea3gy"]

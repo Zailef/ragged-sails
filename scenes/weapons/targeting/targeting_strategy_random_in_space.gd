@@ -18,10 +18,8 @@ func get_target(context: TargetingContext) -> TargetingResult:
 		query.collision_mask = 4 # Enemy layer (bit 2 = value 4)
 		
 		var results = space_state.intersect_shape(query)
-		print("Space query found ", results.size(), " colliders")
 		for result in results:
 			var collider = result.collider
-			print("  Collider: ", collider, " is Enemy: ", collider is Enemy)
 			if collider is Enemy:
 				valid_enemies.append(collider)
 	

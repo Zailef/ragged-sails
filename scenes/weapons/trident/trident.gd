@@ -5,6 +5,7 @@ const SPRITE_SIZE: int = 32
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var whirlpool_sprite: AnimatedSprite2D = $WhirlpoolSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var drop_speed: float = 200.0
 @export var drop_height_offset: float = 200.0
@@ -21,6 +22,7 @@ func _ready() -> void:
 	sprite.hide()
 	whirlpool_sprite.hide()
 	whirlpool_sprite.top_level = true
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	if current_state != WeaponState.ACTIVE:
@@ -59,7 +61,8 @@ func _fire_weapon() -> void:
 		target_enemy = null
 
 func _activate() -> void:
-	whirlpool_sprite.hide()
+	if whirlpool_sprite.visible:
+		animation_player.play("shrink")
 	_clear_slow_effects()
 
 	if not is_dropping:
@@ -81,6 +84,7 @@ func _impact() -> void:
 
 	whirlpool_sprite.global_position = global_position
 	whirlpool_sprite.show()
+	animation_player.play("grow")
 
 	if target_enemy and is_instance_valid(target_enemy):
 		target_enemy.take_damage(weapon_stats.damage)
@@ -134,3 +138,7 @@ func _clear_slow_effects() -> void:
 ## Called by StatusEffectManager when an enemy with our effect is freed
 func _on_affected_enemy_freed(enemy: Enemy) -> void:
 	affected_enemies.erase(enemy)
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == &"shrink":
+		whirlpool_sprite.hide()

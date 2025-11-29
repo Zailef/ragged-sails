@@ -7,13 +7,14 @@ class_name StatusEffectInstance
 var effect: StatusEffect
 var remaining_duration: float
 var stack_count: int = 1
-var source: Node = null # Optional reference to what applied this effect
+var sources: Array[Node] = [] # All nodes that have applied this effect
 
 
 func _init(p_effect: StatusEffect, p_source: Node = null) -> void:
 	effect = p_effect
 	remaining_duration = p_effect.duration
-	source = p_source
+	if p_source:
+		sources.append(p_source)
 
 
 ## Returns true if this effect has expired (only for timed effects)
@@ -43,3 +44,20 @@ func add_stack() -> bool:
 		refresh()
 		return true
 	return false
+
+
+## Adds a source if not already tracking it
+func add_source(p_source: Node) -> void:
+	if p_source and not sources.has(p_source):
+		sources.append(p_source)
+
+
+## Removes a source, returns true if this was the last source
+func remove_source(p_source: Node) -> bool:
+	sources.erase(p_source)
+	return sources.is_empty()
+
+
+## Checks if this effect was applied by the given source
+func has_source(p_source: Node) -> bool:
+	return sources.has(p_source)

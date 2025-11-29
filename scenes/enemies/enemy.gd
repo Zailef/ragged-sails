@@ -16,7 +16,7 @@ var player: Player = null
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
 
-@export_group("damage feedback")
+@export_group("Damage Feedback")
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
@@ -105,7 +105,7 @@ func _handle_player_damage(delta: float) -> void:
 		damage_rate_timer = 0.0
 
 func _handle_self_damage(amount: int) -> void:
-	current_health -= amount
+	current_health -= int(amount * get_damage_taken_multiplier())
 
 	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)
 	var tween := create_tween()

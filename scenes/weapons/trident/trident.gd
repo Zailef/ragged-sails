@@ -93,6 +93,9 @@ func _impact() -> void:
 	end_active_phase()
 
 func _update_slow_effects() -> void:
+	if not whirlpool_sprite.visible:
+		return
+	
 	# Find enemies in the whirlpool area
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
@@ -127,7 +130,6 @@ func _update_slow_effects() -> void:
 	for enemy in enemies_to_remove:
 		affected_enemies.erase(enemy)
 
-
 func _clear_slow_effects() -> void:
 	# Remove slow from all affected enemies
 	for enemy in affected_enemies:
@@ -136,7 +138,7 @@ func _clear_slow_effects() -> void:
 	affected_enemies.clear()
 
 ## Called by StatusEffectManager when an enemy with our effect is freed
-func _on_affected_enemy_freed(enemy: Enemy) -> void:
+func _on_affected_entity_freed(enemy: Enemy) -> void:
 	affected_enemies.erase(enemy)
 
 func _on_animation_finished(anim_name: StringName) -> void:

@@ -22,9 +22,12 @@ class_name Player
 @onready var hurt_sound: AudioStreamPlayer = %DamageSound
 @onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
 @onready var virtual_joystick: Node2D = %VirtualJoystick
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var hurt_collision_shape: CollisionShape2D = $HurtArea/CollisionShape2D
 
 var is_dead: bool = false
 var is_mobile: bool = false
+var _facing_direction: Vector2 = Vector2.DOWN
 
 var current_health: int = max_health:
 	set(value):
@@ -45,6 +48,8 @@ func _physics_process(_delta: float) -> void:
 
 	if input_direction:
 		velocity = input_direction * move_speed
+		_facing_direction = input_direction.normalized()
+		_update_collision_rotation()
 		animation_tree.set("parameters/Idle/blend_position", input_direction)
 		animation_tree.set("parameters/Move/blend_position", input_direction)
 		animation_state.travel("Move")
@@ -54,11 +59,17 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
+func _update_collision_rotation() -> void:
+	# Rotate capsule to align with ship facing direction
+	# The capsule's default orientation is vertical, so we rotate based on facing
+	var target_rotation = _facing_direction.angle() + PI / 2.0
+	collision_shape.rotation = target_rotation
+	hurt_collision_shape.rotation = target_rotation
+
 func _get_input_direction() -> Vector2:
 	# Use virtual joystick on mobile, keyboard/gamepad otherwise
 	if is_mobile and virtual_joystick:
 		return virtual_joystick.position_vector
-
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func take_damage(amount: int) -> void:

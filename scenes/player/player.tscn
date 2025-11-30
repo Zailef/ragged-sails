@@ -612,8 +612,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dovo2"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+radius = 7.0
+height = 50.0
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "Idle Down"
@@ -1229,8 +1230,9 @@ states/Start/position = Vector2(229, 191)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dovo2"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_gmlin"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_lvxji")]
 graph_offset = Vector2(-106, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
-radius = 12.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_je7p5"]
+radius = 7.0
+height = 50.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)
@@ -1263,8 +1265,7 @@ sprite_frames = SubResource("SpriteFrames_x7p2l")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5707964
-shape = SubResource("CircleShape2D_dovo2")
+shape = SubResource("CapsuleShape2D_dovo2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.75, 1.75)
@@ -1285,7 +1286,7 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-shape = SubResource("CircleShape2D_gmlin")
+shape = SubResource("CapsuleShape2D_je7p5")
 debug_color = Color(0.9818738, 0, 0.3713596, 0.41960785)
 
 [node name="HealthBar" type="ProgressBar" parent="."]

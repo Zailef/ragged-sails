@@ -8,6 +8,8 @@ var player: Player = null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_shader_material: ShaderMaterial = sprite.material as ShaderMaterial
 @onready var status_effects: StatusEffectManager = $StatusEffectManager
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var hit_area_collision_shape: CollisionShape2D = $HitArea/CollisionShape2D
 
 @export var stats: EnemyStats
 @export var is_boss: bool = false
@@ -19,6 +21,14 @@ var player: Player = null
 @export_group("Damage Feedback")
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
+
+@export_group("collision")
+## If true, collision shapes rotate to match movement direction (for elongated enemies like sharks)
+@export var rotate_collision_with_direction: bool = false
+## Position offset for collision shape when facing horizontally (left/right)
+@export var horizontal_collision_offset: Vector2 = Vector2.ZERO
+## Position offset for collision shape when facing vertically (up/down)
+@export var vertical_collision_offset: Vector2 = Vector2.ZERO
 
 var is_on_screen: bool = false
 var is_player_in_hurt_area: bool = false
@@ -46,6 +56,9 @@ func _physics_process(delta: float) -> void:
 
 	_handle_animations(direction)
 	_handle_player_damage(delta)
+	
+	if rotate_collision_with_direction and direction != Vector2.ZERO:
+		_update_collision_rotation(direction)
 
 	move_and_slide()
 
@@ -63,6 +76,31 @@ func get_damage_dealt_multiplier() -> float:
 
 func take_damage(amount: int) -> void:
 	_handle_self_damage(amount)
+
+func _update_collision_rotation(direction: Vector2) -> void:
+	# Snap rotation to match UDLR sprite directions (not continuous rotation)
+	# Capsule default orientation is vertical (pointing up/down)
+	var target_rotation: float
+	var target_offset: Vector2
+	
+	if abs(direction.x) > abs(direction.y):
+		# Horizontal (left or right) - rotate capsule 90 degrees
+		target_rotation = PI / 2.0
+		target_offset = horizontal_collision_offset
+		# Mirror offset for left direction
+		if direction.x < 0:
+			target_offset.x = - target_offset.x
+	else:
+		# Vertical (up or down) - keep capsule vertical
+		target_rotation = 0.0
+		target_offset = vertical_collision_offset
+	
+	if collision_shape:
+		collision_shape.rotation = target_rotation
+		collision_shape.position = target_offset
+	if hit_area_collision_shape:
+		hit_area_collision_shape.rotation = target_rotation
+		hit_area_collision_shape.position = target_offset
 
 func _handle_animations(direction: Vector2) -> void:
 	var new_animation: String = ""

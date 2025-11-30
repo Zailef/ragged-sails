@@ -20,9 +20,14 @@ var player: Player = null
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
+@export_group("Attack Animation")
+## How long to continue showing attack animation after player leaves range
+@export var attack_animation_linger: float = 0.3
+
 var is_on_screen: bool = false
 var is_player_in_hurt_area: bool = false
 var damage_rate_timer: float = 0.0
+var _attack_linger_timer: float = 0.0
 var current_health: int
 
 func _ready() -> void:
@@ -41,6 +46,9 @@ func _physics_process(delta: float) -> void:
 
 	if not is_player_in_hurt_area:
 		velocity = direction * get_effective_speed()
+		# Count down attack linger timer when player is out of range
+		if _attack_linger_timer > 0.0:
+			_attack_linger_timer -= delta
 	else:
 		velocity = Vector2.ZERO
 
@@ -67,7 +75,10 @@ func take_damage(amount: int) -> void:
 func _handle_animations(direction: Vector2) -> void:
 	var new_animation: String = ""
 
-	if is_player_in_hurt_area:
+	# Use attack animation if player is in range, or if we're still in linger period
+	var should_show_attack = is_player_in_hurt_area or _attack_linger_timer > 0.0
+
+	if should_show_attack:
 		var context = AttackAnimationStrategyContext.new()
 		context.subject = self
 		context.target = player
@@ -94,6 +105,7 @@ func _on_hit_area_area_exited(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = false
 		damage_rate_timer = 0.0
+		_attack_linger_timer = attack_animation_linger
 
 func _handle_player_damage(delta: float) -> void:
 	if not is_player_in_hurt_area:

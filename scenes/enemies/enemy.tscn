@@ -23,6 +23,7 @@ shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
 shader_parameter/flash_strength = 0.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_6xk8f")

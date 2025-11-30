@@ -1251,7 +1251,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-z_index = 1
+z_index = 2
 collision_layer = 2
 script = ExtResource("1_dovo2")
 level_progress = SubResource("Resource_qek5x")

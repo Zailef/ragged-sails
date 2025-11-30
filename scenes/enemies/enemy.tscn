@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr62ag5gmpai3"]
+[gd_scene load_steps=11 format=3 uid="uid://cr62ag5gmpai3"]
 
 [ext_resource type="Script" uid="uid://q624c01uluba" path="res://scenes/enemies/enemy.gd" id="1_6xk8f"]
 [ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="2_lu5c6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b07qgtxwwcm16" path="res://scenes/pickups/life_ring_pickup.tscn" id="4_jt03m"]
 [ext_resource type="Script" uid="uid://drywn3wbujex2" path="res://scenes/enemies/drops/drop_strategy_default.gd" id="5_n7575"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="6_nb6gf"]
+[ext_resource type="Script" path="res://scenes/enemies/status_effects/status_effect_manager.gd" id="7_status"]
 
 [sub_resource type="Resource" id="Resource_qch6t"]
 script = ExtResource("2_lu5c6")
@@ -22,11 +23,15 @@ shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
 shader_parameter/flash_strength = 0.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_6xk8f")
 loot_table = SubResource("Resource_qch6t")
 drop_strategy = SubResource("Resource_y5th1")
+
+[node name="StatusEffectManager" type="Node" parent="."]
+script = ExtResource("7_status")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_jt03m")

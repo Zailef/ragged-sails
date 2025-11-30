@@ -1,0 +1,31 @@
+extends TargetingStrategy
+class_name TargetingStrategyRandomInSpace
+
+func get_target(context: TargetingContext) -> TargetingResult:
+	var valid_enemies: Array[Enemy] = []
+	
+	if context.targeting_radius <= 0:
+		push_error("TargetingStrategyRandomInSpace requires a positive targeting_radius in TargetingContext.")
+		return TargetingResult.new(null)
+
+	var space_state = context.user.get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	var shape = CircleShape2D.new()
+	shape.radius = context.targeting_radius
+	query.shape = shape
+	query.transform = Transform2D(0, context.user.global_position)
+	query.collision_mask = 4 # Enemy layer (layer 3, collision mask bit flag 4)
+	
+	var results = space_state.intersect_shape(query)
+	for result in results:
+		var collider = result.collider
+		if collider is Enemy:
+			valid_enemies.append(collider)
+	
+	if valid_enemies.is_empty():
+		return TargetingResult.new(null)
+	
+	var random_index: int = randi() % valid_enemies.size()
+	var random_enemy: Enemy = valid_enemies[random_index]
+	
+	return TargetingResult.new(random_enemy)

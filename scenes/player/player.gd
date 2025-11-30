@@ -22,6 +22,7 @@ class_name Player
 @onready var hurt_sound: AudioStreamPlayer = %DamageSound
 @onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
 @onready var virtual_joystick: Node2D = %VirtualJoystick
+@onready var directional_collision: DirectionalCollision = $DirectionalCollision
 
 var is_dead: bool = false
 var is_mobile: bool = false
@@ -45,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 	if input_direction:
 		velocity = input_direction * move_speed
+		directional_collision.update_direction(input_direction)
 		animation_tree.set("parameters/Idle/blend_position", input_direction)
 		animation_tree.set("parameters/Move/blend_position", input_direction)
 		animation_state.travel("Move")
@@ -58,7 +60,6 @@ func _get_input_direction() -> Vector2:
 	# Use virtual joystick on mobile, keyboard/gamepad otherwise
 	if is_mobile and virtual_joystick:
 		return virtual_joystick.position_vector
-
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func take_damage(amount: int) -> void:

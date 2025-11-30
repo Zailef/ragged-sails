@@ -8,6 +8,7 @@ var player: Player = null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_shader_material: ShaderMaterial = sprite.material as ShaderMaterial
 @onready var status_effects: StatusEffectManager = $StatusEffectManager
+@onready var directional_collision: DirectionalCollision = $DirectionalCollision
 
 @export var stats: EnemyStats
 @export var is_boss: bool = false
@@ -15,6 +16,9 @@ var player: Player = null
 @export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
+
+@export_group("Debugging")
+@export var is_immortal: bool = false
 
 @export_group("Damage Feedback")
 @export var damage_flash_duration = 0.5
@@ -46,6 +50,8 @@ func _physics_process(delta: float) -> void:
 
 	_handle_animations(direction)
 	_handle_player_damage(delta)
+
+	directional_collision.update_direction(direction)
 
 	move_and_slide()
 
@@ -105,6 +111,9 @@ func _handle_player_damage(delta: float) -> void:
 		damage_rate_timer = 0.0
 
 func _handle_self_damage(amount: int) -> void:
+	if is_immortal:
+		return
+
 	current_health -= int(amount * get_damage_taken_multiplier())
 
 	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)

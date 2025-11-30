@@ -216,9 +216,11 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7flyy"]
 radius = 6.0
+height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jof6d"]
 radius = 6.0
+height = 48.0
 
 [node name="Shark" instance=ExtResource("1_bmp7b")]
 stats = SubResource("Resource_y838i")
@@ -228,7 +230,7 @@ attack_animation_strategy = SubResource("Resource_wsy3x")
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_osw5q")
 sprite_frames = SubResource("SpriteFrames_bmp7b")
-animation = &"move_down"
+animation = &"move_right"
 autoplay = "move_up"
 
 [node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
@@ -240,3 +242,7 @@ shape = SubResource("CapsuleShape2D_7flyy")
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource("CapsuleShape2D_jof6d")
 debug_color = Color(0.9609286, 6.738305e-07, 0.5159897, 0.41960785)
+
+[node name="DirectionalCollision" parent="." index="4"]
+rotate_with_direction = true
+horizontal_offset = Vector2(12, 4)

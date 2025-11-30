@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=134 format=3 uid="uid://cyhtcxisq357"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="7_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="8_h17s1"]
 [ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="8_h17s2"]
+[ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="8_h17s3"]
@@ -612,8 +613,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dovo2"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+radius = 7.0
+height = 50.0
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "Idle Down"
@@ -1229,8 +1231,9 @@ states/Start/position = Vector2(229, 191)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_dovo2"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_gmlin"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_lvxji")]
 graph_offset = Vector2(-106, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
-radius = 12.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_je7p5"]
+radius = 7.0
+height = 50.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)
@@ -1263,8 +1266,8 @@ sprite_frames = SubResource("SpriteFrames_x7p2l")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5707964
-shape = SubResource("CircleShape2D_dovo2")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_dovo2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.75, 1.75)
@@ -1281,12 +1284,19 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="HurtArea" type="Area2D" parent="."]
+position = Vector2(0, 2)
 collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
-shape = SubResource("CircleShape2D_gmlin")
+shape = SubResource("CapsuleShape2D_je7p5")
 debug_color = Color(0.9818738, 0, 0.3713596, 0.41960785)
+
+[node name="DirectionalCollision" type="Node" parent="."]
+script = ExtResource("9_dircol")
+snap_to_cardinal = false
+include_diagonals = true
+horizontal_offset = Vector2(-4, 8)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -32.0

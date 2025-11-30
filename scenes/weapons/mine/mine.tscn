@@ -132,7 +132,6 @@ sprite_frames = SubResource("SpriteFrames_noxh0")
 animation = &"detonate"
 
 [node name="ExplosionCast" type="ShapeCast2D" parent="." index="1"]
-position = Vector2(0, 28)
 enabled = false
 shape = SubResource("CircleShape2D_explosion")
 target_position = Vector2(0, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://svdcv4myo7sj"
-path="res://.godot/imported/sea-tile-sheet.png-e17f48604b1ff0a1034412a68c64668c.ctex"
+uid="uid://byvwckcxo7aay"
+path="res://.godot/imported/Shark_Down.png-2087f96a0ff20c8fc47d5a0855a7c614.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/environment/sea-tile-sheet.png"
-dest_files=["res://.godot/imported/sea-tile-sheet.png-e17f48604b1ff0a1034412a68c64668c.ctex"]
+source_file="res://sprites/enemies/shark/Shark_Down.png"
+dest_files=["res://.godot/imported/Shark_Down.png-2087f96a0ff20c8fc47d5a0855a7c614.ctex"]
 
 [params]
 

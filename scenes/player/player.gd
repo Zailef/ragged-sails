@@ -16,6 +16,8 @@ class_name Player
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_shader_material: ShaderMaterial = animated_sprite.material as ShaderMaterial
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var hurt_sound: AudioStreamPlayer = %DamageSound
+@onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
 
 var is_dead: bool = false
 
@@ -26,6 +28,7 @@ var current_health: int = max_health:
 
 func _ready() -> void:
 	SignalManager.exp_gained.connect(_on_exp_gained)
+	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
 
 func _physics_process(_delta: float) -> void:
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -46,6 +49,7 @@ func take_damage(amount: int) -> void:
 		return
 
 	current_health -= amount
+	hurt_sound.play()
 
 	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)
 	var tween := create_tween()
@@ -66,3 +70,6 @@ func _die() -> void:
 
 func _on_exp_gained(amount: int) -> void:
 	level_progress.add_experience(amount)
+
+func _on_player_levelled_up(new_level: int, exp_to_next_level: int) -> void:
+	level_up_sound.play()

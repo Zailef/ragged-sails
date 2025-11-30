@@ -5,6 +5,8 @@ class_name Cannonball
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var damage_area: Area2D = $DamageArea
+@onready var splash_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var cannon_fire_sound: AudioStreamPlayer = $CannonFireSound
 
 var direction: Vector2 = Vector2.ZERO
 var distance_traveled: float = 0.0
@@ -18,7 +20,7 @@ func _process(delta: float) -> void:
 	if direction == Vector2.ZERO:
 		return
 
-	if distance_traveled >= (max_distance / 2):
+	if distance_traveled >= (max_distance / 2) and animated_sprite.animation != "splash":
 		animated_sprite.play("splash")
 
 	if distance_traveled >= max_distance:
@@ -54,6 +56,7 @@ func _reset_weapon() -> void:
 
 func _on_animation_finished() -> void:
 	if animated_sprite.animation == "splash":
+		splash_sound.play()
 		end_active_phase()
 
 func _activate() -> void:
@@ -63,4 +66,5 @@ func _activate() -> void:
 
 	damage_area.monitoring = true
 	animated_sprite.play("moving")
+	cannon_fire_sound.play()
 	show()

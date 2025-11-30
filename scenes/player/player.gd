@@ -14,6 +14,9 @@ class_name Player
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
+@export_group("Collision")
+@export var horizontal_collision_offset: Vector2 = Vector2(0, 10)
+
 @onready var animation_tree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -65,6 +68,15 @@ func _update_collision_rotation() -> void:
 	var target_rotation = _facing_direction.angle() + PI / 2.0
 	collision_shape.rotation = target_rotation
 	hurt_collision_shape.rotation = target_rotation
+	
+	# Apply offset when facing horizontally (left/right)
+	var is_horizontal = abs(_facing_direction.x) > abs(_facing_direction.y)
+	if is_horizontal:
+		collision_shape.position = horizontal_collision_offset
+		hurt_collision_shape.position = horizontal_collision_offset
+	else:
+		collision_shape.position = Vector2.ZERO
+		hurt_collision_shape.position = Vector2.ZERO
 
 func _get_input_direction() -> Vector2:
 	# Use virtual joystick on mobile, keyboard/gamepad otherwise

@@ -56,8 +56,9 @@ func _physics_process(_delta: float) -> void:
 
 func _get_input_direction() -> Vector2:
 	# Use virtual joystick on mobile, keyboard/gamepad otherwise
-	if is_mobile and virtual_joystick and virtual_joystick.is_pressed:
-		return virtual_joystick.position_vector.normalized()
+	if is_mobile and virtual_joystick:
+		return virtual_joystick.position_vector
+
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func take_damage(amount: int) -> void:

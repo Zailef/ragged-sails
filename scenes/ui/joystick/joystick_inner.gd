@@ -9,7 +9,7 @@ signal button_up
 
 @onready var joystick_parent: Node2D = get_parent()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if joystick_parent.is_pressed:
 		if get_global_mouse_position().distance_to(joystick_parent.global_position) <= max_length:
 			global_position = get_global_mouse_position()

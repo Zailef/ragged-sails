@@ -13,7 +13,8 @@ signal upgrade_unlocked(upgrade: WeaponUpgrade)
 var current_level: int = 1:
 	set(value):
 		var old_level = current_level
-		current_level = clamp(value, 1, progression.max_level if progression else 1)
+		var max_allowed = _get_max_allowed_level()
+		current_level = clamp(value, 1, max_allowed)
 		if current_level != old_level:
 			_on_level_changed(old_level)
 
@@ -36,11 +37,36 @@ func _ready() -> void:
 func level_up() -> bool:
 	if not progression:
 		return false
-	if current_level >= progression.max_level:
+	
+	var max_allowed = _get_max_allowed_level()
+	if current_level >= max_allowed:
 		return false
 	
 	current_level += 1
 	return true
+
+
+## Returns the maximum allowed level (very high if overflow is enabled)
+func _get_max_allowed_level() -> int:
+	if not progression:
+		return 1
+	if progression.allow_overflow:
+		return 9999 # Effectively unlimited
+	return progression.max_level
+
+
+## Returns true if the weapon is in overflow levels
+func is_overflow() -> bool:
+	if not progression:
+		return false
+	return current_level > progression.max_level
+
+
+## Returns the number of overflow levels (0 if not in overflow)
+func get_overflow_levels() -> int:
+	if not progression:
+		return 0
+	return max(0, current_level - progression.max_level)
 
 
 ## Checks if a specific upgrade is active

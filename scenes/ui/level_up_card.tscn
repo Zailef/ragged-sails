@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://byb33pixpmdw4"]
 
 [ext_resource type="Script" uid="uid://7yq60gd2t6mi" path="res://scenes/ui/level_up_card.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://sprites/menu/ItemFrame.png" id="2_frame"]
-[ext_resource type="Texture2D" path="res://scenes/weapons/UI Icons/Cannon_Icon.png" id="3_placeholder"]
+[ext_resource type="Texture2D" uid="uid://b3a415iist1k1" path="res://sprites/menu/ItemFrame.png" id="2_frame"]
+[ext_resource type="Texture2D" uid="uid://c0wm43536bvp" path="res://scenes/weapons/UI Icons/Cannon_Icon.png" id="3_placeholder"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_panel"]
 texture = ExtResource("2_frame")
@@ -34,8 +34,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = 24.0
-offset_right = -24.0
-offset_bottom = -24.0
+offset_right = -26.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
@@ -53,6 +53,7 @@ stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"UILabel"
 theme_override_font_sizes/font_size = 24
 text = "Weapon Name"
 horizontal_alignment = 1
@@ -60,6 +61,7 @@ horizontal_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_type_variation = &"StandardLabel"
 theme_override_font_sizes/font_size = 14
 text = "Weapon description goes here and can wrap to multiple lines."
 horizontal_alignment = 1
@@ -72,6 +74,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 2
-mouse_filter = 0
 flat = true

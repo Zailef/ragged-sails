@@ -37,6 +37,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
@@ -53,6 +57,7 @@ stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"UILabel"
 theme_override_font_sizes/font_size = 24
 text = "Weapon Name"
 horizontal_alignment = 1
@@ -60,7 +65,8 @@ horizontal_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 14
+theme_type_variation = &"StandardLabel"
+theme_override_font_sizes/font_size = 16
 text = "Weapon description goes here."
 horizontal_alignment = 1
 autowrap_mode = 2

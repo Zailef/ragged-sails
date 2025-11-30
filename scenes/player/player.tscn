@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=141 format=3 uid="uid://dlgmlwuec3427"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="21_harpoon"]
 [ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
 [ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
+[ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1344,8 +1345,12 @@ size_flags_vertical = 3
 
 [node name="VirtualJoystick" parent="UI" instance=ExtResource("14_joystk")]
 unique_name_in_owner = true
+position = Vector2(78.67, 499.33)
+scale = Vector2(0.1734, 0.1734)
 
 [node name="LevelUp" parent="UI" instance=ExtResource("18_8ydkj")]
+
+[node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
 
 [node name="Audio" type="Node" parent="."]
 

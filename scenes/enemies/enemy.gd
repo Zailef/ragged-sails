@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 const BOSS_DAMAGE_OUTLINE_SHADER = preload("res://sprites/shaders/boss_damage_outline.gdshader")
+const BOSS_DROP_STRATEGY = preload("res://scenes/enemies/drops/drop_strategy_boss.gd")
 
 var player: Player = null
 
@@ -41,6 +42,8 @@ func _ready() -> void:
 
 	if is_boss:
 		_apply_boss_outline()
+		# Bosses use a special drop strategy that drops chests
+		drop_strategy = BOSS_DROP_STRATEGY.new()
 
 func _physics_process(delta: float) -> void:
 	if player == null:

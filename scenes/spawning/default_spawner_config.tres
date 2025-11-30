@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="SpawnerConfig" load_steps=16 format=3 uid="uid://dnbjnwv6gugd2"]
+
+[ext_resource type="Script" uid="uid://bq06yt2nqnl38" path="res://scenes/spawning/spawner_config.gd" id="1_config"]
+[ext_resource type="Script" uid="uid://dnc02d4ofn6jg" path="res://scenes/spawning/enemy_spawn_entry.gd" id="2_entry"]
+[ext_resource type="PackedScene" uid="uid://c5q0dl2bqugwq" path="res://scenes/enemies/urchin.tscn" id="3_urchin"]
+[ext_resource type="PackedScene" uid="uid://ctuwgqlchklqy" path="res://scenes/enemies/shark.tscn" id="4_shark"]
+[ext_resource type="PackedScene" uid="uid://bbfge6esrcl45" path="res://scenes/enemies/jellyfish.tscn" id="5_jellyfish"]
+[ext_resource type="Script" uid="uid://dsbppxml2vawk" path="res://scenes/spawning/spawn_wave.gd" id="6_wave"]
+[ext_resource type="PackedScene" uid="uid://c4dl3taqnso0s" path="res://scenes/enemies/mermaid.tscn" id="7_mermaid"]
+
+[sub_resource type="Curve" id="Curve_boss_spawn_rate"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.33), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_difficulty"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_enemies_per_spawn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 2), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_urchin_entry"]
+script = ExtResource("2_entry")
+enemy_scene = ExtResource("3_urchin")
+base_weight = 3.0
+
+[sub_resource type="Resource" id="Resource_shark_entry"]
+script = ExtResource("2_entry")
+enemy_scene = ExtResource("4_shark")
+base_weight = 1.5
+min_time_minutes = 1.0
+
+[sub_resource type="Resource" id="Resource_jellyfish_entry"]
+script = ExtResource("2_entry")
+enemy_scene = ExtResource("5_jellyfish")
+base_weight = 2.0
+min_time_minutes = 0.5
+
+[sub_resource type="Resource" id="Resource_mermaid_entry"]
+script = ExtResource("2_entry")
+enemy_scene = ExtResource("7_mermaid")
+base_weight = 0.8
+min_time_minutes = 3.0
+
+[sub_resource type="Curve" id="Curve_spawn_rate"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("1_config")
+enemy_pool = Array[ExtResource("2_entry")]([SubResource("Resource_urchin_entry"), SubResource("Resource_shark_entry"), SubResource("Resource_jellyfish_entry"), SubResource("Resource_mermaid_entry")])
+spawn_rate_curve = SubResource("Curve_spawn_rate")
+enemies_per_spawn_curve = SubResource("Curve_enemies_per_spawn")
+boss_spawn_rate_curve = SubResource("Curve_boss_spawn_rate")
+difficulty_curve = SubResource("Curve_difficulty")

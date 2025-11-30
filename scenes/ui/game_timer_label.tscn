@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs35coiy1ddg7"]
+
+[ext_resource type="Script" uid="uid://deu02hptltt7m" path="res://scenes/ui/game_timer_label.gd" id="1_timer"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="GameTimerLabel" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"UILabel"
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_timer")

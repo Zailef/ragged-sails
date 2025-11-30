@@ -133,7 +133,7 @@ loot_table = SubResource("Resource_f3w6h")
 motion_animation_strategy = SubResource("Resource_xahdf")
 attack_animation_strategy = SubResource("Resource_e0os5")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_sk2ww")
 sprite_frames = SubResource("SpriteFrames_1jete")
 animation = &"move"
@@ -142,7 +142,7 @@ autoplay = "move"
 [node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
 position = Vector2(0, 4)
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_aa5oc")
 

@@ -1,13 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://ddnu2h0canibh"]
 
 [ext_resource type="PackedScene" uid="uid://cyhtcxisq357" path="res://scenes/player/player.tscn" id="1_6ivci"]
+[ext_resource type="Script" uid="uid://0j6nyu5328j5" path="res://scenes/levels/sandbox.gd" id="1_sandbox"]
 [ext_resource type="Texture2D" uid="uid://drw4sat31flsb" path="res://sprites/environment/SeaRock2.png" id="2_ea3gy"]
 [ext_resource type="PackedScene" uid="uid://on4oio1ejyxn" path="res://scenes/environment/ocean.tscn" id="3_xf1sy"]
 [ext_resource type="Texture2D" uid="uid://dtwnrrxeukiis" path="res://sprites/environment/SeaRock1.png" id="4_a64th"]
-[ext_resource type="PackedScene" uid="uid://c5q0dl2bqugwq" path="res://scenes/enemies/urchin.tscn" id="5_qm7gn"]
-[ext_resource type="PackedScene" uid="uid://ctuwgqlchklqy" path="res://scenes/enemies/shark.tscn" id="6_ea3gy"]
-[ext_resource type="PackedScene" uid="uid://bbfge6esrcl45" path="res://scenes/enemies/jellyfish.tscn" id="8_harsw"]
-[ext_resource type="PackedScene" uid="uid://c4dl3taqnso0s" path="res://scenes/enemies/mermaid.tscn" id="9_uq7s3"]
+[ext_resource type="Script" uid="uid://bcb8dcsh7klmb" path="res://scenes/spawning/enemy_spawner.gd" id="5_spawner"]
+[ext_resource type="Resource" uid="uid://dnbjnwv6gugd2" path="res://scenes/spawning/default_spawner_config.tres" id="6_config"]
 [ext_resource type="Script" uid="uid://o0uh6odurnjd" path="res://scenes/environment/boundary_manager.gd" id="10_boundary"]
 [ext_resource type="Resource" path="res://scenes/environment/default_boundary_config.tres" id="11_boundary_config"]
 [ext_resource type="PackedScene" path="res://scenes/ui/boundary_warning_overlay.tscn" id="12_warning_overlay"]
@@ -31,6 +30,7 @@ sources/9 = SubResource("TileSetAtlasSource_qm7gn")
 sources/10 = SubResource("TileSetAtlasSource_ea3gy")
 
 [node name="Sandbox" type="Node2D"]
+script = ExtResource("1_sandbox")
 
 [node name="ObstacleLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray(0, 0, 3, 0, 3, 0, 9, 0, 0, 0, 0, 0, 0, 0, 31, 0, 18, 0, 10, 0, 0, 0, 0, 0, 0, 0, 13, 0, 21, 0, 9, 0, 0, 0, 0, 0, 0, 0)
@@ -46,30 +46,9 @@ move_speed = 80.0
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Urchin" parent="Enemies" instance=ExtResource("5_qm7gn")]
-position = Vector2(144, 169)
-
-[node name="Urchin2" parent="Enemies" instance=ExtResource("5_qm7gn")]
-position = Vector2(328, 78)
-
-[node name="Urchin3" parent="Enemies" instance=ExtResource("5_qm7gn")]
-position = Vector2(430, 107)
-
-[node name="Urchin4" parent="Enemies" instance=ExtResource("5_qm7gn")]
-position = Vector2(509, 204)
-
-[node name="Shark" parent="Enemies" instance=ExtResource("6_ea3gy")]
-position = Vector2(113, 274)
-
-[node name="Jellyfish" parent="Enemies" instance=ExtResource("8_harsw")]
-position = Vector2(222, 150)
-
-[node name="BossMermaid" parent="Enemies" instance=ExtResource("9_uq7s3")]
-position = Vector2(232, 76)
-is_boss = true
-
-[node name="Mermaid2" parent="Enemies" instance=ExtResource("9_uq7s3")]
-position = Vector2(367, 355)
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("5_spawner")
+config = ExtResource("6_config")
 
 [node name="BoundaryManager" type="Node" parent="." groups=["boundary_manager"]]
 script = ExtResource("10_boundary")

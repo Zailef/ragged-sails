@@ -14,4 +14,12 @@ signal level_up_selection_made
 # Map boundary signals
 signal boundary_zone_changed(zone: String)
 
+# Spawning signals
+signal wave_announced(announcement_text: String)
+signal boss_incoming
+
+# Chest/Weapon upgrade signals
+signal chest_collected
+signal weapon_upgrade_selected(weapon: BaseWeapon)
+
 @warning_ignore_restore("unused_signal")

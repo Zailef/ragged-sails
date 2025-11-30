@@ -1,23 +1,25 @@
-[gd_scene load_steps=137 format=3 uid="uid://cyhtcxisq357"]
+[gd_scene load_steps=140 format=3 uid="uid://cyhtcxisq357"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="2_gmlin"]
 [ext_resource type="Script" uid="uid://b338hjdqdj7pt" path="res://scenes/player/player_level_progress.gd" id="2_qek5x"]
-[ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="4_lvxji"]
-[ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="5_p47bc"]
 [ext_resource type="PackedScene" uid="uid://dbe7acbfy602p" path="res://scenes/ui/experience_bar.tscn" id="6_75vfg"]
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
-[ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="7_5gtgg"]
-[ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="8_h17s1"]
-[ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="8_h17s2"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
-[ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="8_h17s3"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="14_joystk"]
 [ext_resource type="Texture2D" uid="uid://bq8kfvsm2jyye" path="res://sprites/ui/arrow.png" id="15_arrow"]
-[ext_resource type="Script" uid="uid://qr4brmcx1f6k" path="res://scenes/components/boundary_arrow.gd" id="16_barrow"]
+[ext_resource type="Script" path="res://scenes/components/boundary_arrow.gd" id="16_barrow"]
+[ext_resource type="Script" uid="uid://caic76b18j5xc" path="res://scenes/player/weapon_manager.gd" id="17_weapmgr"]
+[ext_resource type="PackedScene" uid="uid://0fvxkr3ekm5v" path="res://scenes/ui/level_up.tscn" id="18_8ydkj"]
+[ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="18_cannon"]
+[ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="19_anchor"]
+[ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="20_grape"]
+[ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="21_harpoon"]
+[ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
+[ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
 
 [sub_resource type="Resource" id="Resource_qek5x"]
 script = ExtResource("2_qek5x")
@@ -1318,19 +1320,19 @@ value = 100.0
 show_percentage = false
 
 [node name="Weapons" type="Node" parent="."]
+script = ExtResource("17_weapmgr")
 
-[node name="Cannonball" parent="Weapons" instance=ExtResource("4_lvxji")]
+[node name="Cannonball" parent="Weapons" instance=ExtResource("18_cannon")]
 
-[node name="Anchor" parent="Weapons" instance=ExtResource("5_p47bc")]
+[node name="Anchor" parent="Weapons" instance=ExtResource("19_anchor")]
 
-[node name="Grapeshot" parent="Weapons" instance=ExtResource("7_5gtgg")]
+[node name="Grapeshot" parent="Weapons" instance=ExtResource("20_grape")]
 
-[node name="Trident" parent="Weapons" instance=ExtResource("8_h17s3")]
+[node name="Harpoon" parent="Weapons" instance=ExtResource("21_harpoon")]
 
-[node name="Mine" parent="Weapons" instance=ExtResource("8_h17s1")]
-arm_delay = 1.5
+[node name="Mine" parent="Weapons" instance=ExtResource("22_mine")]
 
-[node name="Harpoon" parent="Weapons" instance=ExtResource("8_h17s2")]
+[node name="Trident" parent="Weapons" instance=ExtResource("23_trident")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -1342,6 +1344,8 @@ size_flags_vertical = 3
 
 [node name="VirtualJoystick" parent="UI" instance=ExtResource("14_joystk")]
 unique_name_in_owner = true
+
+[node name="LevelUp" parent="UI" instance=ExtResource("18_8ydkj")]
 
 [node name="Audio" type="Node" parent="."]
 

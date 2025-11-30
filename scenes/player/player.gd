@@ -23,6 +23,7 @@ class_name Player
 @onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
 @onready var virtual_joystick: Node2D = %VirtualJoystick
 @onready var directional_collision: DirectionalCollision = $DirectionalCollision
+@onready var weapon_manager: WeaponManager = $Weapons
 
 var is_dead: bool = false
 var is_mobile: bool = false
@@ -39,6 +40,12 @@ func _ready() -> void:
 	_setup_mobile_controls()
 	# Find boundary manager in scene (deferred to ensure scene is ready)
 	_find_boundary_manager.call_deferred()
+	# Unlock starting weapon (cannon)
+	_unlock_starting_weapons.call_deferred()
+
+func _unlock_starting_weapons() -> void:
+	# Unlock cannon by default
+	weapon_manager.unlock_weapon("cannonball")
 
 func _setup_mobile_controls() -> void:
 	is_mobile = OS.has_feature("android") or OS.has_feature("ios") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls
@@ -100,5 +107,5 @@ func _die() -> void:
 func _on_exp_gained(amount: int) -> void:
 	level_progress.add_experience(amount)
 
-func _on_player_levelled_up(new_level: int, exp_to_next_level: int) -> void:
+func _on_player_levelled_up(_new_level: int, _exp_to_next_level: int) -> void:
 	level_up_sound.play()

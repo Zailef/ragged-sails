@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 func _fire_weapon() -> void:
 	# Mine is placed at player's position
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 
 func _activate() -> void:
 	is_armed = false

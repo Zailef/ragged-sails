@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cs7vlc6k4pocm" path="res://sprites/environment/water_with_shadow.png" id="2_xffl0"]
 [ext_resource type="Script" uid="uid://b7yfpujxp7co8" path="res://scenes/environment/water.gd" id="3_xffl0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xe11p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrqoc"]
 shader = ExtResource("1_6efej")
-shader_parameter/tiled_factor = Vector2(60, 60)
-shader_parameter/aspect_ratio = 0.5
+shader_parameter/tiled_factor = Vector2(100, 100)
+shader_parameter/aspect_ratio = 1.0
 shader_parameter/tiled_offset_scale = Vector2(0.2, 0.2)
 shader_parameter/texture_offset_time_scale = 0.05
 shader_parameter/sine_time_scale = 0.03
@@ -21,9 +21,8 @@ z_index = -10
 z_as_relative = false
 texture_filter = 1
 texture_repeat = 2
-material = SubResource("ShaderMaterial_xe11p")
-position = Vector2(697, 353)
-scale = Vector2(30, 30)
+material = SubResource("ShaderMaterial_hrqoc")
+scale = Vector2(50, 50)
 texture = ExtResource("2_xffl0")
 script = ExtResource("3_xffl0")
 

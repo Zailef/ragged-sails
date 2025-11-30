@@ -21,8 +21,8 @@ var player: Player = null
 @export var is_immortal: bool = false
 
 @export_group("Damage Feedback")
-@export var damage_flash_duration = 0.5
-@export var damage_flash_strength = 0.5
+@export var damage_flash_duration: float = 0.5
+@export var damage_flash_strength: float = 0.5
 
 @export_group("Attack Animation")
 ## How long to continue showing attack animation after player leaves range

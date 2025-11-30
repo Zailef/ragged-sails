@@ -26,6 +26,7 @@ class_name Player
 
 var is_dead: bool = false
 var is_mobile: bool = false
+var boundary_manager: BoundaryManager = null
 
 var current_health: int = max_health:
 	set(value):
@@ -36,16 +37,26 @@ func _ready() -> void:
 	SignalManager.exp_gained.connect(_on_exp_gained)
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
 	_setup_mobile_controls()
+	# Find boundary manager in scene (deferred to ensure scene is ready)
+	_find_boundary_manager.call_deferred()
 
 func _setup_mobile_controls() -> void:
 	is_mobile = OS.has_feature("android") or OS.has_feature("ios") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls
 	virtual_joystick.visible = is_mobile
 
+func _find_boundary_manager() -> void:
+	boundary_manager = get_tree().get_first_node_in_group("boundary_manager") as BoundaryManager
+
 func _physics_process(_delta: float) -> void:
 	var input_direction = _get_input_direction()
 
+	# Apply boundary speed multiplier (only slows if moving away from safe zone)
+	var speed_mult = 1.0
+	if boundary_manager:
+		speed_mult = boundary_manager.get_speed_multiplier(input_direction)
+
 	if input_direction:
-		velocity = input_direction * move_speed
+		velocity = input_direction * move_speed * speed_mult
 		directional_collision.update_direction(input_direction)
 		animation_tree.set("parameters/Idle/blend_position", input_direction)
 		animation_tree.set("parameters/Move/blend_position", input_direction)

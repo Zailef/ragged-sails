@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MapBoundaryConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/environment/map_boundary_config.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+safe_zone = Rect2(-200, -200, 1600, 1200)
+warning_zone_width = 150.0
+warning_speed_multiplier = 0.5
+warning_tint_color = Color(0.4, 0.25, 0.1, 0.35)
+danger_zone_width = 100.0
+danger_damage_per_second = 20.0
+danger_speed_multiplier = 0.25
+danger_tint_color = Color(0.6, 0.0, 0.0, 0.5)
+instant_death_enabled = true

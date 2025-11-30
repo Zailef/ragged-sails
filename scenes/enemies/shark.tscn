@@ -226,8 +226,6 @@ height = 48.0
 stats = SubResource("Resource_y838i")
 motion_animation_strategy = SubResource("Resource_7flyy")
 attack_animation_strategy = SubResource("Resource_wsy3x")
-rotate_collision_with_direction = true
-horizontal_collision_offset = Vector2(0, 4)
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_osw5q")
@@ -244,3 +242,7 @@ shape = SubResource("CapsuleShape2D_7flyy")
 [node name="CollisionShape2D" parent="HitArea" index="0"]
 shape = SubResource("CapsuleShape2D_jof6d")
 debug_color = Color(0.9609286, 6.738305e-07, 0.5159897, 0.41960785)
+
+[node name="DirectionalCollision" parent="." index="4"]
+rotate_with_direction = true
+horizontal_offset = Vector2(12, 4)

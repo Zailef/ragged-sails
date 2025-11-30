@@ -14,9 +14,6 @@ class_name Player
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
-@export_group("Collision")
-@export var horizontal_collision_offset: Vector2 = Vector2(0, 10)
-
 @onready var animation_tree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -25,12 +22,10 @@ class_name Player
 @onready var hurt_sound: AudioStreamPlayer = %DamageSound
 @onready var level_up_sound: AudioStreamPlayer = %LevelUpSound
 @onready var virtual_joystick: Node2D = %VirtualJoystick
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var hurt_collision_shape: CollisionShape2D = $HurtArea/CollisionShape2D
+@onready var directional_collision: DirectionalCollision = $DirectionalCollision
 
 var is_dead: bool = false
 var is_mobile: bool = false
-var _facing_direction: Vector2 = Vector2.DOWN
 
 var current_health: int = max_health:
 	set(value):
@@ -51,8 +46,8 @@ func _physics_process(_delta: float) -> void:
 
 	if input_direction:
 		velocity = input_direction * move_speed
-		_facing_direction = input_direction.normalized()
-		_update_collision_rotation()
+		if directional_collision:
+			directional_collision.update_direction(input_direction)
 		animation_tree.set("parameters/Idle/blend_position", input_direction)
 		animation_tree.set("parameters/Move/blend_position", input_direction)
 		animation_state.travel("Move")
@@ -61,22 +56,6 @@ func _physics_process(_delta: float) -> void:
 		animation_state.travel("Idle")
 
 	move_and_slide()
-
-func _update_collision_rotation() -> void:
-	# Rotate capsule to align with ship facing direction
-	# The capsule's default orientation is vertical, so we rotate based on facing
-	var target_rotation = _facing_direction.angle() + PI / 2.0
-	collision_shape.rotation = target_rotation
-	hurt_collision_shape.rotation = target_rotation
-	
-	# Apply offset when facing horizontally (left/right)
-	var is_horizontal = abs(_facing_direction.x) > abs(_facing_direction.y)
-	if is_horizontal:
-		collision_shape.position = horizontal_collision_offset
-		hurt_collision_shape.position = horizontal_collision_offset
-	else:
-		collision_shape.position = Vector2.ZERO
-		hurt_collision_shape.position = Vector2.ZERO
 
 func _get_input_direction() -> Vector2:
 	# Use virtual joystick on mobile, keyboard/gamepad otherwise

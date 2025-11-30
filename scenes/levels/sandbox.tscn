@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddnu2h0canibh"]
+[gd_scene load_steps=15 format=3 uid="uid://ddnu2h0canibh"]
 
 [ext_resource type="PackedScene" uid="uid://cyhtcxisq357" path="res://scenes/player/player.tscn" id="1_6ivci"]
 [ext_resource type="Texture2D" uid="uid://drw4sat31flsb" path="res://sprites/environment/SeaRock2.png" id="2_ea3gy"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ctuwgqlchklqy" path="res://scenes/enemies/shark.tscn" id="6_ea3gy"]
 [ext_resource type="PackedScene" uid="uid://bbfge6esrcl45" path="res://scenes/enemies/jellyfish.tscn" id="8_harsw"]
 [ext_resource type="PackedScene" uid="uid://c4dl3taqnso0s" path="res://scenes/enemies/mermaid.tscn" id="9_uq7s3"]
+[ext_resource type="Script" uid="uid://o0uh6odurnjd" path="res://scenes/environment/boundary_manager.gd" id="10_boundary"]
+[ext_resource type="Resource" path="res://scenes/environment/default_boundary_config.tres" id="11_boundary_config"]
+[ext_resource type="PackedScene" path="res://scenes/ui/boundary_warning_overlay.tscn" id="12_warning_overlay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ea3gy"]
 texture = ExtResource("2_ea3gy")
@@ -36,7 +39,6 @@ tile_set = SubResource("TileSet_qm7gn")
 [node name="Ocean" parent="." instance=ExtResource("3_xf1sy")]
 z_index = -1
 texture_filter = 1
-position = Vector2(0, -7)
 
 [node name="Player" parent="." instance=ExtResource("1_6ivci")]
 position = Vector2(305, 181)
@@ -67,3 +69,12 @@ is_boss = true
 
 [node name="Mermaid2" parent="Enemies" instance=ExtResource("9_uq7s3")]
 position = Vector2(367, 355)
+
+[node name="BoundaryManager" type="Node" parent="." groups=["boundary_manager"]]
+script = ExtResource("10_boundary")
+config = ExtResource("11_boundary_config")
+player_path = NodePath("../Player")
+ocean_sprite_path = NodePath("../Ocean/Water")
+
+[node name="BoundaryWarningOverlay" parent="." instance=ExtResource("12_warning_overlay")]
+boundary_manager_path = NodePath("../BoundaryManager")

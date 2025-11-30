@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://c2rjp1l2ncjnr"]
+[gd_scene load_steps=22 format=3 uid="uid://c2rjp1l2ncjnr"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_exgyy"]
 [ext_resource type="Script" uid="uid://2rq668shbgao" path="res://scenes/weapons/cannonball/cannonball.gd" id="2_53n7m"]
 [ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="3_43etq"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_53n7m"]
 [ext_resource type="Script" uid="uid://d4e42y4hmo6wi" path="res://scenes/weapons/targeting/targeting_strategy_closest.gd" id="4_43etq"]
+[ext_resource type="AudioStream" uid="uid://bgjut7l5x7r2p" path="res://audio/effects/Splash.wav" id="6_yol1k"]
+[ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="7_esuvo"]
 
 [sub_resource type="Resource" id="Resource_43etq"]
 script = ExtResource("3_53n7m")
@@ -96,7 +98,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"splash",
-"speed": 24.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_esydl"]
@@ -120,8 +122,12 @@ collision_mask = 5
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_esydl")
 
+[node name="AudioStreamPlayer2D" parent="." index="2"]
+stream = ExtResource("6_yol1k")
+
 [node name="CooldownTimer" parent="." index="3"]
 autostart = true
 
-[node name="DurationTimer" parent="." index="4"]
-autostart = true
+[node name="CannonFireSound" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("7_esuvo")
+bus = &"SFX"

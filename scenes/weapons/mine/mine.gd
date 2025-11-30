@@ -3,6 +3,7 @@ class_name Mine
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var explosion_cast: ShapeCast2D = $ExplosionCast
+@onready var mine_explosion_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var detonate_animation_offset = Vector2(0, -28)
 @export var arm_delay: float = 1.0
@@ -78,6 +79,7 @@ func _detonate() -> void:
 	if sprite:
 		sprite.offset = detonate_animation_offset
 		sprite.play("detonate")
+		mine_explosion_sound.play()
 
 	# Delay damage application to sync with explosion visual
 	await get_tree().create_timer(damage_delay).timeout

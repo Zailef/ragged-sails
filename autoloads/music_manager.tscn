@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://be5tssnl2j5oa"]
+
+[ext_resource type="Script" uid="uid://bouuskplwd5qk" path="res://autoloads/music_manager.gd" id="1_ltekc"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_ltekc")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="MusicTransitionTimer" type="Timer" parent="."]

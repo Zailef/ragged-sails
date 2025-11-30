@@ -11,6 +11,7 @@ class_name BoundaryWarningOverlay
 var boundary_manager: BoundaryManager
 var _tween: Tween
 var _current_zone: String = "safe"
+var _is_tweening: bool = false
 
 func _ready() -> void:
 	# Start fully transparent
@@ -25,6 +26,12 @@ func _ready() -> void:
 	
 	if boundary_manager:
 		boundary_manager.zone_depth_changed.connect(_on_depth_changed)
+
+func _exit_tree() -> void:
+	if SignalManager.boundary_zone_changed.is_connected(_on_zone_changed):
+		SignalManager.boundary_zone_changed.disconnect(_on_zone_changed)
+	if boundary_manager and boundary_manager.zone_depth_changed.is_connected(_on_depth_changed):
+		boundary_manager.zone_depth_changed.disconnect(_on_depth_changed)
 
 func _on_zone_changed(zone: String) -> void:
 	_current_zone = zone
@@ -50,6 +57,9 @@ func _on_zone_changed(zone: String) -> void:
 
 func _on_depth_changed(depth: float) -> void:
 	# Gradually intensify the effect based on depth
+	if _is_tweening:
+		return
+	
 	if not boundary_manager or not boundary_manager.config:
 		return
 	
@@ -76,6 +86,8 @@ func _tween_to_color(target: Color) -> void:
 	if _tween:
 		_tween.kill()
 	
+	_is_tweening = true
 	_tween = create_tween()
 	_tween.tween_property(color_rect, "color", target, fade_duration) \
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	_tween.finished.connect(func(): _is_tweening = false)

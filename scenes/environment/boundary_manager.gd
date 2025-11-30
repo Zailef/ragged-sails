@@ -18,6 +18,7 @@ var player: Player
 var current_zone: String = "safe"
 var _damage_accumulator: float = 0.0
 var _effective_safe_zone: Rect2
+var _last_depth: float = 0.0
 
 func _ready() -> void:
 	if player_path:
@@ -42,9 +43,6 @@ func _calculate_safe_zone() -> void:
 			var viewport_size = get_viewport().get_visible_rect().size
 			var inset = (viewport_size / 2.0) + Vector2(edge_margin, edge_margin)
 			_effective_safe_zone = ocean_rect.grow_individual(-inset.x, -inset.y, -inset.x, -inset.y)
-			# Update config's safe_zone so the helper functions work
-			if config:
-				config.safe_zone = _effective_safe_zone
 			return
 	
 	# Fall back to config's safe_zone
@@ -54,14 +52,7 @@ func _calculate_safe_zone() -> void:
 func _get_sprite_world_rect(sprite: Sprite2D) -> Rect2:
 	var texture_size = sprite.texture.get_size()
 	var scaled_size = texture_size * sprite.scale
-	
-	# Account for centered sprites
-	var offset = Vector2.ZERO
-	if sprite.centered:
-		offset = - scaled_size / 2.0
-	else:
-		offset = Vector2.ZERO
-	
+	var offset = - scaled_size / 2.0 if sprite.centered else Vector2.ZERO
 	var world_pos = sprite.global_position + offset
 	return Rect2(world_pos, scaled_size)
 
@@ -70,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var player_pos = player.global_position
-	var new_zone = config.get_zone_at_position(player_pos)
+	var new_zone = _get_zone_at_position(player_pos)
 	
 	# Emit zone changed signal
 	if new_zone != current_zone:
@@ -79,9 +70,11 @@ func _physics_process(delta: float) -> void:
 		zone_changed.emit(old_zone, new_zone)
 		SignalManager.boundary_zone_changed.emit(new_zone)
 	
-	# Emit depth for gradual visual effects
-	var depth = config.get_zone_depth(player_pos)
-	zone_depth_changed.emit(depth)
+	# Emit depth for gradual visual effects (only when changed significantly)
+	var depth = _get_zone_depth(player_pos)
+	if abs(depth - _last_depth) > 0.01:
+		_last_depth = depth
+		zone_depth_changed.emit(depth)
 	
 	# Apply zone effects
 	match current_zone:
@@ -133,3 +126,31 @@ func get_current_zone() -> String:
 ## Check if player is in a dangerous zone
 func is_in_danger() -> bool:
 	return current_zone == "danger" or current_zone == "death"
+
+## Get the effective safe zone (may be calculated from ocean sprite)
+func get_effective_safe_zone() -> Rect2:
+	return _effective_safe_zone
+
+## Returns what zone the position is in using effective safe zone
+func _get_zone_at_position(pos: Vector2) -> String:
+	if _effective_safe_zone.has_point(pos):
+		return "safe"
+	elif _effective_safe_zone.grow(config.warning_zone_width).has_point(pos):
+		return "warning"
+	elif _effective_safe_zone.grow(config.warning_zone_width + config.danger_zone_width).has_point(pos):
+		return "danger"
+	else:
+		return "death"
+
+## Returns depth using effective safe zone
+func _get_zone_depth(pos: Vector2) -> float:
+	if _effective_safe_zone.has_point(pos):
+		return 0.0
+	
+	var clamped = Vector2(
+		clampf(pos.x, _effective_safe_zone.position.x, _effective_safe_zone.end.x),
+		clampf(pos.y, _effective_safe_zone.position.y, _effective_safe_zone.end.y)
+	)
+	var distance_from_safe = pos.distance_to(clamped)
+	var total_danger_width = config.warning_zone_width + config.danger_zone_width
+	return clampf(distance_from_safe / total_danger_width, 0.0, 1.0)

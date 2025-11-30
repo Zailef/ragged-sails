@@ -5,7 +5,8 @@ extends Sprite2D
 @export var base_tile_density: float = 2.0:
 	set(value):
 		base_tile_density = value
-		update_shader_for_scale()
+		if is_inside_tree():
+			update_shader_for_scale()
 
 var _last_scale: Vector2 = Vector2.ZERO
 var _runtime_material: ShaderMaterial

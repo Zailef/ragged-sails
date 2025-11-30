@@ -12,6 +12,7 @@ var _boundary_manager: BoundaryManager = null
 
 func _ready() -> void:
 	visible = false
+	set_process(false)
 	_find_references.call_deferred()
 
 func _find_references() -> void:
@@ -20,6 +21,17 @@ func _find_references() -> void:
 	
 	# Find boundary manager
 	_boundary_manager = get_tree().get_first_node_in_group("boundary_manager") as BoundaryManager
+	
+	# Connect to zone change signal for efficient updates
+	SignalManager.boundary_zone_changed.connect(_on_zone_changed)
+
+func _on_zone_changed(zone: String) -> void:
+	if zone == "safe":
+		visible = false
+		set_process(false)
+	else:
+		set_process(true)
+		_update_arrow()
 
 func _process(_delta: float) -> void:
 	if not _player or not _boundary_manager:
@@ -32,17 +44,16 @@ func _update_arrow() -> void:
 
 	if zone == "safe":
 		visible = false
-	else:
-		if not _boundary_manager.config:
-			return
-		visible = true
-		# Point arrow toward safe zone center
-		var safe_zone_center = _boundary_manager.config.safe_zone.get_center()
-		var direction_to_safe = (safe_zone_center - _player.global_position).normalized()
-		# Arrow sprite points up, so rotate to point toward safe zone
-		rotation = direction_to_safe.angle() + PI / 2.0
-		# Position arrow at edge of screen toward the boundary
-		position = _get_screen_edge_position(direction_to_safe)
+		return
+	
+	visible = true
+	# Point arrow toward safe zone center
+	var safe_zone_center = _boundary_manager.get_effective_safe_zone().get_center()
+	var direction_to_safe = (safe_zone_center - _player.global_position).normalized()
+	# Arrow sprite points up, so rotate to point toward safe zone
+	rotation = direction_to_safe.angle() + PI / 2.0
+	# Position arrow at edge of screen toward the boundary
+	position = _get_screen_edge_position(direction_to_safe)
 
 func _get_screen_edge_position(direction_to_safe: Vector2) -> Vector2:
 	# Get viewport size and camera zoom to calculate visible screen bounds

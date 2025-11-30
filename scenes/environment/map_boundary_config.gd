@@ -8,7 +8,7 @@ class_name MapBoundaryConfig
 @export var safe_zone: Rect2 = Rect2(-500, -500, 1000, 1000)
 
 @export_group("Warning Zone")
-## Width of the warning zone outside the safe zone (in pixels)
+## Width of the warning zone outside the safe zone (in world units)
 @export var warning_zone_width: float = 100.0
 
 ## Speed multiplier when in warning zone (0.5 = half speed)
@@ -18,7 +18,7 @@ class_name MapBoundaryConfig
 @export var warning_tint_color: Color = Color(0.3, 0.2, 0.1, 0.4)
 
 @export_group("Danger Zone")
-## Width of the danger zone outside the warning zone (in pixels)
+## Width of the danger zone outside the warning zone (in world units)
 ## Beyond this is instant death
 @export var danger_zone_width: float = 100.0
 

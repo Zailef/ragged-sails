@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var bottom_offset: int = 70
+@export var left_offset: int = 70
 @export var colour_override: Color = Color.TRANSPARENT
 @export_range(0.01, 0.1) var size_percent: float = 0.03 ## Size as percentage of screen height
 
@@ -18,7 +19,7 @@ func _ready() -> void:
 	joystick_inner.max_length *= new_scale
 	joystick_inner.deadzone *= new_scale
 	
-	position = Vector2(viewport_size.x / 2, viewport_size.y - bottom_offset - (target_size / 2))
+	position = Vector2(left_offset + (target_size / 2), viewport_size.y - bottom_offset - (target_size / 2))
 
 	if colour_override != Color.TRANSPARENT:
 		joystick_inner.self_modulate = colour_override

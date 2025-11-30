@@ -106,35 +106,30 @@ func _apply_offset() -> void:
 
 func _get_offset_for_direction() -> Vector2:
 	var dir = _current_direction
+	var mirror_x = dir.x < 0
+	var mirror_y = dir.y < 0
 	
 	if include_diagonals and snap_to_cardinal:
 		# Check for diagonal directions
 		var is_diagonal = abs(dir.x) > 0.3 and abs(dir.y) > 0.3
 		if is_diagonal:
-			if dir.y < 0:
-				# Up-left or up-right
-				var offset = diagonal_up_offset
-				if dir.x < 0:
-					offset.x = - offset.x
-				return offset
+			if mirror_y:
+				return _mirror_offset(diagonal_up_offset, mirror_x, false)
 			else:
-				# Down-left or down-right
-				var offset = diagonal_down_offset
-				if dir.x < 0:
-					offset.x = - offset.x
-				return offset
+				return _mirror_offset(diagonal_down_offset, mirror_x, false)
 	
 	# Cardinal directions
 	if abs(dir.x) > abs(dir.y):
-		# Horizontal (left or right)
-		var offset = horizontal_offset
-		# Mirror X offset for left direction
-		if dir.x < 0:
-			offset.x = - offset.x
-		return offset
+		return _mirror_offset(horizontal_offset, mirror_x, false)
 	else:
-		# Vertical (up or down)
-		return vertical_offset
+		return _mirror_offset(vertical_offset, false, mirror_y)
+
+
+func _mirror_offset(offset: Vector2, mirror_x: bool, mirror_y: bool) -> Vector2:
+	return Vector2(
+		- offset.x if mirror_x else offset.x,
+		- offset.y if mirror_y else offset.y
+	)
 
 ## Get the current facing direction
 func get_direction() -> Vector2:

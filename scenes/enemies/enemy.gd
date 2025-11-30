@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
 	_handle_animations(direction)
 	_handle_player_damage(delta)
-	
+
 	if directional_collision and direction != Vector2.ZERO:
 		directional_collision.update_direction(direction)
 
@@ -112,14 +112,10 @@ func _handle_player_damage(delta: float) -> void:
 		damage_rate_timer = 0.0
 
 func _handle_self_damage(amount: int) -> void:
-<< << << < HEAD
-	current_health -= int(amount * get_damage_taken_multiplier())
-== == == =
 	if is_immortal:
 		return
 
-	current_health -= amount
->> >> >> > fea58a4(Addasystemtohandledirectionalcollisionvariance)
+	current_health -= int(amount * get_damage_taken_multiplier())
 
 	damage_shader_material.set_shader_parameter("flash_strength", damage_flash_strength)
 	var tween := create_tween()

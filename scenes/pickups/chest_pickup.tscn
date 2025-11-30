@@ -1,20 +1,103 @@
-[gd_scene load_steps=5 format=3 uid="uid://xpqlp8axfhc1"]
+[gd_scene load_steps=17 format=3 uid="uid://xpqlp8axfhc1"]
 
 [ext_resource type="PackedScene" uid="uid://c655ix3xi0swj" path="res://scenes/pickups/pickup.tscn" id="1_pickup"]
 [ext_resource type="Script" uid="uid://dicm38dqy7i1t" path="res://scenes/pickups/effects/chest_pickup_effect.gd" id="2_effect"]
+[ext_resource type="Texture2D" uid="uid://bqlfi1d4rrlo2" path="res://sprites/collectables/small-chest.png" id="3_ktne1"]
 
 [sub_resource type="Resource" id="Resource_chest_effect"]
 script = ExtResource("2_effect")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mapk"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxbk0"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgpiv"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12hlr"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsyyw"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e48fd"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njpja"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kf1m"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q5ym"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igce2"]
+atlas = ExtResource("3_ktne1")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ut48y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mapk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxbk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgpiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12hlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsyyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e48fd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njpja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kf1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q5ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igce2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_chest"]
 radius = 16.0
 
 [node name="ChestPickup" instance=ExtResource("1_pickup")]
+scale = Vector2(0.6, 0.6)
 effect = SubResource("Resource_chest_effect")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 modulate = Color(1, 0.8, 0.2, 1)
 scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ut48y")
+autoplay = "default"
+frame_progress = 0.60954463
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
 shape = SubResource("CircleShape2D_chest")

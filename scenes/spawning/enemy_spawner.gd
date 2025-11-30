@@ -13,6 +13,7 @@ signal boss_spawned(boss: Enemy)
 
 var _spawn_timer: float = 0.0
 var _boss_spawn_timer: float = 0.0
+var _first_boss_spawned: bool = false
 var _active_wave: SpawnWave = null
 var _wave_timer: float = 0.0
 var _wave_enemies_spawned: int = 0
@@ -57,6 +58,12 @@ func _handle_boss_spawning(delta: float, time_progress: float) -> void:
 	# Don't spawn bosses before the configured first boss time
 	if elapsed_minutes < config.first_boss_time_minutes:
 		_boss_spawn_timer = 0.0
+		return
+	
+	# Spawn first boss immediately when first_boss_time is reached
+	if not _first_boss_spawned:
+		_first_boss_spawned = true
+		_spawn_boss()
 		return
 	
 	_boss_spawn_timer += delta
@@ -237,6 +244,7 @@ func _get_enemies_container() -> Node:
 func _on_game_started() -> void:
 	_spawn_timer = 0.0
 	_boss_spawn_timer = 0.0
+	_first_boss_spawned = false
 	_current_enemy_count = 0
 	_active_wave = null
 	if config:

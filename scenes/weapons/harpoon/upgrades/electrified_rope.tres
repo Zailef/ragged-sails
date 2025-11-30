@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ElectrifiedRopeUpgrade" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/harpoon/upgrades/electrified_rope_upgrade.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+id = &"electrified_rope"
+display_name = "Electrified Rope"
+description = "The harpoon rope crackles with electricity, damaging enemies that touch it."
+damage_per_tick = 5
+tick_rate = 0.25
+electricity_color = Color(0.5, 0.8, 1.0, 1)

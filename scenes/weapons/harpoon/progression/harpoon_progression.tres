@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponProgression" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_progression.gd" id="1_prog"]
+[ext_resource type="Resource" path="res://scenes/weapons/harpoon/progression/level_1.tres" id="2_l1"]
+[ext_resource type="Resource" path="res://scenes/weapons/harpoon/progression/level_2.tres" id="3_l2"]
+[ext_resource type="Resource" path="res://scenes/weapons/harpoon/progression/level_3.tres" id="4_l3"]
+[ext_resource type="Resource" path="res://scenes/weapons/harpoon/progression/level_4.tres" id="5_l4"]
+[ext_resource type="Resource" path="res://scenes/weapons/harpoon/progression/level_5.tres" id="6_l5"]
+
+[resource]
+script = ExtResource("1_prog")
+weapon_name = "Harpoon Gun"
+max_level = 5
+levels = [ExtResource("2_l1"), ExtResource("3_l2"), ExtResource("4_l3"), ExtResource("5_l4"), ExtResource("6_l5")]

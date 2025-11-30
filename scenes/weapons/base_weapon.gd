@@ -7,6 +7,7 @@ class_name BaseWeapon
 
 @onready var cooldown_timer: Timer = $CooldownTimer
 @onready var duration_timer: Timer = $DurationTimer
+@onready var level_manager: WeaponLevelManager = $WeaponLevelManager
 
 enum WeaponState {READY, ACTIVE, COOLDOWN}
 var current_state: WeaponState = WeaponState.READY
@@ -30,13 +31,18 @@ func _ready() -> void:
 	_reset_weapon()
 	# Don't auto-start - WeaponManager will call _start_weapon_cycle when unlocked
 
+func _physics_process(delta: float) -> void:
+	if level_manager:
+		level_manager.process_upgrades(delta)
+
 func _initialise_timers() -> void:
-	cooldown_timer.wait_time = weapon_stats.cooldown
+	cooldown_timer.wait_time = get_effective_cooldown()
 	cooldown_timer.one_shot = true
 	cooldown_timer.timeout.connect(_on_cooldown_timeout)
-
-	if weapon_stats.duration > 0.0:
-		duration_timer.wait_time = weapon_stats.duration
+	
+	var duration = get_effective_duration()
+	if duration > 0.0:
+		duration_timer.wait_time = duration
 		duration_timer.one_shot = true
 		duration_timer.timeout.connect(_on_duration_timeout)
 
@@ -47,16 +53,23 @@ func _start_weapon_cycle() -> void:
 func _fire_and_activate() -> void:
 	current_state = WeaponState.ACTIVE
 	_fire_weapon()
+	if level_manager:
+		level_manager.notify_fire()
 	_activate()
 
 	# Only start duration timer if duration is positive
 	# Duration of 0 or less means infinite/manual duration control
-	if weapon_stats.duration > 0.0:
+	var duration = get_effective_duration()
+	if duration > 0.0:
+		duration_timer.wait_time = duration
 		duration_timer.start()
 
 func _on_duration_timeout() -> void:
+	if level_manager:
+		level_manager.notify_reset()
 	_reset_weapon()
 	current_state = WeaponState.COOLDOWN
+	cooldown_timer.wait_time = get_effective_cooldown()
 	cooldown_timer.start()
 
 func _on_cooldown_timeout() -> void:
@@ -68,6 +81,46 @@ func _on_cooldown_timeout() -> void:
 func end_active_phase() -> void:
 	if current_state == WeaponState.ACTIVE:
 		_on_duration_timeout()
+
+
+#region Effective Stats (with level modifiers)
+
+func get_effective_damage() -> int:
+	if level_manager:
+		return level_manager.get_effective_damage(weapon_stats.damage)
+	return weapon_stats.damage
+
+
+func get_effective_cooldown() -> float:
+	if level_manager:
+		return level_manager.get_effective_cooldown(weapon_stats.cooldown)
+	return weapon_stats.cooldown
+
+
+func get_effective_duration() -> float:
+	if level_manager:
+		return level_manager.get_effective_duration(weapon_stats.duration)
+	return weapon_stats.duration
+
+
+func get_effective_speed() -> float:
+	if level_manager:
+		return level_manager.get_effective_speed(weapon_stats.speed)
+	return weapon_stats.speed
+
+
+func get_effective_range() -> float:
+	if level_manager:
+		return level_manager.get_effective_range(weapon_stats.max_range)
+	return weapon_stats.max_range
+
+
+## Convenience method for weapons to notify when they hit an enemy
+func notify_enemy_hit(enemy: Enemy) -> void:
+	if level_manager:
+		level_manager.notify_hit(enemy)
+
+#endregion
 
 @abstract
 func _fire_weapon() -> void

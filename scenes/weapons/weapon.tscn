@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxh6iou2ulqw3"]
+[gd_scene load_steps=3 format=3 uid="uid://cxh6iou2ulqw3"]
 
 [ext_resource type="Script" uid="uid://ceug3uo7uvlh6" path="res://scenes/weapons/weapon.gd" id="1_nqevj"]
+[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_level_manager.gd" id="2_level"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_nqevj")
+
+[node name="WeaponLevelManager" type="Node" parent="."]
+script = ExtResource("2_level")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

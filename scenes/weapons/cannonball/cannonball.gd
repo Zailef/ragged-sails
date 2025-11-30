@@ -62,6 +62,7 @@ func _on_animation_finished() -> void:
 func _activate() -> void:
 	# Only activate if we have a valid direction (i.e., a target was found)
 	if direction == Vector2.ZERO:
+		end_active_phase()
 		return
 
 	damage_area.monitoring = true

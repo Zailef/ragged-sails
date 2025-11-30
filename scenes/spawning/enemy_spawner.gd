@@ -97,6 +97,10 @@ func _handle_wave_spawning(delta: float, time_progress: float) -> void:
 	
 	_wave_timer += delta
 	
+	if _active_wave.enemy_count <= 0:
+		_complete_wave()
+		return
+	
 	var enemies_remaining = _active_wave.enemy_count - _wave_enemies_spawned
 	if enemies_remaining <= 0:
 		_complete_wave()
@@ -129,11 +133,42 @@ func _start_wave(wave: SpawnWave) -> void:
 	_wave_timer = 0.0
 	_wave_enemies_spawned = 0
 	wave_started.emit(wave)
+	# Emit wave announcement if text is provided
+	if wave.announcement_text != "":
+		SignalManager.wave_announced.emit(wave.announcement_text)
 
 func _complete_wave() -> void:
 	var completed_wave = _active_wave
 	_active_wave = null
+	
+	# Spawn boss at end of wave if configured
+	if completed_wave.spawn_boss:
+		_spawn_wave_boss(completed_wave)
+	
 	wave_completed.emit(completed_wave)
+
+func _spawn_wave_boss(wave: SpawnWave) -> void:
+	var time_progress = GameClock.get_time_progress(config.max_game_time_minutes)
+	var pool = wave.wave_enemies if wave.wave_enemies.size() > 0 else config.enemy_pool
+	
+	var entry: EnemySpawnEntry = null
+	
+	# Use specific boss_enemy_index if valid, otherwise pick random valid boss
+	if wave.boss_enemy_index >= 0 and wave.boss_enemy_index < pool.size():
+		entry = pool[wave.boss_enemy_index]
+	else:
+		# Pick random valid boss from pool
+		var valid_entries: Array[EnemySpawnEntry] = []
+		for e in pool:
+			if e.can_be_boss:
+				valid_entries.append(e)
+		if valid_entries.size() > 0:
+			entry = valid_entries[randi() % valid_entries.size()]
+	
+	if entry:
+		var boss = _spawn_enemy(entry, true, time_progress)
+		if boss:
+			boss_spawned.emit(boss)
 
 func _spawn_enemy_from_pool(pool: Array[EnemySpawnEntry], time_progress: float) -> Enemy:
 	var entry = _select_weighted_enemy(pool, time_progress)

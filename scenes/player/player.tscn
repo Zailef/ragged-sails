@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
-[ext_resource type="PackedScene" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
+[ext_resource type="PackedScene" uid="uid://cs35coiy1ddg7" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="14_joystk"]
 [ext_resource type="Texture2D" uid="uid://bq8kfvsm2jyye" path="res://sprites/ui/arrow.png" id="15_arrow"]

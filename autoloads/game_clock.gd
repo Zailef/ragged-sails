@@ -75,6 +75,6 @@ func get_time_progress(max_time_minutes: float = 30.0) -> float:
 
 ## Get formatted time string (MM:SS)
 func get_formatted_time() -> String:
-	var minutes = int(elapsed_time) / 60.0
-	var seconds = int(elapsed_time) % 60
+	var minutes: int = int(elapsed_time / 60.0)
+	var seconds: int = int(elapsed_time) % 60
 	return "%02d:%02d" % [minutes, seconds]

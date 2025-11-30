@@ -6,20 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://b85segy0l6k81" path="res://sprites/ui/virtual_joystick_outer.png" id="4_iqi4o"]
 
 [node name="VirtualJoystick" type="Node2D"]
-position = Vector2(82.585, 756.415)
-scale = Vector2(0.2517, 0.2517)
 script = ExtResource("1_h1yv7")
 colour_override = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 
 [node name="JoystickInner" type="Sprite2D" parent="."]
-self_modulate = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 texture = ExtResource("2_cl83h")
 script = ExtResource("2_s8cih")
-max_length = 12.584999999999999
-deadzone = 1.2585
 
 [node name="JoystickOuter" type="Sprite2D" parent="."]
-self_modulate = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 texture = ExtResource("4_iqi4o")
 
 [node name="Button" type="Button" parent="."]

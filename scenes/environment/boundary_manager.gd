@@ -104,10 +104,20 @@ func _apply_death_effects() -> void:
 		# Deal massive damage to kill player
 		player.take_damage(player.max_health * 10)
 
-## Get the speed multiplier for the player's current zone
-func get_speed_multiplier() -> float:
-	if not config:
+## Get the speed multiplier for the player's current zone.
+## Only applies slowdown if moving away from the safe zone (deeper into danger).
+func get_speed_multiplier(move_direction: Vector2 = Vector2.ZERO) -> float:
+	if not config or not player:
 		return 1.0
+	
+	# Check if player is moving toward the safe zone (should not be slowed)
+	if move_direction != Vector2.ZERO and current_zone != "safe":
+		var safe_center = _effective_safe_zone.get_center()
+		var to_safe = (safe_center - player.global_position).normalized()
+		var dot = move_direction.normalized().dot(to_safe)
+		# If moving toward safe zone (dot > 0), don't slow down
+		if dot > 0.1:
+			return 1.0
 	
 	match current_zone:
 		"warning":

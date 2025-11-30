@@ -50,10 +50,10 @@ func _find_boundary_manager() -> void:
 func _physics_process(_delta: float) -> void:
 	var input_direction = _get_input_direction()
 
-	# Apply boundary speed multiplier
+	# Apply boundary speed multiplier (only slows if moving away from safe zone)
 	var speed_mult = 1.0
 	if boundary_manager:
-		speed_mult = boundary_manager.get_speed_multiplier()
+		speed_mult = boundary_manager.get_speed_multiplier(input_direction)
 
 	if input_direction:
 		velocity = input_direction * move_speed * speed_mult

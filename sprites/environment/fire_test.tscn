@@ -1,0 +1,124 @@
+[gd_scene load_steps=16 format=3 uid="uid://cwt53r7i2iw5b"]
+
+[ext_resource type="Shader" path="res://sprites/shaders/fire_shader.gdshader" id="1_m80pi"]
+
+[sub_resource type="Gradient" id="Gradient_m80pi"]
+offsets = PackedFloat32Array(0.7011494, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j4ehd"]
+gradient = SubResource("Gradient_m80pi")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_srfyd"]
+offsets = PackedFloat32Array(0.95977014, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ixjhp"]
+gradient = SubResource("Gradient_srfyd")
+width = 32
+
+[sub_resource type="Gradient" id="Gradient_j4ehd"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srfyd"]
+gradient = SubResource("Gradient_j4ehd")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_ixjhp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mdme1"]
+noise_type = 4
+frequency = 0.0456
+fractal_type = 3
+fractal_gain = 0.75
+fractal_ping_pong_strength = 3.0
+domain_warp_fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u07cp"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_mdme1")
+color_ramp = SubResource("Gradient_ixjhp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqvj2"]
+shader = ExtResource("1_m80pi")
+shader_parameter/debug = false
+shader_parameter/pallet_size = 4
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_u07cp")
+shader_parameter/grad_tex = SubResource("GradientTexture2D_srfyd")
+shader_parameter/frame_grad_1 = SubResource("GradientTexture2D_j4ehd")
+shader_parameter/frame_grad_2 = SubResource("GradientTexture1D_ixjhp")
+shader_parameter/mask_color = Color(1, 1, 1, 1)
+shader_parameter/bg_color = Color(0.08235294, 0.039215688, 0.12156863, 0)
+shader_parameter/flame_0 = Color(0, 0, 0, 1)
+shader_parameter/flame_1 = Color(0.95686275, 0.7529412, 0.2784314, 1)
+shader_parameter/flame_2 = Color(0.95686275, 0.40784314, 0.043137256, 1)
+shader_parameter/flame_3 = Color(0.7058824, 0.13725491, 0.07450981, 1)
+shader_parameter/flame_4 = Color(0.41598046, 0.41598043, 0.4159804, 1)
+shader_parameter/scroll_speed = 0.0
+shader_parameter/thresh_f0 = 0.0
+shader_parameter/thresh_f1 = 0.075
+shader_parameter/thresh_f2 = 0.17
+shader_parameter/thresh_f3 = 0.27
+shader_parameter/thresh_f4 = 0.29
+
+[sub_resource type="QuadMesh" id="QuadMesh_j4ehd"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_j4ehd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:material:shader_parameter/noise_tex:noise:seed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m80pi"]
+resource_name = "flame"
+length = 1.0000167
+loop_mode = 1
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:material:shader_parameter/noise_tex:noise:seed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333337, 0.5, 0.6666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_srfyd"]
+_data = {
+&"RESET": SubResource("Animation_j4ehd"),
+&"flame": SubResource("Animation_m80pi")
+}
+
+[node name="FireTest" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_lqvj2")
+mesh = SubResource("QuadMesh_j4ehd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_srfyd")
+}
+autoplay = "flame"

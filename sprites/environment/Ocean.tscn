@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://on4oio1ejyxn"]
+[gd_scene load_steps=5 format=3 uid="uid://cuwc65hpqil5x"]
 
 [ext_resource type="Shader" uid="uid://bf6acoy0blukc" path="res://sprites/shaders/Ocean.gdshader" id="1_6efej"]
 [ext_resource type="Texture2D" uid="uid://cs7vlc6k4pocm" path="res://sprites/environment/water_with_shadow.png" id="2_xffl0"]

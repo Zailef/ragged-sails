@@ -16,17 +16,17 @@ class_name DirectionalCollision
 @export var include_diagonals: bool = false
 
 @export_group("Horizontal Offset (Left/Right)")
-## Position offset when facing left or right
+## Position offset when facing right (auto-mirrored for left)
 @export var horizontal_offset: Vector2 = Vector2.ZERO
 
 @export_group("Vertical Offset (Up/Down)")
-## Position offset when facing up or down
+## Position offset when facing down (auto-mirrored for up)
 @export var vertical_offset: Vector2 = Vector2.ZERO
 
 @export_group("Diagonal Offsets")
-## Position offset when facing up-left or up-right
+## Position offset when facing up-right (auto-mirrored for up-left)
 @export var diagonal_up_offset: Vector2 = Vector2.ZERO
-## Position offset when facing down-left or down-right
+## Position offset when facing down-right (auto-mirrored for down-left)
 @export var diagonal_down_offset: Vector2 = Vector2.ZERO
 
 var _current_direction: Vector2 = Vector2.DOWN
@@ -41,17 +41,17 @@ func _auto_find_collision_shapes() -> void:
 	if not parent:
 		return
 	
-	# Find direct CollisionShape2D children
-	for child in parent.get_children():
+	# Recursively find all CollisionShape2D nodes under parent
+	_find_collision_shapes_recursive(parent)
+
+
+func _find_collision_shapes_recursive(node: Node) -> void:
+	for child in node.get_children():
 		if child is CollisionShape2D:
 			collision_shapes.append(child)
-	
-	# Find CollisionShape2D in Area2D children (like HurtArea, HitArea)
-	for child in parent.get_children():
-		if child is Area2D:
-			for area_child in child.get_children():
-				if area_child is CollisionShape2D:
-					collision_shapes.append(area_child)
+		elif child is Area2D or child is CharacterBody2D or child is RigidBody2D:
+			# Search inside physics bodies and areas for their collision shapes
+			_find_collision_shapes_recursive(child)
 
 ## Call this whenever the facing direction changes
 func update_direction(direction: Vector2) -> void:
@@ -125,6 +125,8 @@ func _get_offset_for_direction() -> Vector2:
 		return _mirror_offset(vertical_offset, false, mirror_y)
 
 
+## Mirrors the offset for opposite directions.
+## Offsets are defined for positive directions (right/down), negated for negative directions (left/up).
 func _mirror_offset(offset: Vector2, mirror_x: bool, mirror_y: bool) -> Vector2:
 	return Vector2(
 		- offset.x if mirror_x else offset.x,

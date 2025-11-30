@@ -51,8 +51,7 @@ func _physics_process(delta: float) -> void:
 	_handle_animations(direction)
 	_handle_player_damage(delta)
 
-	if directional_collision and direction != Vector2.ZERO:
-		directional_collision.update_direction(direction)
+	directional_collision.update_direction(direction)
 
 	move_and_slide()
 

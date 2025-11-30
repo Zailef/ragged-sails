@@ -46,8 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 	if input_direction:
 		velocity = input_direction * move_speed
-		if directional_collision:
-			directional_collision.update_direction(input_direction)
+		directional_collision.update_direction(input_direction)
 		animation_tree.set("parameters/Idle/blend_position", input_direction)
 		animation_tree.set("parameters/Move/blend_position", input_direction)
 		animation_state.travel("Move")

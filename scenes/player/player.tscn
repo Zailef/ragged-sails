@@ -1267,7 +1267,7 @@ rotation = 1.5707964
 shape = SubResource("CircleShape2D_dovo2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.75, 1.75)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1336,3 +1336,5 @@ bus = &"SFX"
 
 [node name="VirtualJoystick" parent="UI" instance=ExtResource("12_fm80t")]
 unique_name_in_owner = true
+position = Vector2(78.67, 499.33)
+scale = Vector2(0.1734, 0.1734)

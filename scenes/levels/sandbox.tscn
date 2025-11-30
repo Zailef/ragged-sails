@@ -40,7 +40,6 @@ position = Vector2(0, -7)
 
 [node name="Player" parent="." instance=ExtResource("1_6ivci")]
 position = Vector2(305, 181)
-debug_mobile_controls = true
 
 [node name="Enemies" type="Node2D" parent="."]
 

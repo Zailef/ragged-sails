@@ -37,7 +37,7 @@ func _ready() -> void:
 	_setup_mobile_controls()
 
 func _setup_mobile_controls() -> void:
-	is_mobile = OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls
+	is_mobile = OS.has_feature("android") or OS.has_feature("ios") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls
 	virtual_joystick.visible = is_mobile
 
 func _physics_process(_delta: float) -> void:

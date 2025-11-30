@@ -25,9 +25,13 @@ func _process(delta: float) -> void:
 func _calculate_vector() -> void:
 	if abs(global_position.x - joystick_parent.global_position.x) >= deadzone:
 		joystick_parent.position_vector.x = (global_position.x - joystick_parent.global_position.x) / max_length
+	else:
+		joystick_parent.position_vector.x = 0.0
 
 	if abs(global_position.y - joystick_parent.global_position.y) >= deadzone:
 		joystick_parent.position_vector.y = (global_position.y - joystick_parent.global_position.y) / max_length
+	else:
+		joystick_parent.position_vector.y = 0.0
 
 func _on_button_button_up() -> void:
 	button_up.emit()

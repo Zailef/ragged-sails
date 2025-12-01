@@ -101,6 +101,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbjh7"]
+radius = 16.05546
 
 [node name="ExpPickup" instance=ExtResource("1_4xpk5")]
 scale = Vector2(0.75, 0.75)

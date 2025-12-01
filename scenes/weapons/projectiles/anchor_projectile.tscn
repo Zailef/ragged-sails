@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://danchorprojectile"]
+
+[ext_resource type="Script" uid="uid://c4anchorprojectile" path="res://scenes/weapons/projectiles/anchor_projectile.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dk5hymkh3nl0y" path="res://sprites/weapons/AnchorNoOutline.png" id="2_sprite"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_anchor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sprite")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_anchor"]
+points = PackedVector2Array(0, -15, 2, -15, 4, -13, 11, -6, 15, -2, 15, 8, 1, 15, -1, 15, -15, 8, -15, -2, -4, -13, -2, -15)
+
+[node name="AnchorProjectile" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_anchor")
+animation = &"default"
+autoplay = "default"
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("ConvexPolygonShape2D_anchor")

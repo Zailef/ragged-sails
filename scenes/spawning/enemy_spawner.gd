@@ -188,9 +188,7 @@ func _spawn_enemy(entry: EnemySpawnEntry, as_boss: bool, time_progress: float) -
 	
 	enemy.global_position = _get_spawn_position()
 	enemy.is_boss = as_boss
-	
-	# Apply difficulty scaling
-	# Note: This could be expanded to modify enemy stats based on difficulty_curve
+	enemy.difficulty_multiplier = config.get_difficulty_multiplier(time_progress)
 	
 	_get_enemies_container().add_child(enemy)
 	_current_enemy_count += 1
@@ -237,27 +235,45 @@ func _get_spawn_position() -> Vector2:
 		return Vector2.ZERO
 	
 	var camera_pos = camera.get_screen_center_position()
-	var screen_size = viewport_rect.size
+	var screen_size = viewport_rect.size / camera.zoom # Account for camera zoom
 	var margin = config.spawn_margin if config else 50.0
 	
-	var edge = randi() % 4
-	var spawn_pos = Vector2.ZERO
+	# Try up to 5 times to find a valid spawn position
+	for _attempt in range(5):
+		var edge = randi() % 4
+		var spawn_pos = Vector2.ZERO
+		
+		match edge:
+			0: # Top
+				spawn_pos.x = camera_pos.x + randf_range(-screen_size.x / 2, screen_size.x / 2)
+				spawn_pos.y = camera_pos.y - screen_size.y / 2 - margin
+			1: # Right
+				spawn_pos.x = camera_pos.x + screen_size.x / 2 + margin
+				spawn_pos.y = camera_pos.y + randf_range(-screen_size.y / 2, screen_size.y / 2)
+			2: # Bottom
+				spawn_pos.x = camera_pos.x + randf_range(-screen_size.x / 2, screen_size.x / 2)
+				spawn_pos.y = camera_pos.y + screen_size.y / 2 + margin
+			3: # Left
+				spawn_pos.x = camera_pos.x - screen_size.x / 2 - margin
+				spawn_pos.y = camera_pos.y + randf_range(-screen_size.y / 2, screen_size.y / 2)
+		
+		if _is_spawn_position_valid(spawn_pos):
+			return spawn_pos
 	
-	match edge:
-		0: # Top
-			spawn_pos.x = camera_pos.x + randf_range(-screen_size.x / 2, screen_size.x / 2)
-			spawn_pos.y = camera_pos.y - screen_size.y / 2 - margin
-		1: # Right
-			spawn_pos.x = camera_pos.x + screen_size.x / 2 + margin
-			spawn_pos.y = camera_pos.y + randf_range(-screen_size.y / 2, screen_size.y / 2)
-		2: # Bottom
-			spawn_pos.x = camera_pos.x + randf_range(-screen_size.x / 2, screen_size.x / 2)
-			spawn_pos.y = camera_pos.y + screen_size.y / 2 + margin
-		3: # Left
-			spawn_pos.x = camera_pos.x - screen_size.x / 2 - margin
-			spawn_pos.y = camera_pos.y + randf_range(-screen_size.y / 2, screen_size.y / 2)
+	# Fallback: return the last attempted position even if invalid
+	return camera_pos + Vector2(screen_size.x / 2 + margin, 0)
+
+
+func _is_spawn_position_valid(pos: Vector2) -> bool:
+	var space_state = get_viewport().get_world_2d().direct_space_state
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = pos
+	query.collision_mask = 1 # World/obstacle layer
+	query.collide_with_areas = false
+	query.collide_with_bodies = true
 	
-	return spawn_pos
+	var results = space_state.intersect_point(query, 1)
+	return results.is_empty()
 
 func _can_spawn_more() -> bool:
 	if config.max_enemies_alive <= 0:

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponLevel" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Resource" path="res://scenes/weapons/anchor/upgrades/quad_anchors.tres" id="2_quad"]
+
+[resource]
+script = ExtResource("1_level")
+level = 10
+damage_multiplier = 1.75
+cooldown_multiplier = 1.0
+duration_multiplier = 1.0
+speed_multiplier = 1.5
+range_multiplier = 1.0
+damage_bonus = 0
+cooldown_bonus = -100.0
+duration_bonus = 0.0
+speed_bonus = 0.0
+range_bonus = 0.0
+unlocked_upgrades = [ExtResource("2_quad")]
+level_up_description = "Quad Anchors - Four anchors with permanent uptime!"

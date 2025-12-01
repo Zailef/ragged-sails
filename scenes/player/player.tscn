@@ -1,31 +1,28 @@
-[gd_scene load_steps=141 format=3 uid="uid://dlgmlwuec3427"]
+[gd_scene load_steps=142 format=3 uid="uid://dlgmlwuec3427"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="2_gmlin"]
-[ext_resource type="Script" uid="uid://b338hjdqdj7pt" path="res://scenes/player/player_level_progress.gd" id="2_qek5x"]
+[ext_resource type="Resource" uid="uid://cukv336b3ml85" path="res://scenes/player/default_level_progress.tres" id="2_lvlprog"]
 [ext_resource type="PackedScene" uid="uid://dbe7acbfy602p" path="res://scenes/ui/experience_bar.tscn" id="6_75vfg"]
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
-[ext_resource type="PackedScene" uid="uid://cs35coiy1ddg7" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="14_joystk"]
 [ext_resource type="Texture2D" uid="uid://bq8kfvsm2jyye" path="res://sprites/ui/arrow.png" id="15_arrow"]
-[ext_resource type="Script" path="res://scenes/components/boundary_arrow.gd" id="16_barrow"]
+[ext_resource type="Script" uid="uid://qr4brmcx1f6k" path="res://scenes/components/boundary_arrow.gd" id="16_barrow"]
 [ext_resource type="Script" uid="uid://caic76b18j5xc" path="res://scenes/player/weapon_manager.gd" id="17_weapmgr"]
 [ext_resource type="PackedScene" uid="uid://0fvxkr3ekm5v" path="res://scenes/ui/level_up.tscn" id="18_8ydkj"]
 [ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="18_cannon"]
 [ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="19_anchor"]
-[ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="20_grape"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="20_grape"]
 [ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="21_harpoon"]
-[ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
-[ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
 [ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
-
-[sub_resource type="Resource" id="Resource_qek5x"]
-script = ExtResource("2_qek5x")
-metadata/_custom_type_script = "uid://b338hjdqdj7pt"
+[ext_resource type="PackedScene" uid="uid://m54e2ffyq8ws" path="res://scenes/ui/chest_open.tscn" id="25_chest"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1264,7 +1261,7 @@ corner_radius_bottom_left = 1
 z_index = 2
 collision_layer = 2
 script = ExtResource("1_dovo2")
-level_progress = SubResource("Resource_qek5x")
+level_progress = ExtResource("2_lvlprog")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_lvxji")
@@ -1348,10 +1345,12 @@ size_flags_vertical = 3
 
 [node name="VirtualJoystick" parent="UI" instance=ExtResource("14_joystk")]
 unique_name_in_owner = true
-position = Vector2(82.585, 756.415)
-scale = Vector2(0.2517, 0.2517)
+position = Vector2(78.67, 499.33)
+scale = Vector2(0.1734, 0.1734)
 
 [node name="LevelUp" parent="UI" instance=ExtResource("18_8ydkj")]
+
+[node name="ChestOpen" parent="UI" instance=ExtResource("25_chest")]
 
 [node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
 

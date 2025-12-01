@@ -9,9 +9,9 @@ class_name WeaponSlot
 var weapon_data: Resource = null
 var level: int = 1
 
-func setup(data: Resource) -> void:
+func setup(data: Resource, initial_level: int = 1) -> void:
 	weapon_data = data
-	level = 1
+	level = initial_level
 	_update_display()
 
 func set_level(new_level: int) -> void:

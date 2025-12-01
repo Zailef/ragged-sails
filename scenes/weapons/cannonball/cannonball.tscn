@@ -1,133 +1,27 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2rjp1l2ncjnr"]
+[gd_scene load_steps=6 format=3 uid="uid://c2rjp1l2ncjnr"]
 
-[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_exgyy"]
-[ext_resource type="Script" uid="uid://2rq668shbgao" path="res://scenes/weapons/cannonball/cannonball.gd" id="2_53n7m"]
-[ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="3_43etq"]
-[ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_53n7m"]
-[ext_resource type="Script" uid="uid://d4e42y4hmo6wi" path="res://scenes/weapons/targeting/targeting_strategy_closest.gd" id="4_43etq"]
-[ext_resource type="AudioStream" uid="uid://bgjut7l5x7r2p" path="res://audio/effects/Splash.wav" id="6_yol1k"]
-[ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="7_esuvo"]
+[ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
+[ext_resource type="Script" uid="uid://2rq668shbgao" path="res://scenes/weapons/cannonball/cannonball.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
+[ext_resource type="Script" uid="uid://d4e42y4hmo6wi" path="res://scenes/weapons/targeting/targeting_strategy_closest.gd" id="4_targeting"]
+[ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="5_sound"]
 
-[sub_resource type="Resource" id="Resource_43etq"]
-script = ExtResource("3_53n7m")
+[sub_resource type="Resource" id="Resource_stats"]
+script = ExtResource("3_stats")
 cooldown = 3.0
 speed = 200.0
+max_range = 150.0
 metadata/_custom_type_script = "uid://dfpkint1tllcj"
 
-[sub_resource type="Resource" id="Resource_yol1k"]
-script = ExtResource("4_43etq")
+[sub_resource type="Resource" id="Resource_targeting"]
+script = ExtResource("4_targeting")
 metadata/_custom_type_script = "uid://d4e42y4hmo6wi"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2pf4"]
-atlas = ExtResource("3_43etq")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfd83"]
-atlas = ExtResource("3_43etq")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_urj1h"]
-atlas = ExtResource("3_43etq")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1riu"]
-atlas = ExtResource("3_43etq")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_44uih"]
-atlas = ExtResource("3_43etq")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2n4fr"]
-atlas = ExtResource("3_43etq")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5scaf"]
-atlas = ExtResource("3_43etq")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_udiba"]
-atlas = ExtResource("3_43etq")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xnamo"]
-atlas = ExtResource("3_43etq")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_83l1g"]
-atlas = ExtResource("3_43etq")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bi4j3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r2pf4")
-}],
-"loop": true,
-"name": &"moving",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wfd83")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_urj1h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v1riu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_44uih")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2n4fr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5scaf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_udiba")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xnamo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83l1g")
-}],
-"loop": false,
-"name": &"splash",
-"speed": 12.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_esydl"]
-
-[node name="Cannonball" instance=ExtResource("1_exgyy")]
-scale = Vector2(0.5, 0.5)
-script = ExtResource("2_53n7m")
-weapon_stats = SubResource("Resource_43etq")
-targeting_strategy = SubResource("Resource_yol1k")
-
-[node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_bi4j3")
-animation = &"splash"
-frame = 8
-frame_progress = 1.0
-
-[node name="DamageArea" parent="." index="1"]
-collision_mask = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_esydl")
-
-[node name="AudioStreamPlayer2D" parent="." index="2"]
-stream = ExtResource("6_yol1k")
-
-[node name="CooldownTimer" parent="." index="3"]
-autostart = true
+[node name="Cannonball" instance=ExtResource("1_weapon")]
+script = ExtResource("2_script")
+weapon_stats = SubResource("Resource_stats")
+targeting_strategy = SubResource("Resource_targeting")
 
 [node name="CannonFireSound" type="AudioStreamPlayer" parent="." index="5"]
-stream = ExtResource("7_esuvo")
+stream = ExtResource("5_sound")
 bus = &"SFX"

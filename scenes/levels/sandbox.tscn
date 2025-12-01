@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddnu2h0canibh"]
+[gd_scene load_steps=14 format=3 uid="uid://ddnu2h0canibh"]
 
-[ext_resource type="PackedScene" uid="uid://cyhtcxisq357" path="res://scenes/player/player.tscn" id="1_6ivci"]
-[ext_resource type="Script" uid="uid://0j6nyu5328j5" path="res://scenes/levels/sandbox.gd" id="1_sandbox"]
+[ext_resource type="PackedScene" uid="uid://dlgmlwuec3427" path="res://scenes/player/player.tscn" id="1_6ivci"]
+[ext_resource type="Script" path="res://scenes/levels/sandbox.gd" id="1_sandbox"]
 [ext_resource type="Texture2D" uid="uid://drw4sat31flsb" path="res://sprites/environment/SeaRock2.png" id="2_ea3gy"]
 [ext_resource type="PackedScene" uid="uid://on4oio1ejyxn" path="res://scenes/environment/ocean.tscn" id="3_xf1sy"]
 [ext_resource type="Texture2D" uid="uid://dtwnrrxeukiis" path="res://sprites/environment/SeaRock1.png" id="4_a64th"]
 [ext_resource type="Script" uid="uid://bcb8dcsh7klmb" path="res://scenes/spawning/enemy_spawner.gd" id="5_spawner"]
 [ext_resource type="Resource" uid="uid://dnbjnwv6gugd2" path="res://scenes/spawning/default_spawner_config.tres" id="6_config"]
-[ext_resource type="Script" uid="uid://o0uh6odurnjd" path="res://scenes/environment/boundary_manager.gd" id="10_boundary"]
+[ext_resource type="Script" path="res://scenes/environment/boundary_manager.gd" id="10_boundary"]
 [ext_resource type="Resource" path="res://scenes/environment/default_boundary_config.tres" id="11_boundary_config"]
 [ext_resource type="PackedScene" path="res://scenes/ui/boundary_warning_overlay.tscn" id="12_warning_overlay"]
 

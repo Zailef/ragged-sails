@@ -16,6 +16,7 @@ var _is_tweening: bool = false
 func _ready() -> void:
 	# Start fully transparent
 	color_rect.color = Color(0, 0, 0, 0)
+	_current_zone = "safe"
 	
 	# Connect to signal manager for zone changes
 	SignalManager.boundary_zone_changed.connect(_on_zone_changed)

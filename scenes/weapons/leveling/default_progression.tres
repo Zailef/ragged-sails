@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponProgression" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_progression.gd" id="1_prog"]
+
+[resource]
+script = ExtResource("1_prog")
+weapon_name = "Default"
+max_level = 0
+levels = []
+allow_overflow = true
+overflow_damage_multiplier = 1.05
+overflow_cooldown_multiplier = 0.98
+overflow_duration_multiplier = 1.02
+overflow_speed_multiplier = 1.02

@@ -1,103 +1,78 @@
-extends Weapon
+extends BaseWeapon
 class_name Mine
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var explosion_cast: ShapeCast2D = $ExplosionCast
-@onready var mine_explosion_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+## The projectile scene to spawn
+const MINE_SCENE = preload("res://scenes/weapons/projectiles/mine_projectile.tscn")
 
-@export var detonate_animation_offset = Vector2(0, -28)
-@export var arm_delay: float = 1.0
-@export var lifetime: float = 10.0
-@export var damage_delay: float = 0.15
+## Distance behind player to launch secondary mines
+@export var rear_launch_distance: float = 60.0
 
-var is_armed: bool = false
-var is_detonating: bool = false
-var arm_timer: float = 0.0
-var lifetime_timer: float = 0.0
-var damaged_enemies: Array[Enemy] = []
+## Container node for spawned projectiles (found at runtime)
+var _projectile_container: Node = null
+
+## Last movement direction for placing rear mines
+var _last_direction: Vector2 = Vector2.DOWN
+
+## Active mines for upgrades to reference
+var mines: Array[MineProjectile] = []
+
 
 func _ready() -> void:
 	super ()
-	sprite.play("default")
-	explosion_cast.enabled = false
-	hide()
+	_projectile_container = get_tree().get_first_node_in_group("projectile_container")
+	if not _projectile_container:
+		_projectile_container = get_tree().current_scene
+
 
 func _physics_process(delta: float) -> void:
-	if current_state != WeaponState.ACTIVE:
-		return
+	super (delta)
+	# Track player movement direction
+	var player = get_player()
+	if player and player.velocity.length() > 10:
+		_last_direction = player.velocity.normalized()
+	
+	# Clean up destroyed mines from tracking array
+	for i in range(mines.size() - 1, -1, -1):
+		if not is_instance_valid(mines[i]):
+			mines.remove_at(i)
 
-	if is_detonating:
-		return # Wait for animation to finish
-
-	if not is_armed:
-		arm_timer += delta
-		if arm_timer >= arm_delay:
-			is_armed = true
-			explosion_cast.enabled = true
-	else:
-		# Check for enemies in range
-		explosion_cast.force_shapecast_update()
-		if explosion_cast.get_collision_count() > 0:
-			_detonate()
-			return
-
-		lifetime_timer += delta
-		if lifetime_timer >= lifetime:
-			end_active_phase()
 
 func _fire_weapon() -> void:
-	# Mine is placed at player's position
-	global_position = get_player().global_position
+	spawn_mine_at_player()
 
-func _activate() -> void:
-	is_armed = false
-	is_detonating = false
-	arm_timer = 0.0
-	lifetime_timer = 0.0
-	damaged_enemies.clear()
-	sprite.play("default")
-	sprite.offset = Vector2.ZERO
-	show()
+
+func spawn_mine_at_player() -> void:
+	_spawn_mine(get_player().global_position)
+
+
+func spawn_mine_behind_player() -> void:
+	var player_pos = get_player().global_position
+	var behind_pos = player_pos - _last_direction * rear_launch_distance
+	_spawn_mine(behind_pos)
+
+
+func spawn_mine_ahead_of_player() -> void:
+	var player_pos = get_player().global_position
+	var ahead_pos = player_pos + _last_direction * rear_launch_distance
+	_spawn_mine(ahead_pos)
+
+
+func _spawn_mine(spawn_position: Vector2) -> void:
+	var mine = MINE_SCENE.instantiate() as MineProjectile
+	_projectile_container.add_child(mine)
+	
+	mine.global_position = spawn_position
+	mine.setup(Vector2.ZERO, get_effective_damage(), 0, -1, self)
+	
+	# Track active mines for upgrades
+	mines.append(mine)
+
 
 func _reset_weapon() -> void:
-	is_armed = false
-	is_detonating = false
-	arm_timer = 0.0
-	lifetime_timer = 0.0
-	damaged_enemies.clear()
-	explosion_cast.enabled = false
-	hide()
+	# Nothing to reset - mines manage themselves
+	pass
 
-func _detonate() -> void:
-	if is_detonating:
-		return
 
-	is_detonating = true
-	explosion_cast.enabled = false
-
-	# Apply offset for explosion animation
-	if sprite:
-		sprite.offset = detonate_animation_offset
-		sprite.play("detonate")
-		mine_explosion_sound.play()
-
-	# Delay damage application to sync with explosion visual
-	await get_tree().create_timer(damage_delay).timeout
-
-	explosion_cast.enabled = true
-	explosion_cast.force_shapecast_update()
-	explosion_cast.enabled = false
-
-	var collision_count = explosion_cast.get_collision_count()
-
-	for i in range(collision_count):
-		var collider = explosion_cast.get_collider(i)
-		if collider.get_owner() is Enemy:
-			var enemy: Enemy = collider.get_owner()
-			if enemy not in damaged_enemies:
-				enemy.take_damage(weapon_stats.damage)
-				damaged_enemies.append(enemy)
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if sprite.animation == "detonate":
-		end_active_phase()
+func _activate() -> void:
+	# Immediately end active phase since we're just an orchestrator
+	end_active_phase()

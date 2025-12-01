@@ -1,34 +1,24 @@
-extends Weapon
+extends BaseWeapon
 class_name Grapeshot
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var shape_cast: ShapeCast2D = $ShapeCast2D
-@onready var fire_sound: AudioStreamPlayer = $FireSound
+## The projectile scene to spawn
+const VOLLEY_SCENE = preload("res://scenes/weapons/projectiles/grapeshot_volley.tscn")
 
-var direction: Vector2 = Vector2.ZERO
-var damaged_enemies: Array[Enemy] = []
+## Container node for spawned projectiles (found at runtime)
+var _projectile_container: Node = null
+
+## Last fired direction (for upgrades like Broadside)
+var last_direction: Vector2 = Vector2.ZERO
+
 
 func _ready() -> void:
 	super ()
-	animated_sprite.animation_finished.connect(_on_animation_finished)
-	shape_cast.enabled = false
+	_projectile_container = get_tree().get_first_node_in_group("projectile_container")
+	if not _projectile_container:
+		_projectile_container = get_tree().current_scene
 
-func _physics_process(_delta: float) -> void:
-	if current_state != WeaponState.ACTIVE:
-		return
-
-	shape_cast.force_shapecast_update()
-	for i in range(shape_cast.get_collision_count()):
-		var collider = shape_cast.get_collider(i)
-		if collider.get_owner() is Enemy:
-			var enemy: Enemy = collider.get_owner()
-			if enemy not in damaged_enemies:
-				enemy.take_damage(weapon_stats.damage)
-				damaged_enemies.append(enemy)
 
 func _fire_weapon() -> void:
-	global_position = get_player().global_position
-
 	# Use targeting strategy to get the direction
 	var context: TargetingContext = TargetingContext.new()
 	context.user = get_player()
@@ -37,30 +27,43 @@ func _fire_weapon() -> void:
 
 	var result: TargetingResult = targeting_strategy.get_target(context)
 
+	var direction: Vector2
 	if result.has_direction():
 		direction = result.direction
-		rotation = direction.angle()
 	else:
 		# Fallback to right if no direction provided
 		direction = Vector2.RIGHT
-		rotation = 0.0
+
+	last_direction = direction
+	_spawn_volley(get_player().global_position, direction)
+
+
+## Spawn a grapeshot volley at the given position and direction
+func spawn_volley(spawn_pos: Vector2, dir: Vector2) -> void:
+	_spawn_volley(spawn_pos, dir)
+
+
+## Queue a volley to fire after a delay (used by upgrades like Broadside)
+func queue_volley(direction: Vector2, delay: float) -> void:
+	var timer = get_tree().create_timer(delay)
+	await timer.timeout
+	if is_instance_valid(self):
+		_spawn_volley(get_player().global_position, direction)
+
+
+func _spawn_volley(spawn_position: Vector2, direction: Vector2) -> void:
+	var volley = VOLLEY_SCENE.instantiate() as GrapeshotVolley
+	_projectile_container.add_child(volley)
+	
+	volley.global_position = spawn_position
+	volley.setup(direction, get_effective_damage(), 0, -1, self)
+
 
 func _reset_weapon() -> void:
-	global_position = get_player().global_position
-	direction = Vector2.ZERO
-	damaged_enemies.clear()
-	shape_cast.enabled = false
-	hide()
+	# Nothing to reset - volleys manage themselves
+	pass
 
-func _on_animation_finished() -> void:
-	end_active_phase()
 
 func _activate() -> void:
-	if direction == Vector2.ZERO:
-		return
-
-	damaged_enemies.clear()
-	shape_cast.enabled = true
-	show()
-	animated_sprite.play()
-	fire_sound.play()
+	# Immediately end active phase since we're just an orchestrator
+	end_active_phase()

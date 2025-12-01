@@ -1,4 +1,4 @@
-extends Weapon
+extends BaseWeapon
 
 @onready var rope: Line2D = $Line2D
 
@@ -17,14 +17,18 @@ func _ready() -> void:
 	hide()
 
 func _physics_process(_delta: float) -> void:
+	super (_delta)
+	
 	if current_state != WeaponState.ACTIVE:
 		return
+
+	var effective_speed = get_effective_speed() if flight_speed == weapon_stats.speed else flight_speed
 
 	if is_flying and target and is_instance_valid(target) and target_marker and is_instance_valid(target_marker):
 		# Fly towards target marker
 		var marker_pos = target_marker.global_position
 		var to_target = (marker_pos - global_position).normalized()
-		global_position += to_target * flight_speed * _delta
+		global_position += to_target * effective_speed * _delta
 		rotation = to_target.angle()
 
 		rope.visible = true
@@ -98,7 +102,8 @@ func _reset_weapon() -> void:
 func _apply_damage(delta: float) -> void:
 	damage_timer += delta
 	if damage_timer >= damage_rate:
-		target.take_damage(weapon_stats.damage)
+		target.take_damage(get_effective_damage())
+		notify_enemy_hit(target)
 		damage_timer = 0.0
 
 func _update_rope() -> void:

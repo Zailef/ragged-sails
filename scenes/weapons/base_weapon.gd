@@ -115,6 +115,12 @@ func get_effective_range() -> float:
 	return weapon_stats.max_range
 
 
+func get_effective_penetration() -> int:
+	if level_manager:
+		return level_manager.get_effective_penetration(weapon_stats.penetration)
+	return weapon_stats.penetration
+
+
 ## Convenience method for weapons to notify when they hit an enemy
 func notify_enemy_hit(enemy: Enemy) -> void:
 	if level_manager:

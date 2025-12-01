@@ -12,3 +12,4 @@ enum WeaponType {
 @export var duration: float = 0.0
 @export var speed: float = 1.0
 @export var max_range: float = -1.0 # -1 means unlimited range
+@export var penetration: int = 1 # Number of enemies to pierce. -1 = infinite

@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 					source_weapon.notify_enemy_hit(enemy)
 
 
-func setup(p_direction: Vector2, p_damage: int, _p_speed: float = 0.0, _p_max_distance: float = -1.0, p_source: BaseWeapon = null) -> void:
+func setup(p_direction: Vector2, p_damage: int, _p_speed: float = 0.0, _p_max_distance: float = -1.0, p_source: BaseWeapon = null, _p_penetration: int = -1) -> void:
 	direction = p_direction.normalized()
 	damage = p_damage
 	source_weapon = p_source

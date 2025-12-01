@@ -9,6 +9,9 @@ const PROJECTILE_SCENE = preload("res://scenes/weapons/projectiles/cannonball_pr
 ## Container node for spawned projectiles (found at runtime)
 var _projectile_container: Node = null
 
+## Last fired direction (for upgrades)
+var last_direction: Vector2 = Vector2.ZERO
+
 
 func _ready() -> void:
 	super ()
@@ -29,6 +32,7 @@ func _fire_weapon() -> void:
 	if result.has_target():
 		var spawn_pos = get_player().global_position
 		var direction = (result.target.global_position - spawn_pos).normalized()
+		last_direction = direction
 		_spawn_projectile(spawn_pos, direction)
 
 
@@ -42,10 +46,19 @@ func _spawn_projectile(spawn_position: Vector2, direction: Vector2) -> void:
 		get_effective_damage(),
 		get_effective_speed(),
 		get_effective_range(),
-		self
+		self,
+		get_effective_penetration()
 	)
 
 	cannon_fire_sound.play()
+
+
+## Queue a cannonball to fire after a delay (used by upgrades)
+func queue_cannonball(delay: float) -> void:
+	var timer = get_tree().create_timer(delay)
+	await timer.timeout
+	if is_instance_valid(self) and last_direction != Vector2.ZERO:
+		_spawn_projectile(get_player().global_position, last_direction)
 
 
 func _reset_weapon() -> void:

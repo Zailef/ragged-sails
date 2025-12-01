@@ -20,6 +20,7 @@ class_name WeaponLevel
 @export var duration_bonus: float = 0.0
 @export var speed_bonus: float = 0.0
 @export var range_bonus: float = 0.0
+@export var penetration_bonus: int = 0
 
 ## Upgrades unlocked at this level
 @export_group("Upgrades")

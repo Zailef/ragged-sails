@@ -27,11 +27,11 @@ var source_weapon: BaseWeapon = null
 ## Track distance traveled
 var _distance_traveled: float = 0.0
 
-## Track enemies already hit (for pierce limit)
+## Track enemies already hit (for penetration limit)
 var _enemies_hit: Array[Enemy] = []
 
-## Maximum enemies this projectile can pierce (-1 for infinite)
-var pierce_count: int = 0
+## Number of enemies this projectile can penetrate (-1 for infinite)
+var penetration: int = 1
 
 
 func _physics_process(delta: float) -> void:
@@ -76,18 +76,21 @@ func _on_enemy_hit(enemy: Enemy) -> void:
 	if source_weapon and is_instance_valid(source_weapon):
 		source_weapon.notify_enemy_hit(enemy)
 	
-	# Check pierce
-	if pierce_count >= 0 and _enemies_hit.size() > pierce_count:
+	# Check penetration (destroy if we've hit enough enemies)
+	# penetration = 1 means destroy after first hit
+	# penetration = -1 means never destroy from hits
+	if penetration >= 0 and _enemies_hit.size() >= penetration:
 		destroy()
 
 
 ## Initialize the projectile with common parameters
-func setup(p_direction: Vector2, p_damage: int, p_speed: float, p_max_distance: float = -1.0, p_source: BaseWeapon = null) -> void:
+func setup(p_direction: Vector2, p_damage: int, p_speed: float, p_max_distance: float = -1.0, p_source: BaseWeapon = null, p_penetration: int = 1) -> void:
 	direction = p_direction.normalized()
 	damage = p_damage
 	speed = p_speed
 	max_distance = p_max_distance
 	source_weapon = p_source
+	penetration = p_penetration
 	
 	# Rotate sprite to face direction
 	rotation = direction.angle()

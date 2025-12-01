@@ -28,8 +28,8 @@ func get_target(context: TargetingContext) -> TargetingResult:
 			# Rotate 90 degrees clockwise
 			direction = Vector2(facing_direction.y, -facing_direction.x)
 		Side.BOTH:
-			# TODO: Weapons need a bit of a refactor for better projectile control
-			push_error("TargetingStrategySide: BOTH side not fully implemented, defaulting to RIGHT side.")
+			# BOTH fires from both sides - requires weapon to call twice or handle multi-projectile
+			push_warning("TargetingStrategySide: BOTH side requires weapon to handle multiple projectiles.")
 			direction = Vector2(-facing_direction.y, facing_direction.x)
 
 	return TargetingResult.new(null, direction, player.global_position)

@@ -12,7 +12,6 @@ class_name ElectrifiedRopeUpgrade
 @export var electricity_color: Color = Color(0.5, 0.8, 1.0)
 
 var _tick_timer: float = 0.0
-var _rope_collision_shape: SegmentShape2D
 var _enemies_on_rope: Array[Enemy] = []
 
 

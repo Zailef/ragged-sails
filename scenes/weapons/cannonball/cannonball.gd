@@ -6,9 +6,6 @@ const PROJECTILE_SCENE = preload("res://scenes/weapons/projectiles/cannonball_pr
 
 @onready var cannon_fire_sound: AudioStreamPlayer = $CannonFireSound
 
-## Maximum travel distance for projectiles
-@export var max_distance: float = 150.0
-
 ## Container node for spawned projectiles (found at runtime)
 var _projectile_container: Node = null
 
@@ -44,7 +41,7 @@ func _spawn_projectile(spawn_position: Vector2, direction: Vector2) -> void:
 		direction,
 		get_effective_damage(),
 		get_effective_speed(),
-		max_distance,
+		get_effective_range(),
 		self
 	)
 

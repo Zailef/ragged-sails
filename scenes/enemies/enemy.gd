@@ -12,12 +12,14 @@ var player: Player = null
 @onready var directional_collision: DirectionalCollision = $DirectionalCollision
 
 @export var stats: EnemyStats
-@export var is_boss: bool = false
-@export var difficulty_multiplier: float = 1.0
 @export var loot_table: LootTable
 @export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
 @export var attack_animation_strategy: AttackAnimationStrategy = AttackAnimationStrategyNone.new()
+
+## Set by spawner at runtime
+var is_boss: bool = false
+var difficulty_multiplier: float = 1.0
 
 @export_group("Debugging")
 @export var is_immortal: bool = false

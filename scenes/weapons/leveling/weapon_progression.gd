@@ -84,7 +84,6 @@ func get_cumulative_modifiers(current_level: int) -> Dictionary:
 	# Apply overflow scaling for levels beyond max_level
 	if allow_overflow and current_level > max_level:
 		var overflow_levels = current_level - max_level
-		var curve_multiplier = _get_overflow_curve_multiplier(overflow_levels)
 		
 		# Apply overflow multipliers (with curve scaling)
 		for i in range(overflow_levels):

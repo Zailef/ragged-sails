@@ -1,18 +1,12 @@
-[gd_resource type="Resource" script_class="PlayerLevelProgress" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="PlayerLevelProgress" load_steps=3 format=3 uid="uid://cukv336b3ml85"]
 
-[ext_resource type="Script" path="res://scenes/player/player_level_progress.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b338hjdqdj7pt" path="res://scenes/player/player_level_progress.gd" id="1_script"]
 
 [sub_resource type="Curve" id="Curve_exp"]
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
 _data = [Vector2(0, 0), 0.0, 0.4, 0, 0, Vector2(0.3, 0.15), 0.4, 0.4, 0, 0, Vector2(0.7, 0.5), 0.6, 0.6, 0, 0, Vector2(1, 1), 0.8, 0.0, 0, 0]
 point_count = 4
 
 [resource]
 script = ExtResource("1_script")
 level_curve = SubResource("Curve_exp")
-min_exp = 5
 max_exp = 80
-level = 1
-experience = 0

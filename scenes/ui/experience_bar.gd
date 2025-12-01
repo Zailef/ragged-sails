@@ -9,7 +9,8 @@ func _ready() -> void:
 	SignalManager.max_level_reached.connect(_on_max_level_reached)
 
 	exp_bar.value = 0
-	exp_bar.max_value = 5 # TODO: set initial max value appropriately
+	exp_bar.max_value = 5 # base_exp(5) for level 2
+	level_label.text = "Level 1"
 
 func _on_exp_gained(amount: int) -> void:
 	exp_bar.value += amount

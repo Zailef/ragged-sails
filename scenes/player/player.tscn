@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
 [ext_resource type="Shader" uid="uid://2sk7t64kj2h8" path="res://sprites/shaders/damage_shader.gdshader" id="2_gmlin"]
-[ext_resource type="Script" uid="uid://b338hjdqdj7pt" path="res://scenes/player/player_level_progress.gd" id="2_qek5x"]
+[ext_resource type="Resource" path="res://scenes/player/default_level_progress.tres" id="2_lvlprog"]
 [ext_resource type="PackedScene" uid="uid://dbe7acbfy602p" path="res://scenes/ui/experience_bar.tscn" id="6_75vfg"]
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
@@ -23,10 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
 [ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
 [ext_resource type="PackedScene" uid="uid://m54e2ffyq8ws" path="res://scenes/ui/chest_open.tscn" id="25_chest"]
-
-[sub_resource type="Resource" id="Resource_qek5x"]
-script = ExtResource("2_qek5x")
-metadata/_custom_type_script = "uid://b338hjdqdj7pt"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1265,7 +1261,7 @@ corner_radius_bottom_left = 1
 z_index = 2
 collision_layer = 2
 script = ExtResource("1_dovo2")
-level_progress = SubResource("Resource_qek5x")
+level_progress = ExtResource("2_lvlprog")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_lvxji")

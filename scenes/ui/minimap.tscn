@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://v0eyt0e1pfdx"]
+
+[ext_resource type="Script" uid="uid://p7ubkelnajsv" path="res://scenes/ui/minimap.gd" id="1_minimap"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 60.0
+offset_bottom = 60.0
+
+[node name="Minimap" type="Control" parent="."]
+layout_mode = 2
+script = ExtResource("1_minimap")
+rock_color = Color(0.58909595, 0.58909553, 0.5890954, 1)
+shipwreck_color = Color(0.32345083, 0.2512472, 0.18156016, 1)
+boundary_color = Color(0.82311404, 0.24277773, 0.3482462, 0.5019608)

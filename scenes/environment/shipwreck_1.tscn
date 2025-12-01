@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dy4sik6o3kwiq" path="res://sprites/environment/shipwreck1.png" id="1_wreck"]
 
-[node name="Shipwreck1" type="StaticBody2D"]
+[node name="Shipwreck1" type="StaticBody2D" groups=["shipwrecks"]]
 scale = Vector2(1.5, 1.5)
 collision_mask = 6
 

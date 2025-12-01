@@ -1,9 +1,11 @@
-extends VBoxContainer
+extends MarginContainer
 class_name WeaponBar
 
 ## Displays unlocked weapons with their icons and levels on the right side of the screen.
 
 const WEAPON_SLOT = preload("res://scenes/ui/weapon_slot.tscn")
+
+@onready var _content: VBoxContainer = $Content
 
 var all_weapons: Dictionary = {} # weapon_id -> WeaponData
 var _weapon_slots: Dictionary = {} # weapon_id -> WeaponSlot node
@@ -55,7 +57,7 @@ func _add_weapon_slot(weapon_id: String) -> void:
 	
 	var weapon_data = all_weapons[weapon_id]
 	var slot = WEAPON_SLOT.instantiate()
-	add_child(slot)
+	_content.add_child(slot)
 	
 	# Get current level from weapon's level_manager
 	var current_level = 1

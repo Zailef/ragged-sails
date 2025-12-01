@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ct6e8p1yerkk1" path="res://scenes/ui/weapon_bar.gd" id="1_script"]
 
-[node name="MarginContainer" type="MarginContainer"]
+[node name="WeaponBar" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_script")
 
-[node name="WeaponBar" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 8
 alignment = 1
-script = ExtResource("1_script")

@@ -48,8 +48,9 @@ var obstacles_container: Node2D
 var boundary_manager: BoundaryManager
 
 var _cached_obstacles: Array[Node2D] = []
-var _obstacle_cache_timer: float = 0.0
-const OBSTACLE_CACHE_INTERVAL: float = 1.0
+var _cached_chests: Array[Node2D] = []
+var _cache_timer: float = 0.0
+const CACHE_INTERVAL: float = 1.0
 
 
 func _ready() -> void:
@@ -91,14 +92,16 @@ func _setup_references() -> void:
 		boundary_manager = get_tree().get_first_node_in_group("boundary_manager") as BoundaryManager
 	
 	_update_obstacle_cache()
+	_update_chest_cache()
 
 
 func _process(delta: float) -> void:
-	# Periodically refresh obstacle cache (obstacles don't move often)
-	_obstacle_cache_timer += delta
-	if _obstacle_cache_timer >= OBSTACLE_CACHE_INTERVAL:
-		_obstacle_cache_timer = 0.0
+	# Periodically refresh caches (obstacles and chests don't change often)
+	_cache_timer += delta
+	if _cache_timer >= CACHE_INTERVAL:
+		_cache_timer = 0.0
 		_update_obstacle_cache()
+		_update_chest_cache()
 	
 	# Redraw every frame
 	queue_redraw()
@@ -106,15 +109,20 @@ func _process(delta: float) -> void:
 
 func _update_obstacle_cache() -> void:
 	_cached_obstacles.clear()
-	if obstacles_container:
-		for child in obstacles_container.get_children():
-			# ObjectScatter node contains scattered objects
-			if child.has_method("get_children"):
-				for obstacle in child.get_children():
-					if obstacle is Node2D:
-						_cached_obstacles.append(obstacle)
-			elif child is Node2D:
-				_cached_obstacles.append(child)
+	# Use groups to find obstacles - more reliable than traversing containers
+	for rock in get_tree().get_nodes_in_group("rocks"):
+		if rock is Node2D:
+			_cached_obstacles.append(rock)
+	for shipwreck in get_tree().get_nodes_in_group("shipwrecks"):
+		if shipwreck is Node2D:
+			_cached_obstacles.append(shipwreck)
+
+
+func _update_chest_cache() -> void:
+	_cached_chests.clear()
+	for chest in get_tree().get_nodes_in_group("chests"):
+		if chest is Node2D:
+			_cached_chests.append(chest)
 
 
 func _draw() -> void:
@@ -128,12 +136,6 @@ func _draw() -> void:
 	# Draw background
 	draw_rect(Rect2(Vector2.ZERO, draw_size), background_color)
 	
-	# Enable clipping so nothing draws outside the minimap bounds
-	var clip_rect = Rect2(Vector2.ZERO, draw_size)
-	draw_set_transform(Vector2.ZERO)
-	RenderingServer.canvas_item_set_clip(get_canvas_item(), true)
-	RenderingServer.canvas_item_set_custom_rect(get_canvas_item(), true, clip_rect)
-	
 	# Draw boundary only when it's visible on the minimap (player near edge)
 	if boundary_manager:
 		_draw_boundary_if_visible(center, scale_factor, draw_size)
@@ -144,8 +146,8 @@ func _draw() -> void:
 			_draw_obstacle(obstacle, center, scale_factor, draw_size)
 	
 	# Draw chests as gold squares
-	for chest in get_tree().get_nodes_in_group("chests"):
-		if is_instance_valid(chest) and chest is Node2D:
+	for chest in _cached_chests:
+		if is_instance_valid(chest):
 			var minimap_pos = _world_to_minimap(chest.global_position, player.global_position, center, scale_factor)
 			if minimap_pos.x >= -chest_icon_size and minimap_pos.x <= draw_size.x + chest_icon_size \
 				and minimap_pos.y >= -chest_icon_size and minimap_pos.y <= draw_size.y + chest_icon_size:

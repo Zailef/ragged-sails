@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjpekuumwrnu7"]
+[gd_scene load_steps=8 format=3 uid="uid://cjpekuumwrnu7"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://dk6gkkgd614me" path="res://scenes/weapons/mine/mine.gd" id="2_script"]
@@ -18,6 +18,7 @@ metadata/_custom_type_script = "uid://cmf4n5dio7gxd"
 
 [node name="Mine" instance=ExtResource("1_weapon")]
 script = ExtResource("2_script")
+rear_launch_distance = 60.0
 weapon_stats = SubResource("Resource_stats")
 targeting_strategy = SubResource("Resource_targeting")
 

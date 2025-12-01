@@ -1,22 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponLevel" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="WeaponLevel" load_steps=3 format=3 uid="uid://bdf8j03dk60x8"]
 
-[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Script" uid="uid://5rymv8cpp882" path="res://scenes/weapons/leveling/weapon_upgrade.gd" id="2_6p64r"]
 
 [resource]
 script = ExtResource("1_level")
-level = 1
-damage_multiplier = 1.0
-cooldown_multiplier = 1.0
-duration_multiplier = 1.0
-speed_multiplier = 1.0
-range_multiplier = 1.0
-damage_bonus = 0
-cooldown_bonus = 0.0
-duration_bonus = 0.0
-speed_bonus = 0.0
-range_bonus = 0.0
-penetration_bonus = 0
-whirlpool_scale_bonus = 0.0
-slow_strength_bonus = 0.0
-unlocked_upgrades = []
-level_up_description = ""

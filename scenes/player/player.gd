@@ -40,6 +40,10 @@ var current_health: int = max_health:
 		health_bar.value = current_health
 
 func _ready() -> void:
+	# Reset level progress for new game (resources persist between scene reloads)
+	if level_progress:
+		level_progress.reset()
+	
 	SignalManager.exp_gained.connect(_on_exp_gained)
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
 	SignalManager.menu_closed.connect(_on_menu_closed)

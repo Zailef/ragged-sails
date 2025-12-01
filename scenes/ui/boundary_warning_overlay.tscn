@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://boundary_warning_overlay"]
+[gd_scene load_steps=2 format=3 uid="uid://6wgvvlrq6hlr"]
 
-[ext_resource type="Script" path="res://scenes/ui/boundary_warning_overlay.gd" id="1_overlay"]
+[ext_resource type="Script" uid="uid://crb2hocgxsth" path="res://scenes/ui/boundary_warning_overlay.gd" id="1_overlay"]
 
 [node name="BoundaryWarningOverlay" type="CanvasLayer"]
 layer = 10

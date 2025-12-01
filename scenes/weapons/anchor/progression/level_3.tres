@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
 [ext_resource type="Script" uid="uid://5rymv8cpp882" path="res://scenes/weapons/leveling/weapon_upgrade.gd" id="2_k5nlx"]
-[ext_resource type="Resource" path="res://scenes/weapons/anchor/upgrades/twin_anchors.tres" id="2_twin"]
+[ext_resource type="Resource" uid="uid://hw34x34rcj3k" path="res://scenes/weapons/anchor/upgrades/twin_anchors.tres" id="2_twin"]
 
 [resource]
 script = ExtResource("1_level")

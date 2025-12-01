@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cppck52jvbshe"]
+[gd_scene load_steps=9 format=3 uid="uid://cppck52jvbshe"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
-[ext_resource type="Script" path="res://scenes/weapons/trident/trident.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://bfp43f6qjo88a" path="res://scenes/weapons/trident/trident.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
 [ext_resource type="Script" path="res://scenes/weapons/targeting/targeting_strategy_random_in_space.gd" id="4_targeting"]
 [ext_resource type="Resource" uid="uid://byjvoxr43dxwx" path="res://scenes/weapons/trident/trident_slow_effect.tres" id="5_slow"]

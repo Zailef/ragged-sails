@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponLevel" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="WeaponLevel" load_steps=4 format=3 uid="uid://cg2r60ta27n3e"]
 
-[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
-[ext_resource type="Resource" path="res://scenes/weapons/harpoon/upgrades/chain_lightning.tres" id="2_upgrade"]
+[ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Script" uid="uid://5rymv8cpp882" path="res://scenes/weapons/leveling/weapon_upgrade.gd" id="2_ojq8i"]
+[ext_resource type="Resource" uid="uid://dorcyas07hn4g" path="res://scenes/weapons/harpoon/upgrades/chain_lightning.tres" id="2_upgrade"]
 
 [resource]
 script = ExtResource("1_level")
@@ -12,9 +13,5 @@ duration_multiplier = 1.2
 speed_multiplier = 1.15
 range_multiplier = 1.1
 damage_bonus = 5
-cooldown_bonus = 0.0
-duration_bonus = 0.0
-speed_bonus = 0.0
-range_bonus = 0.0
-unlocked_upgrades = [ExtResource("2_upgrade")]
+unlocked_upgrades = Array[ExtResource("2_ojq8i")]([ExtResource("2_upgrade")])
 level_up_description = "Chain Lightning - Electricity arcs to nearby enemies!"

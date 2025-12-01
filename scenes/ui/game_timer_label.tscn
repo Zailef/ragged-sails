@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs35coiy1ddg7"]
+[gd_scene load_steps=2 format=3 uid="uid://bff1vn0xf1gvj"]
 
 [ext_resource type="Script" uid="uid://deu02hptltt7m" path="res://scenes/ui/game_timer_label.gd" id="1_timer"]
 

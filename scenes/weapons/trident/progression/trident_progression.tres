@@ -1,23 +1,22 @@
-[gd_resource type="Resource" script_class="WeaponProgression" load_steps=12 format=3]
+[gd_resource type="Resource" script_class="WeaponProgression" load_steps=13 format=3 uid="uid://bku5kwadwmbdi"]
 
-[ext_resource type="Script" path="res://scenes/weapons/leveling/weapon_progression.gd" id="1_prog"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_1.tres" id="2_l1"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_2.tres" id="3_l2"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_3.tres" id="4_l3"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_4.tres" id="5_l4"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_5.tres" id="6_l5"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_6.tres" id="7_l6"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_7.tres" id="8_l7"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_8.tres" id="9_l8"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_9.tres" id="10_l9"]
-[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/level_10.tres" id="11_l10"]
+[ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_4nbd7"]
+[ext_resource type="Script" uid="uid://c3l2pr77fco01" path="res://scenes/weapons/leveling/weapon_progression.gd" id="1_prog"]
+[ext_resource type="Resource" uid="uid://bdf8j03dk60x8" path="res://scenes/weapons/trident/progression/level_1.tres" id="2_l1"]
+[ext_resource type="Resource" uid="uid://dag5skiytvfpb" path="res://scenes/weapons/trident/progression/level_2.tres" id="3_l2"]
+[ext_resource type="Resource" uid="uid://blcp2etexj8of" path="res://scenes/weapons/trident/progression/level_3.tres" id="4_l3"]
+[ext_resource type="Resource" uid="uid://cvmmmkvcljorg" path="res://scenes/weapons/trident/progression/level_4.tres" id="5_l4"]
+[ext_resource type="Resource" uid="uid://injs8tw38lq" path="res://scenes/weapons/trident/progression/level_5.tres" id="6_l5"]
+[ext_resource type="Resource" uid="uid://dhrjmyfpvbjhg" path="res://scenes/weapons/trident/progression/level_6.tres" id="7_l6"]
+[ext_resource type="Resource" uid="uid://cant8x8cjvthn" path="res://scenes/weapons/trident/progression/level_7.tres" id="8_l7"]
+[ext_resource type="Resource" uid="uid://cmv4j85ufbv6s" path="res://scenes/weapons/trident/progression/level_8.tres" id="9_l8"]
+[ext_resource type="Resource" uid="uid://dy4gfes5ffndr" path="res://scenes/weapons/trident/progression/level_9.tres" id="10_l9"]
+[ext_resource type="Resource" uid="uid://c6vn1s7rwegt5" path="res://scenes/weapons/trident/progression/level_10.tres" id="11_l10"]
 
 [resource]
 script = ExtResource("1_prog")
 weapon_name = "Trident"
 max_level = 10
-levels = [ExtResource("2_l1"), ExtResource("3_l2"), ExtResource("4_l3"), ExtResource("5_l4"), ExtResource("6_l5"), ExtResource("7_l6"), ExtResource("8_l7"), ExtResource("9_l8"), ExtResource("10_l9"), ExtResource("11_l10")]
-allow_overflow = true
+levels = Array[ExtResource("1_4nbd7")]([ExtResource("2_l1"), ExtResource("3_l2"), ExtResource("4_l3"), ExtResource("5_l4"), ExtResource("6_l5"), ExtResource("7_l6"), ExtResource("8_l7"), ExtResource("9_l8"), ExtResource("10_l9"), ExtResource("11_l10")])
 overflow_damage_multiplier = 1.03
-overflow_cooldown_multiplier = 0.99
 overflow_duration_multiplier = 1.02

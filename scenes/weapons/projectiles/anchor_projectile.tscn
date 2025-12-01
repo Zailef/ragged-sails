@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://danchorprojectile"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ghmri5fhx8m"]
 
-[ext_resource type="Script" uid="uid://c4anchorprojectile" path="res://scenes/weapons/projectiles/anchor_projectile.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://4snvg546tgs3" path="res://scenes/weapons/projectiles/anchor_projectile.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dk5hymkh3nl0y" path="res://sprites/weapons/AnchorNoOutline.png" id="2_sprite"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_anchor"]
@@ -23,7 +23,6 @@ script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_anchor")
-animation = &"default"
 autoplay = "default"
 
 [node name="DamageArea" type="Area2D" parent="."]

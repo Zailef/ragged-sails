@@ -1,4 +1,4 @@
-extends Weapon
+extends BaseWeapon
 class_name Anchor
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D

@@ -1,4 +1,4 @@
-extends Weapon
+extends BaseWeapon
 class_name Cannonball
 
 # TODO: stat for max enemy penetration

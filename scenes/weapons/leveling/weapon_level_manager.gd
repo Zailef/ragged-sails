@@ -6,6 +6,9 @@ class_name WeaponLevelManager
 signal level_changed(new_level: int)
 signal upgrade_unlocked(upgrade: WeaponUpgrade)
 
+## Default progression used when no custom progression is assigned
+const DEFAULT_PROGRESSION_PATH = "res://scenes/weapons/leveling/default_progression.tres"
+
 ## The progression data for this weapon
 @export var progression: WeaponProgression
 
@@ -30,6 +33,11 @@ var weapon: BaseWeapon
 
 func _ready() -> void:
 	weapon = get_parent() as BaseWeapon
+	
+	# Use default progression if none assigned
+	if not progression:
+		progression = load(DEFAULT_PROGRESSION_PATH) as WeaponProgression
+	
 	_refresh_level_data()
 
 

@@ -39,7 +39,7 @@ func _initialise_timers() -> void:
 	cooldown_timer.wait_time = get_effective_cooldown()
 	cooldown_timer.one_shot = true
 	cooldown_timer.timeout.connect(_on_cooldown_timeout)
-	
+
 	var duration = get_effective_duration()
 	if duration > 0.0:
 		duration_timer.wait_time = duration

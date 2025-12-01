@@ -1,4 +1,4 @@
-extends Weapon
+extends BaseWeapon
 
 @onready var rope: Line2D = $Line2D
 

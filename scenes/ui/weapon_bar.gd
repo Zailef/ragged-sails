@@ -56,5 +56,14 @@ func _add_weapon_slot(weapon_id: String) -> void:
 	var weapon_data = all_weapons[weapon_id]
 	var slot = WEAPON_SLOT.instantiate()
 	add_child(slot)
-	slot.setup(weapon_data)
+	
+	# Get current level from weapon's level_manager
+	var current_level = 1
+	var weapon_mgr = _get_weapon_manager()
+	if weapon_mgr:
+		var weapon = weapon_mgr.get_weapon(weapon_id)
+		if weapon and weapon.level_manager:
+			current_level = weapon.level_manager.current_level
+	
+	slot.setup(weapon_data, current_level)
 	_weapon_slots[weapon_id] = slot

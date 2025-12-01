@@ -1,4 +1,4 @@
-extends Weapon
+extends BaseWeapon
 class_name Trident
 
 const SPRITE_SIZE: int = 32

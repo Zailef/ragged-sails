@@ -5,7 +5,7 @@
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rock2"]
 points = PackedVector2Array(-72.75285, 13.579334, -52.96839, 25.629871, -32.644356, 29.76662, 21.133408, 29.946476, 50.630234, 25.270153, 72.573, 18.075802, 71.85356, 6.205124, 59.982895, -16.097359, 38.219986, -33.72351, 29.946487, -32.64436, 16.277222, -22.212555, 14.838348, -14.47863, 4.7662582, -11.960606, -2.24823, -4.40654, -18.435516, -27.248598, -28.507607, -26.888882, -36.421394, -19.334816, -51.70938, -16.99665, -63.75992, -4.40654, -72.21327, 3.507244)
 
-[node name="SeaRock2" type="StaticBody2D"]
+[node name="SeaRock2" type="StaticBody2D" groups=["rocks"]]
 collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -14,5 +14,5 @@ texture = ExtResource("1_rock")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("ConvexPolygonShape2D_rock2")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." groups=["rocks"]]
 rect = Rect2(-75, -40, 150, 80)

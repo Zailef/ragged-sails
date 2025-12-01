@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://dlgmlwuec3427"]
+[gd_scene load_steps=145 format=3 uid="uid://dlgmlwuec3427"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -17,10 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://0fvxkr3ekm5v" path="res://scenes/ui/level_up.tscn" id="18_8ydkj"]
 [ext_resource type="PackedScene" uid="uid://c2rjp1l2ncjnr" path="res://scenes/weapons/cannonball/cannonball.tscn" id="18_cannon"]
 [ext_resource type="PackedScene" uid="uid://86ipqkw1j7y5" path="res://scenes/weapons/anchor/anchor.tscn" id="19_anchor"]
-[ext_resource type="PackedScene" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="20_grape"]
+[ext_resource type="PackedScene" uid="uid://d3x5lsb1tr55c" path="res://scenes/weapons/grapeshot/grapeshot.tscn" id="20_grape"]
 [ext_resource type="PackedScene" uid="uid://dlwul4srdo6yo" path="res://scenes/weapons/harpoon/harpoon.tscn" id="21_harpoon"]
-[ext_resource type="PackedScene" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
-[ext_resource type="PackedScene" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
+[ext_resource type="PackedScene" uid="uid://v0eyt0e1pfdx" path="res://scenes/ui/minimap.tscn" id="22_007i1"]
+[ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
+[ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
 [ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
 [ext_resource type="PackedScene" uid="uid://m54e2ffyq8ws" path="res://scenes/ui/chest_open.tscn" id="25_chest"]
 [ext_resource type="Script" path="res://scenes/player/pickup_attractor.gd" id="26_attractor"]
@@ -1239,9 +1240,6 @@ graph_offset = Vector2(-106, 14)
 radius = 7.0
 height = 50.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_attractor"]
-radius = 30.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)
 corner_radius_top_left = 1
@@ -1260,6 +1258,9 @@ corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attractor"]
+radius = 30.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
@@ -1334,6 +1335,7 @@ script = ExtResource("17_weapmgr")
 [node name="Harpoon" parent="Weapons" instance=ExtResource("21_harpoon")]
 
 [node name="Mine" parent="Weapons" instance=ExtResource("22_mine")]
+rear_launch_distance = 60.0
 
 [node name="Trident" parent="Weapons" instance=ExtResource("23_trident")]
 
@@ -1352,11 +1354,21 @@ unique_name_in_owner = true
 position = Vector2(78.67, 499.33)
 scale = Vector2(0.1734, 0.1734)
 
+[node name="Minimap" parent="UI" instance=ExtResource("22_007i1")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = 0.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
+
 [node name="LevelUp" parent="UI" instance=ExtResource("18_8ydkj")]
 
 [node name="ChestOpen" parent="UI" instance=ExtResource("25_chest")]
-
-[node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
 
 [node name="PickupAttractor" type="Area2D" parent="."]
 collision_layer = 0

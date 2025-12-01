@@ -88,7 +88,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_chest"]
 radius = 16.0
 
-[node name="ChestPickup" instance=ExtResource("1_pickup")]
+[node name="ChestPickup" instance=ExtResource("1_pickup") groups=["chests"]]
 scale = Vector2(0.6, 0.6)
 effect = SubResource("Resource_chest_effect")
 

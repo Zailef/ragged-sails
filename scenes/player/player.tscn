@@ -1240,7 +1240,7 @@ radius = 7.0
 height = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_attractor"]
-radius = 50.0
+radius = 30.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)

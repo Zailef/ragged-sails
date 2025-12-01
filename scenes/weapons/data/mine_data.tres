@@ -11,4 +11,4 @@ display_name = "Sea Mine"
 description = "Drops a mine that arms after a delay and explodes on contact."
 icon = ExtResource("2_icon")
 weapon_scene = ExtResource("3_scene")
-starts_unlocked = true
+starts_unlocked = false

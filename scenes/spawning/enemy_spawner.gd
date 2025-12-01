@@ -237,7 +237,7 @@ func _get_spawn_position() -> Vector2:
 		return Vector2.ZERO
 	
 	var camera_pos = camera.get_screen_center_position()
-	var screen_size = viewport_rect.size
+	var screen_size = viewport_rect.size / camera.zoom # Account for camera zoom
 	var margin = config.spawn_margin if config else 50.0
 	
 	var edge = randi() % 4

@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2rjp1l2ncjnr"]
+[gd_scene load_steps=7 format=3 uid="uid://c2rjp1l2ncjnr"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://2rq668shbgao" path="res://scenes/weapons/cannonball/cannonball.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
 [ext_resource type="Script" uid="uid://d4e42y4hmo6wi" path="res://scenes/weapons/targeting/targeting_strategy_closest.gd" id="4_targeting"]
 [ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="5_sound"]
+[ext_resource type="Resource" path="res://scenes/weapons/cannonball/progression/cannon_progression.tres" id="6_prog"]
 
 [sub_resource type="Resource" id="Resource_stats"]
 script = ExtResource("3_stats")
 cooldown = 3.0
 speed = 200.0
-max_range = 150.0
+max_range = 400.0
 metadata/_custom_type_script = "uid://dfpkint1tllcj"
 
 [sub_resource type="Resource" id="Resource_targeting"]
@@ -21,6 +22,9 @@ metadata/_custom_type_script = "uid://d4e42y4hmo6wi"
 script = ExtResource("2_script")
 weapon_stats = SubResource("Resource_stats")
 targeting_strategy = SubResource("Resource_targeting")
+
+[node name="WeaponLevelManager" parent="." index="0"]
+progression = ExtResource("6_prog")
 
 [node name="CannonFireSound" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource("5_sound")

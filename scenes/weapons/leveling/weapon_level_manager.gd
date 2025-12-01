@@ -130,6 +130,15 @@ func get_effective_range(base_range: float) -> float:
 	return base_range * multiplier + bonus
 
 
+## Gets the effective penetration after applying level bonuses
+## -1 means infinite penetration (never consumed by hitting enemies)
+func get_effective_penetration(base_penetration: int) -> int:
+	if base_penetration < 0: # Infinite penetration
+		return base_penetration
+	var bonus = _cached_modifiers.get("penetration_bonus", 0)
+	return base_penetration + bonus
+
+
 ## Called when level changes
 func _on_level_changed(old_level: int) -> void:
 	_refresh_level_data()

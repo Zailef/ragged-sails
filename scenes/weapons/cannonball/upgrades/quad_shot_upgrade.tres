@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="QuadShotUpgrade" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/cannonball/upgrades/quad_shot_upgrade.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+shot_delay = 0.45

@@ -15,15 +15,22 @@ func _ready() -> void:
 	animated_sprite.play("moving")
 
 
+## Override setup to skip rotation (cannonball has drawn shadows)
+func setup(p_direction: Vector2, p_damage: int, p_speed: float, p_max_distance: float = -1.0, p_source: BaseWeapon = null, p_penetration: int = 1) -> void:
+	direction = p_direction.normalized()
+	damage = p_damage
+	speed = p_speed
+	max_distance = p_max_distance
+	source_weapon = p_source
+	penetration = p_penetration
+	# Don't rotate - cannonball sprite has drawn shadows
+
+
 func _physics_process(delta: float) -> void:
 	if _is_splashing:
 		return
 	
-	super(delta)
-	
-	# Start splash animation at half distance
-	if max_distance > 0 and _distance_traveled >= (max_distance / 2.0):
-		_start_splash()
+	super (delta)
 
 
 func _on_max_distance_reached() -> void:
@@ -45,10 +52,17 @@ func _on_animation_finished() -> void:
 		splash_sound.play()
 		# Wait for sound to play a bit before destroying
 		await get_tree().create_timer(0.1).timeout
-		destroy()
+		super.destroy()
 
 
 func _on_area_entered(area: Area2D) -> void:
 	var owner_node = area.get_owner()
 	if owner_node is Enemy:
 		_on_enemy_hit(owner_node)
+
+
+## Override destroy to play splash animation first
+func destroy() -> void:
+	if not _is_splashing:
+		_start_splash()
+	# Don't call super - we'll call it after animation finishes

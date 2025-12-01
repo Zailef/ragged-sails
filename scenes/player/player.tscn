@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
-[ext_resource type="PackedScene" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
+[ext_resource type="PackedScene" uid="uid://cs35coiy1ddg7" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="14_joystk"]
 [ext_resource type="Texture2D" uid="uid://bq8kfvsm2jyye" path="res://sprites/ui/arrow.png" id="15_arrow"]
@@ -22,9 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://v0eyt0e1pfdx" path="res://scenes/ui/minimap.tscn" id="22_007i1"]
 [ext_resource type="PackedScene" uid="uid://cjpekuumwrnu7" path="res://scenes/weapons/mine/mine.tscn" id="22_mine"]
 [ext_resource type="PackedScene" uid="uid://cppck52jvbshe" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
-[ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
+[ext_resource type="PackedScene" uid="uid://rv0h0ysb7ec2" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
 [ext_resource type="PackedScene" uid="uid://m54e2ffyq8ws" path="res://scenes/ui/chest_open.tscn" id="25_chest"]
-[ext_resource type="Script" path="res://scenes/player/pickup_attractor.gd" id="26_attractor"]
+[ext_resource type="Script" uid="uid://2uxxsvscdi1h" path="res://scenes/player/pickup_attractor.gd" id="26_attractor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1284,7 +1284,7 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_dovo2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.75, 1.75)
+zoom = Vector2(2, 2)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1351,8 +1351,8 @@ size_flags_vertical = 3
 
 [node name="VirtualJoystick" parent="UI" instance=ExtResource("14_joystk")]
 unique_name_in_owner = true
-position = Vector2(78.67, 499.33)
-scale = Vector2(0.1734, 0.1734)
+position = Vector2(77.455, 419.545)
+scale = Vector2(0.1491, 0.1491)
 
 [node name="Minimap" parent="UI" instance=ExtResource("22_007i1")]
 anchors_preset = 2

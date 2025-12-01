@@ -49,6 +49,7 @@ move_speed = 80.0
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("5_spawner")
 config = ExtResource("6_config")
+enemies_container = NodePath("../Enemies")
 
 [node name="BoundaryManager" type="Node" parent="." groups=["boundary_manager"]]
 script = ExtResource("10_boundary")

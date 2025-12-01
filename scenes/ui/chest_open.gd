@@ -127,6 +127,7 @@ func _upgrade_random_weapon() -> void:
 		_show_result(weapon, old_level, _new_level)
 		chest_opened.emit(weapon, _new_level)
 		SignalManager.weapon_upgrade_selected.emit(weapon)
+		SignalManager.weapon_upgraded.emit()
 	else:
 		# Weapon is at max level (and overflow disabled), try another
 		# For simplicity, just close - in a full implementation you'd try other weapons

@@ -301,5 +301,5 @@ func _on_game_started() -> void:
 	if config:
 		config.reset_waves()
 
-func _on_enemy_defeated() -> void:
+func _on_enemy_defeated(_is_boss: bool) -> void:
 	_current_enemy_count = maxi(0, _current_enemy_count - 1)

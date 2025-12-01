@@ -10,7 +10,7 @@ func _ready() -> void:
 func _update_label() -> void:
 	enemies_defeated_label.text = "Enemies Defeated: %d" % GameManager.session_enemies_defeated
 
-func _on_enemy_defeated() -> void:
+func _on_enemy_defeated(_is_boss: bool) -> void:
 	_update_label()
 
 func _on_game_started() -> void:

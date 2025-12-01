@@ -19,7 +19,7 @@ var main_menu_scene: PackedScene = load("res://scenes/menus/main_menu.tscn")
 @onready var dimmer: ColorRect = $Dimmer
 @onready var center_container: CenterContainer = $MarginContainer/CenterContainer
 
-var can_sample: bool = true
+var _can_sample: bool = true
 var _is_paused: bool = false
 var _is_initial_slider_change: bool = true
 
@@ -99,19 +99,20 @@ func _on_music_vol_slider_value_changed(value: float) -> void:
 func _on_sfx_vol_slider_value_changed(value: float) -> void:
 	SettingsManager.set_setting("sfx_volume", value)
 
-	if not _is_initial_slider_change:
-		_play_audio_sample(sfx_sampler)
+	if _is_initial_slider_change:
 		_is_initial_slider_change = false
+	else:
+		_play_audio_sample(sfx_sampler)
 
 
 func _on_audio_sampler_debounce_timeout() -> void:
-	can_sample = true
+	_can_sample = true
 
 
 func _play_audio_sample(audio_sampler: AudioStreamPlayer) -> void:
-	if can_sample:
+	if _can_sample:
 		audio_sampler.play()
-		can_sample = false
+		_can_sample = false
 		audio_sampler_debounce.start()
 
 

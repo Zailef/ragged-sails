@@ -11,7 +11,7 @@ extends Control
 @onready var sfx_audio_bus_idx: int = AudioServer.get_bus_index(SettingsManager.AUDIO_BUS_SFX)
 
 var main_menu_scene: PackedScene = load("res://scenes/menus/main_menu.tscn")
-var can_sample: bool = true
+var _can_sample: bool = true
 
 func _ready() -> void:
 	_read_settings()
@@ -40,12 +40,12 @@ func _on_sfx_vol_slider_value_changed(value: float) -> void:
 	_play_audio_sample(sfx_sampler)
 
 func _on_audio_sampler_debounce_timeout() -> void:
-	can_sample = true
+	_can_sample = true
 
 func _play_audio_sample(audio_sampler: AudioStreamPlayer) -> void:
-	if can_sample:
+	if _can_sample:
 		audio_sampler.play()
-		can_sample = false
+		_can_sample = false
 		audio_sampler_debounce.start()
 
 func _on_settings_changed() -> void:

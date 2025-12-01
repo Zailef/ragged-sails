@@ -13,12 +13,12 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.6), 0.0, 0.0, 0, 0, Vecto
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_difficulty"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 1.5), 0.0, 0.0, 0, 0, Vector2(0.5, 2.5), 0.0, 0.0, 0, 0, Vector2(0.75, 4), 0.0, 0.0, 0, 0, Vector2(1, 6), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Curve" id="Curve_enemies_per_spawn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 2), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 2), 0.0, 0.0, 0, 0, Vector2(0.5, 4), 0.0, 0.0, 0, 0, Vector2(0.75, 6), 0.0, 0.0, 0, 0, Vector2(1, 8), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Resource" id="Resource_urchin_entry"]
 script = ExtResource("2_entry")
@@ -44,16 +44,20 @@ base_weight = 0.8
 min_time_minutes = 3.0
 
 [sub_resource type="Curve" id="Curve_spawn_rate"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 0.6), 0.0, 0.0, 0, 0, Vector2(0.5, 0.35), 0.0, 0.0, 0, 0, Vector2(0.75, 0.2), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [resource]
 script = ExtResource("1_config")
 enemy_pool = Array[ExtResource("2_entry")]([SubResource("Resource_urchin_entry"), SubResource("Resource_shark_entry"), SubResource("Resource_jellyfish_entry"), SubResource("Resource_mermaid_entry")])
+base_spawn_interval = 1.5
+min_spawn_interval = 0.15
 spawn_rate_curve = SubResource("Curve_spawn_rate")
+max_enemies_per_spawn = 10
 enemies_per_spawn_curve = SubResource("Curve_enemies_per_spawn")
 first_boss_time_minutes = 0.5
 base_boss_spawn_interval = 30.0
 min_boss_spawn_interval = 10.0
 boss_spawn_rate_curve = SubResource("Curve_boss_spawn_rate")
+max_enemies_alive = 200
 difficulty_curve = SubResource("Curve_difficulty")

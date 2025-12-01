@@ -13,6 +13,7 @@ var player: Player = null
 
 @export var stats: EnemyStats
 @export var is_boss: bool = false
+@export var difficulty_multiplier: float = 1.0
 @export var loot_table: LootTable
 @export var drop_strategy: DropStrategy = DropStrategyDefault.new()
 @export var motion_animation_strategy: MotionAnimationStrategy = MotionAnimationStrategySingle.new()
@@ -37,7 +38,7 @@ var current_health: int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	current_health = stats.get_max_health(is_boss)
+	current_health = int(stats.get_max_health(is_boss) * difficulty_multiplier)
 	scale *= stats.get_scale(is_boss)
 
 	if is_boss:
@@ -122,7 +123,8 @@ func _handle_player_damage(delta: float) -> void:
 
 	damage_rate_timer += delta
 	if damage_rate_timer >= stats.get_damage_rate(is_boss):
-		player.take_damage(stats.get_damage(is_boss))
+		var scaled_damage = int(stats.get_damage(is_boss) * difficulty_multiplier)
+		player.take_damage(scaled_damage)
 		damage_rate_timer = 0.0
 
 func _handle_self_damage(amount: int) -> void:

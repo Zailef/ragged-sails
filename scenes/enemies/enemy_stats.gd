@@ -9,11 +9,11 @@ class_name EnemyStats
 @export var damage_rate: float = 1.0
 
 @export_group("Boss Multipliers")
-@export var boss_speed_multiplier: float = 0.9
-@export var boss_health_multiplier: float = 3.0
-@export var boss_damage_multiplier: float = 2.0
-@export var boss_damage_rate_multiplier: float = 1.2
-@export var boss_scale_multiplier: float = 1.3
+@export var boss_speed_multiplier: float = 0.85
+@export var boss_health_multiplier: float = 15.0
+@export var boss_damage_multiplier: float = 3.0
+@export var boss_damage_rate_multiplier: float = 1.5
+@export var boss_scale_multiplier: float = 1.5
 
 func get_move_speed(is_boss: bool) -> float:
 	return move_speed * (boss_speed_multiplier if is_boss else 1.0)

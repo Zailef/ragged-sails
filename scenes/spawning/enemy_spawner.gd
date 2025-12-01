@@ -188,9 +188,7 @@ func _spawn_enemy(entry: EnemySpawnEntry, as_boss: bool, time_progress: float) -
 	
 	enemy.global_position = _get_spawn_position()
 	enemy.is_boss = as_boss
-	
-	# Apply difficulty scaling
-	# Note: This could be expanded to modify enemy stats based on difficulty_curve
+	enemy.difficulty_multiplier = config.get_difficulty_multiplier(time_progress)
 	
 	_get_enemies_container().add_child(enemy)
 	_current_enemy_count += 1

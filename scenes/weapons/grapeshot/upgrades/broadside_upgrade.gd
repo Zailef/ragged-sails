@@ -13,7 +13,13 @@ func _init() -> void:
 
 
 func on_fire(weapon: BaseWeapon) -> void:
-	var grapeshot = weapon as Grapeshot
-	if grapeshot:
-		# Queue a second volley in the opposite direction
-		grapeshot.queue_volley(-grapeshot.last_direction, volley_delay)
+	var grapeshot := weapon as Grapeshot
+	if not grapeshot:
+		return
+
+	# Double Broadside supersedes this upgrade with its own 4-volley pattern
+	if grapeshot.level_manager and grapeshot.level_manager.has_upgrade(&"double_broadside"):
+		return
+
+	# Queue a second volley in the opposite direction
+	grapeshot.queue_volley(-grapeshot.last_direction, volley_delay)

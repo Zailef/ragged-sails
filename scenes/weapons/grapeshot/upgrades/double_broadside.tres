@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DoubleBroadsideUpgrade" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/grapeshot/upgrades/double_broadside_upgrade.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+second_volley_delay = 0.15

@@ -10,11 +10,13 @@ const SPRITE_SIZE: int = 32
 
 @export var drop_speed: float = 200.0
 @export var slow_effect: SlowEffect
+@export var whirlpool_duration: float = 5.0
 
 var target_position: Vector2 = Vector2.ZERO
 var target_enemy: Enemy = null
 var is_dropping: bool = true
 var affected_enemies: Array[Enemy] = []
+var whirlpool_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -37,6 +39,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Update slow effects while whirlpool is active
 		_update_slow_effects()
+		
+		# Auto-despawn after duration
+		if whirlpool_sprite.visible:
+			whirlpool_timer += delta
+			if whirlpool_timer >= whirlpool_duration:
+				start_shrink()
 
 
 func setup_trident(spawn_pos: Vector2, target_pos: Vector2, target: Enemy, p_damage: int, p_drop_speed: float, p_slow_effect: SlowEffect, p_source: BaseWeapon) -> void:

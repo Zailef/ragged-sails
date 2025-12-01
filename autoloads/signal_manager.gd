@@ -25,4 +25,7 @@ signal weapon_upgrade_selected(weapon: BaseWeapon)
 # Player signals
 signal player_died
 
+# Menu signals
+signal menu_closed
+
 @warning_ignore_restore("unused_signal")

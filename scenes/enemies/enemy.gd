@@ -108,6 +108,10 @@ func _handle_animations(direction: Vector2) -> void:
 func _on_hit_area_area_entered(area: Area2D) -> void:
 	if area.get_owner() is Player:
 		is_player_in_hurt_area = true
+		# Deal damage immediately on contact
+		var scaled_damage = int(stats.get_damage(is_boss) * difficulty_multiplier)
+		player.take_damage(scaled_damage)
+		damage_rate_timer = 0.0
 
 	if area.get_owner() is BaseWeapon:
 		var weapon: BaseWeapon = area.get_owner() as BaseWeapon

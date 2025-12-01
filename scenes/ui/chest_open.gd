@@ -177,3 +177,4 @@ func _on_continue_pressed() -> void:
 func _close() -> void:
 	hide()
 	get_tree().paused = false
+	SignalManager.menu_closed.emit()

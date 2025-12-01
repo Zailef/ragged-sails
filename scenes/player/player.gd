@@ -122,8 +122,10 @@ func _on_player_levelled_up(_new_level: int, _exp_to_next_level: int) -> void:
 
 
 func _on_menu_closed() -> void:
+	if _grace_period_active:
+		return
 	_grace_period_active = true
-	get_tree().create_timer(grace_period_duration).timeout.connect(_end_grace_period)
+	get_tree().create_timer(grace_period_duration).timeout.connect(_end_grace_period, CONNECT_ONE_SHOT)
 
 
 func _end_grace_period() -> void:

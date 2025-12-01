@@ -3,16 +3,6 @@ class_name LevelUp
 
 ## Displays weapon choices when the player levels up.
 
-# Weapon data file paths - maps weapon_id to data path
-const WEAPON_DATA_PATHS = {
-	"cannonball": "res://scenes/weapons/data/cannon_data.tres",
-	"anchor": "res://scenes/weapons/data/anchor_data.tres",
-	"grapeshot": "res://scenes/weapons/data/grapeshot_data.tres",
-	"harpoon": "res://scenes/weapons/data/harpoon_data.tres",
-	"mine": "res://scenes/weapons/data/mine_data.tres",
-	"trident": "res://scenes/weapons/data/trident_data.tres",
-}
-
 @export var num_choices: int = 3
 
 @onready var container: HBoxContainer = $MarginContainer/HBoxContainer
@@ -22,14 +12,13 @@ var _weapon_manager: WeaponManager = null
 var _pending_levels: int = 0
 
 func _ready() -> void:
-	print("LevelUp._ready() called")
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
 	hide()
 	_load_all_weapons()
 
 func _load_all_weapons() -> void:
-	for weapon_id in WEAPON_DATA_PATHS:
-		var path = WEAPON_DATA_PATHS[weapon_id]
+	for weapon_id in WeaponConstants.WEAPON_DATA_PATHS:
+		var path = WeaponConstants.WEAPON_DATA_PATHS[weapon_id]
 		var weapon = load(path)
 		if weapon:
 			all_weapons[weapon_id] = weapon
@@ -78,7 +67,7 @@ func _show_level_up() -> void:
 	get_tree().paused = true
 	
 	# Pick random weapons
-	var choices = _pick_random_choices(available, mini(num_choices, available.size()))
+	var choices = _pick_random_choices(available, min(num_choices, available.size()))
 	
 	# Setup the item frames with weapon data
 	var items = container.get_children()

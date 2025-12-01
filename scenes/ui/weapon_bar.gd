@@ -5,16 +5,6 @@ class_name WeaponBar
 
 const WEAPON_SLOT = preload("res://scenes/ui/weapon_slot.tscn")
 
-# Weapon data file paths - maps weapon_id to data path
-const WEAPON_DATA_PATHS = {
-	"cannonball": "res://scenes/weapons/data/cannon_data.tres",
-	"anchor": "res://scenes/weapons/data/anchor_data.tres",
-	"grapeshot": "res://scenes/weapons/data/grapeshot_data.tres",
-	"harpoon": "res://scenes/weapons/data/harpoon_data.tres",
-	"mine": "res://scenes/weapons/data/mine_data.tres",
-	"trident": "res://scenes/weapons/data/trident_data.tres",
-}
-
 var all_weapons: Dictionary = {} # weapon_id -> WeaponData
 var _weapon_slots: Dictionary = {} # weapon_id -> WeaponSlot node
 var _weapon_manager: WeaponManager = null
@@ -25,11 +15,13 @@ func _ready() -> void:
 	_connect_to_weapon_manager.call_deferred()
 
 func _load_all_weapons() -> void:
-	for weapon_id in WEAPON_DATA_PATHS:
-		var path = WEAPON_DATA_PATHS[weapon_id]
+	for weapon_id in WeaponConstants.WEAPON_DATA_PATHS:
+		var path = WeaponConstants.WEAPON_DATA_PATHS[weapon_id]
 		var weapon = load(path)
 		if weapon:
 			all_weapons[weapon_id] = weapon
+		else:
+			push_error("WeaponBar: Failed to load weapon from " + path)
 
 func _connect_to_weapon_manager() -> void:
 	var weapon_mgr = _get_weapon_manager()

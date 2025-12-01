@@ -57,7 +57,6 @@ func upgrade_weapon(weapon_id: String) -> bool:
 		push_error("WeaponManager: Cannot upgrade locked weapon: " + weapon_id)
 		return false
 	
-	var _weapon = _weapons[weapon_id]
 	# TODO: Implement weapon leveling system
 	# For now, just log it
 	weapon_upgraded.emit(weapon_id, 1)

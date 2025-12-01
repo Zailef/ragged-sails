@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://dlgmlwuec3427"]
+[gd_scene load_steps=144 format=3 uid="uid://dlgmlwuec3427"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" path="res://scenes/weapons/trident/trident.tscn" id="23_trident"]
 [ext_resource type="PackedScene" path="res://scenes/ui/weapon_bar.tscn" id="24_weapbar"]
 [ext_resource type="PackedScene" uid="uid://m54e2ffyq8ws" path="res://scenes/ui/chest_open.tscn" id="25_chest"]
+[ext_resource type="Script" path="res://scenes/player/pickup_attractor.gd" id="26_attractor"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
 shader = ExtResource("2_gmlin")
@@ -1238,6 +1239,9 @@ graph_offset = Vector2(-106, 14)
 radius = 7.0
 height = 50.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_attractor"]
+radius = 50.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvxji"]
 bg_color = Color(0.6, 0.6, 0.6, 0.57254905)
 corner_radius_top_left = 1
@@ -1353,6 +1357,16 @@ scale = Vector2(0.1734, 0.1734)
 [node name="ChestOpen" parent="UI" instance=ExtResource("25_chest")]
 
 [node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
+
+[node name="PickupAttractor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("26_attractor")
+attraction_radius = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAttractor"]
+shape = SubResource("CircleShape2D_attractor")
+debug_color = Color(0.25, 0.88, 0.81, 0.2)
 
 [node name="Audio" type="Node" parent="."]
 

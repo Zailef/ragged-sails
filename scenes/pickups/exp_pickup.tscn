@@ -105,6 +105,7 @@ animations = [{
 [node name="ExpPickup" instance=ExtResource("1_4xpk5")]
 scale = Vector2(0.75, 0.75)
 effect = SubResource("Resource_o3e0v")
+attractable = true
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_m1awn")

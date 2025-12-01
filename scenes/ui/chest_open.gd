@@ -149,7 +149,7 @@ func _show_result(weapon: BaseWeapon, old_level: int, new_level: int) -> void:
 		weapon_icon.texture = null
 		weapon_name_label.text = weapon.name.capitalize()
 
-	level_label.text = "Level %d → %d" % [old_level, new_level]
+	level_label.text = "Level %d -> %d" % [old_level, new_level]
 
 	# Get level description if available
 	if weapon.level_manager.progression:

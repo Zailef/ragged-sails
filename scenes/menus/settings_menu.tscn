@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfqher7kkeued"]
+[gd_scene load_steps=4 format=3 uid="uid://bfqher7kkeued"]
 
 [ext_resource type="Script" uid="uid://b4y1hfekf1xye" path="res://scenes/menus/settings_menu.gd" id="1_gxsv6"]
+[ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="2_s2d1y"]
+[ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="3_ojvp1"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -27,6 +29,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
 
 [node name="PageContent" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -37,6 +41,52 @@ theme_type_variation = &"MenuTitle"
 text = "Settings"
 horizontal_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PageContent"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MenuTitle"
+theme_override_font_sizes/font_size = 50
+text = "Sound"
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"StandardLabel"
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"StandardLabel"
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"StandardLabel"
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 1.0
+
 [node name="BackButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -45,6 +95,19 @@ text = "Back"
 flat = true
 
 [node name="UIHoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_s2d1y")
 bus = &"SFX"
 
-[connection signal="button_down" from="MarginContainer/BackButton" to="." method="_on_back_button_button_down"]
+[node name="SFXSampler" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ojvp1")
+bus = &"SFX"
+
+[node name="AudioSamplerDebounce" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="value_changed" from="MarginContainer/PageContent/VBoxContainer/MasterVolumeSlider" to="." method="_on_master_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PageContent/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PageContent/VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="timeout" from="AudioSamplerDebounce" to="." method="_on_audio_sampler_debounce_timeout"]

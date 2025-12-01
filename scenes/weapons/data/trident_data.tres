@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_data.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://scenes/weapons/UI Icons/Trident_Icon.png" id="2_icon"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/trident/trident.tscn" id="3_scene"]
+
+[resource]
+script = ExtResource("1_script")
+id = "trident"
+display_name = "Trident"
+description = "Drops from above, creating a whirlpool that slows enemies."
+icon = ExtResource("2_icon")
+weapon_scene = ExtResource("3_scene")
+starts_unlocked = false

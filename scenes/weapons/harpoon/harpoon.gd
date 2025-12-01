@@ -40,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		global_position = target_marker.global_position
 
 		# Update rotation to point from ship to harpoon
-		var to_harpoon: Vector2 = (global_position - get_owner().global_position).normalized()
+		var to_harpoon: Vector2 = (global_position - get_player().global_position).normalized()
 		rotation = to_harpoon.angle()
 
 		_update_rope()
@@ -50,10 +50,10 @@ func _physics_process(_delta: float) -> void:
 		end_active_phase()
 
 func _fire_weapon() -> void:
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 
 	var context: TargetingContext = TargetingContext.new()
-	context.user = get_owner()
+	context.user = get_player()
 	context.enemies = get_tree().get_nodes_in_group("enemies")
 	context.weapon_stats = weapon_stats
 
@@ -102,7 +102,7 @@ func _apply_damage(delta: float) -> void:
 		damage_timer = 0.0
 
 func _update_rope() -> void:
-	var ship_pos = get_owner().global_position
+	var ship_pos = get_player().global_position
 	var start = to_local(ship_pos)
 	var end = Vector2.ZERO
 	rope.points = [start, end]

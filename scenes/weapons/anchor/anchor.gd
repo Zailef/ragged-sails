@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 		return
 
 	orbit_angle += weapon_stats.speed * delta
-	var player_pos = get_owner().global_position
+	var player_pos = get_player().global_position
 	global_position = player_pos + Vector2(cos(orbit_angle), sin(orbit_angle)) * orbit_radius
 	rotation = orbit_angle
 
@@ -22,7 +22,7 @@ func _fire_weapon() -> void:
 func _reset_weapon() -> void:
 	damage_area.monitoring = false
 	orbit_angle = 0.0
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 	hide()
 
 func _activate() -> void:

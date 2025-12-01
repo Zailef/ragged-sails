@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 
 func _fire_weapon() -> void:
 	var context: TargetingContext = TargetingContext.new()
-	context.user = get_owner()
+	context.user = get_player()
 	context.enemies = get_tree().get_nodes_in_group("enemies")
 	context.weapon_stats = weapon_stats
 	context.targeting_radius = targeting_radius

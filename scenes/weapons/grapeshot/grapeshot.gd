@@ -26,11 +26,11 @@ func _physics_process(_delta: float) -> void:
 				damaged_enemies.append(enemy)
 
 func _fire_weapon() -> void:
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 
 	# Use targeting strategy to get the direction
 	var context: TargetingContext = TargetingContext.new()
-	context.user = get_owner()
+	context.user = get_player()
 	context.enemies = get_tree().get_nodes_in_group("enemies")
 	context.weapon_stats = weapon_stats
 
@@ -45,7 +45,7 @@ func _fire_weapon() -> void:
 		rotation = 0.0
 
 func _reset_weapon() -> void:
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 	direction = Vector2.ZERO
 	damaged_enemies.clear()
 	shape_cast.enabled = false

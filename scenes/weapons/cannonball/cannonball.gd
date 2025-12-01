@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 
 func _fire_weapon() -> void:
 	var context: TargetingContext = TargetingContext.new()
-	context.user = get_owner()
+	context.user = get_player()
 	context.enemies = get_tree().get_nodes_in_group("enemies")
 	context.weapon_stats = weapon_stats
 
@@ -39,7 +39,7 @@ func _fire_weapon() -> void:
 
 	if result.has_target():
 		# Reset position to player before firing
-		global_position = get_owner().global_position
+		global_position = get_player().global_position
 		distance_traveled = 0.0
 		direction = Vector2(result.target.global_position - global_position).normalized()
 	else:
@@ -48,7 +48,7 @@ func _fire_weapon() -> void:
 
 func _reset_weapon() -> void:
 	damage_area.monitoring = false
-	global_position = get_owner().global_position
+	global_position = get_player().global_position
 	direction = Vector2.ZERO
 	distance_traveled = 0.0
 	animated_sprite.animation = "moving"

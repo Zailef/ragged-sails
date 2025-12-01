@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/weapon_data.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://scenes/weapons/UI Icons/Mine_Icon.png" id="2_icon"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/mine/mine.tscn" id="3_scene"]
+
+[resource]
+script = ExtResource("1_script")
+id = "mine"
+display_name = "Sea Mine"
+description = "Drops a mine that arms after a delay and explodes on contact."
+icon = ExtResource("2_icon")
+weapon_scene = ExtResource("3_scene")
+starts_unlocked = false

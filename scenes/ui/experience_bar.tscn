@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbe7acbfy602p"]
+[gd_scene load_steps=5 format=3 uid="uid://dbe7acbfy602p"]
 
 [ext_resource type="Script" uid="uid://cw07cd33de38n" path="res://scenes/ui/experience_bar.gd" id="1_77ua7"]
+[ext_resource type="Texture2D" uid="uid://bubbt00qcoep5" path="res://sprites/ui/XP_Bar_Empty.png" id="2_v1lig"]
+[ext_resource type="Texture2D" uid="uid://dmvh7sfit05d7" path="res://sprites/ui/XP_Bar_Border.png" id="3_2ep7r"]
+[ext_resource type="Texture2D" uid="uid://dpgqwofa3qf3a" path="res://sprites/ui/XP_Bar_Fill.png" id="4_u8n47"]
 
 [node name="ExperienceBar" type="Control"]
 layout_mode = 3
@@ -22,16 +25,24 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ExpBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExpBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 15)
 layout_mode = 2
-size_flags_horizontal = 4
 max_value = 10.0
-step = 1.0
-show_percentage = false
+texture_under = ExtResource("2_v1lig")
+texture_over = ExtResource("3_2ep7r")
+texture_progress = ExtResource("4_u8n47")
 
-[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

@@ -42,6 +42,7 @@ texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("1_6ivci")]
 position = Vector2(305, 181)
+move_speed = 80.0
 
 [node name="Enemies" type="Node2D" parent="."]
 

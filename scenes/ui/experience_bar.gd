@@ -1,6 +1,6 @@
 extends Control
 
-@onready var exp_bar: ProgressBar = %ExpBar
+@onready var exp_bar: TextureProgressBar = %ExpBar
 @onready var level_label: Label = %LevelLabel
 
 func _ready() -> void:

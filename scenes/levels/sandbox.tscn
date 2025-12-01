@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddnu2h0canibh"]
+[gd_scene load_steps=13 format=3 uid="uid://ddnu2h0canibh"]
 
 [ext_resource type="PackedScene" uid="uid://dlgmlwuec3427" path="res://scenes/player/player.tscn" id="1_6ivci"]
 [ext_resource type="Script" path="res://scenes/levels/sandbox.gd" id="1_sandbox"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/boundary_warning_overlay.tscn" id="12_warning_overlay"]
 [ext_resource type="Script" path="res://scenes/environment/object_scatter.gd" id="13_scatter"]
 [ext_resource type="Resource" path="res://scenes/environment/default_scatter_config.tres" id="14_scatter_config"]
+[ext_resource type="PackedScene" path="res://scenes/menus/pause_menu.tscn" id="15_pause_menu"]
 
 [node name="Sandbox" type="Node2D"]
 script = ExtResource("1_sandbox")
@@ -45,3 +46,5 @@ ocean_sprite_path = NodePath("../Ocean/Water")
 
 [node name="BoundaryWarningOverlay" parent="." instance=ExtResource("12_warning_overlay")]
 boundary_manager_path = NodePath("../BoundaryManager")
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_pause_menu")]

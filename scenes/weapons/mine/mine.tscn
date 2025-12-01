@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjpekuumwrnu7"]
+[gd_scene load_steps=6 format=3 uid="uid://cjpekuumwrnu7"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://dk6gkkgd614me" path="res://scenes/weapons/mine/mine.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
 [ext_resource type="Script" uid="uid://cmf4n5dio7gxd" path="res://scenes/weapons/targeting/targeting_strategy_none.gd" id="4_targeting"]
+[ext_resource type="Resource" path="res://scenes/weapons/mine/progression/mine_progression.tres" id="5_prog"]
 
 [sub_resource type="Resource" id="Resource_stats"]
 script = ExtResource("3_stats")
@@ -19,3 +20,6 @@ metadata/_custom_type_script = "uid://cmf4n5dio7gxd"
 script = ExtResource("2_script")
 weapon_stats = SubResource("Resource_stats")
 targeting_strategy = SubResource("Resource_targeting")
+
+[node name="WeaponLevelManager" parent="." index="0"]
+progression = ExtResource("5_prog")

@@ -22,4 +22,7 @@ signal boss_incoming
 signal chest_collected
 signal weapon_upgrade_selected(weapon: BaseWeapon)
 
+# Player signals
+signal player_died
+
 @warning_ignore_restore("unused_signal")

@@ -38,6 +38,8 @@ func _ready() -> void:
 	SignalManager.exp_gained.connect(_on_exp_gained)
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
 	_setup_mobile_controls()
+	# Reset damage flash shader
+	damage_shader_material.set_shader_parameter("flash_strength", 0.0)
 	# Find boundary manager in scene (deferred to ensure scene is ready)
 	_find_boundary_manager.call_deferred()
 	# Unlock starting weapon (cannon)
@@ -100,13 +102,11 @@ func take_damage(amount: int) -> void:
 		_die()
 
 func _die() -> void:
-	# TODO: proper death handling (animations, sound, transition to game over, etc.)
 	is_dead = true
-	print("Player has died.")
 	set_physics_process(false)
 	set_process(false)
 	hide()
-	get_tree().create_timer(3.0).timeout.connect(func(): get_tree().reload_current_scene.call_deferred())
+	SignalManager.player_died.emit()
 
 func _on_exp_gained(amount: int) -> void:
 	level_progress.add_experience(amount)

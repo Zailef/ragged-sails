@@ -166,6 +166,7 @@ func _on_weapon_selected(weapon_data: Resource, is_upgrade: bool) -> void:
 	hide()
 	get_tree().paused = false
 	SignalManager.level_up_selection_made.emit()
+	SignalManager.menu_closed.emit()
 
 	# Check for more pending level ups
 	if _pending_levels > 0:

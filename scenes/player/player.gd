@@ -14,6 +14,10 @@ class_name Player
 @export var damage_flash_duration = 0.5
 @export var damage_flash_strength = 0.5
 
+@export_group("Grace Period")
+## Brief invincibility after closing menus (chests, level up)
+@export var grace_period_duration: float = 0.5
+
 @onready var animation_tree = $AnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -28,6 +32,7 @@ class_name Player
 var is_dead: bool = false
 var is_mobile: bool = false
 var boundary_manager: BoundaryManager = null
+var _grace_period_active: bool = false
 
 var current_health: int = max_health:
 	set(value):
@@ -37,6 +42,7 @@ var current_health: int = max_health:
 func _ready() -> void:
 	SignalManager.exp_gained.connect(_on_exp_gained)
 	SignalManager.player_levelled_up.connect(_on_player_levelled_up)
+	SignalManager.menu_closed.connect(_on_menu_closed)
 	_setup_mobile_controls()
 	# Reset damage flash shader
 	damage_shader_material.set_shader_parameter("flash_strength", 0.0)
@@ -87,7 +93,7 @@ func _get_input_direction() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 func take_damage(amount: int) -> void:
-	if is_immortal or is_dead:
+	if is_immortal or is_dead or _grace_period_active:
 		return
 
 	current_health -= amount
@@ -113,3 +119,12 @@ func _on_exp_gained(amount: int) -> void:
 
 func _on_player_levelled_up(_new_level: int, _exp_to_next_level: int) -> void:
 	level_up_sound.play()
+
+
+func _on_menu_closed() -> void:
+	_grace_period_active = true
+	get_tree().create_timer(grace_period_duration).timeout.connect(_end_grace_period)
+
+
+func _end_grace_period() -> void:
+	_grace_period_active = false

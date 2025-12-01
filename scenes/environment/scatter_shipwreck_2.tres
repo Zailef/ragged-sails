@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_script")
 scene = ExtResource("2_scene")
-weight = 0.4
+weight = 1.2
 min_count = 1
-max_count = 3
+max_count = 5
 min_spacing = 200.0
 allow_near_player_start = false
 player_start_exclusion_radius = 300.0

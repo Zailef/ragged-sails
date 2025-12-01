@@ -57,6 +57,9 @@ func _ready() -> void:
 	# Set minimum size so the Control knows how big we want to be
 	custom_minimum_size = minimap_size
 	
+	# Enable clipping so drawing doesn't spill outside the minimap bounds
+	clip_contents = true
+	
 	# Get references (deferred to ensure scene is ready)
 	_setup_references.call_deferred()
 

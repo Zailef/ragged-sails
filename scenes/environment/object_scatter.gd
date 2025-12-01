@@ -19,6 +19,7 @@ signal scatter_complete(object_count: int)
 var _boundary_manager: BoundaryManager
 var _player: Node2D
 var _spawned_positions: Array[Vector2] = []
+var _spawned_objects: Array[Node2D] = []
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
@@ -47,6 +48,7 @@ func scatter_objects() -> void:
 		_rng.randomize()
 	
 	_spawned_positions.clear()
+	_spawned_objects.clear()
 	var total_spawned := 0
 	
 	var spawn_area := _get_spawn_area()
@@ -74,7 +76,7 @@ func scatter_objects() -> void:
 			var base_count := config.objects_per_1000_sq * density_multiplier
 			# Apply entry weight and add some randomness
 			var target := base_count * entry.weight
-			count = maxi(entry.min_count, int(target * _rng.randf_range(0.8, 1.2)))
+			count = clampi(int(target * _rng.randf_range(0.8, 1.2)), entry.min_count, entry.max_count)
 		else:
 			count = _rng.randi_range(entry.min_count, entry.max_count)
 		
@@ -115,7 +117,10 @@ func scatter_objects() -> void:
 					if _is_position_valid(cluster_pos, spawn_area, entry, player_start):
 						_spawn_object(entry, cluster_pos)
 						spawned_for_entry += 1
-					cluster_spawns -= 1
+						cluster_spawns -= 1
+				# If we didn't spawn any in this cluster attempt, still decrement to avoid infinite loop
+				if cluster_size > 0 and cluster_spawns >= cluster_size:
+					cluster_spawns -= cluster_size
 			else:
 				# Couldn't find cluster center, skip remaining
 				cluster_spawns = 0
@@ -195,6 +200,7 @@ func _spawn_object(entry: ScatterEntry, pos: Vector2) -> void:
 	
 	_get_container().add_child(obj)
 	_spawned_positions.append(pos)
+	_spawned_objects.append(obj)
 
 
 func _apply_random_flip(obj: Node2D, entry: ScatterEntry) -> void:
@@ -228,11 +234,12 @@ func _get_container() -> Node:
 
 ## Clears all scattered objects and re-scatters
 func reshuffle() -> void:
-	# Remove existing scattered objects
-	var container := _get_container()
-	for child in container.get_children():
-		if child != self:
-			child.queue_free()
+	# Remove only the objects we spawned
+	for obj in _spawned_objects:
+		if is_instance_valid(obj):
+			obj.queue_free()
+	_spawned_objects.clear()
+	_spawned_positions.clear()
 	
 	await get_tree().process_frame
 	scatter_objects()

@@ -22,6 +22,13 @@ class_name WeaponLevel
 @export var range_bonus: float = 0.0
 @export var penetration_bonus: int = 0
 
+## Trident-specific bonuses
+@export_group("Trident Bonuses")
+## Bonus to whirlpool scale (0.1 = +10% size)
+@export var whirlpool_scale_bonus: float = 0.0
+## Bonus slow strength (negative values = stronger slow, e.g., -0.1 reduces enemy speed by additional 10%)
+@export var slow_strength_bonus: float = 0.0
+
 ## Upgrades unlocked at this level
 @export_group("Upgrades")
 @export var unlocked_upgrades: Array[WeaponUpgrade] = []

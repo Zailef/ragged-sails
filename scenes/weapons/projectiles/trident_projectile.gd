@@ -18,6 +18,17 @@ var is_dropping: bool = true
 var affected_enemies: Array[Enemy] = []
 var whirlpool_timer: float = 0.0
 
+## Bonus to whirlpool scale from weapon progression
+var whirlpool_scale_bonus: float = 0.0
+## Bonus slow strength from weapon progression (negative = stronger slow)
+var slow_strength_bonus: float = 0.0
+## Modified slow effect with bonuses applied
+var effective_slow_effect: SlowEffect
+## Base scale of whirlpool (from animation end state)
+const BASE_WHIRLPOOL_SCALE: float = 1.5
+## Target scale including bonus
+var target_whirlpool_scale: float = 1.5
+
 
 func _ready() -> void:
 	sprite.show()
@@ -47,7 +58,7 @@ func _physics_process(delta: float) -> void:
 				start_shrink()
 
 
-func setup_trident(spawn_pos: Vector2, target_pos: Vector2, target: Enemy, p_damage: int, p_drop_speed: float, p_slow_effect: SlowEffect, p_source: BaseWeapon) -> void:
+func setup_trident(spawn_pos: Vector2, target_pos: Vector2, target: Enemy, p_damage: int, p_drop_speed: float, p_slow_effect: SlowEffect, p_source: BaseWeapon, p_whirlpool_scale_bonus: float = 0.0, p_slow_strength_bonus: float = 0.0) -> void:
 	global_position = spawn_pos
 	target_position = target_pos
 	target_enemy = target
@@ -56,6 +67,16 @@ func setup_trident(spawn_pos: Vector2, target_pos: Vector2, target: Enemy, p_dam
 	slow_effect = p_slow_effect
 	source_weapon = p_source
 	is_dropping = true
+	whirlpool_scale_bonus = p_whirlpool_scale_bonus
+	slow_strength_bonus = p_slow_strength_bonus
+	
+	# Create modified slow effect with bonus applied
+	if slow_effect:
+		effective_slow_effect = slow_effect.duplicate()
+		# Apply slow strength bonus (negative bonus = stronger slow = lower multiplier)
+		effective_slow_effect.slow_multiplier = clampf(slow_effect.slow_multiplier + slow_strength_bonus, 0.1, 0.9)
+	else:
+		effective_slow_effect = null
 
 
 func _impact() -> void:
@@ -63,6 +84,8 @@ func _impact() -> void:
 	sprite.hide()
 	
 	whirlpool_sprite.global_position = global_position
+	# Calculate target scale with bonus (applied after grow animation)
+	target_whirlpool_scale = BASE_WHIRLPOOL_SCALE * (1.0 + whirlpool_scale_bonus)
 	whirlpool_sprite.show()
 	animation_player.play("grow")
 	
@@ -78,7 +101,7 @@ func _update_slow_effects() -> void:
 	if not whirlpool_sprite.visible:
 		return
 	
-	# Find enemies in the whirlpool area
+	# Find enemies in the whirlpool area (scale includes bonus)
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
 	var shape = CircleShape2D.new()
@@ -90,13 +113,14 @@ func _update_slow_effects() -> void:
 	var results = space_state.intersect_shape(query)
 	var enemies_in_range: Array[Enemy] = []
 	
-	# Apply slow to enemies in range
+	# Apply slow to enemies in range (use effective_slow_effect with bonuses)
+	var slow_to_apply = effective_slow_effect if effective_slow_effect else slow_effect
 	for result in results:
 		var enemy = result.collider
 		if enemy is Enemy and is_instance_valid(enemy):
 			enemies_in_range.append(enemy)
 			if not affected_enemies.has(enemy):
-				enemy.status_effects.apply_effect(slow_effect, self)
+				enemy.status_effects.apply_effect(slow_to_apply, self)
 				affected_enemies.append(enemy)
 	
 	# Remove slow from enemies that left the area
@@ -124,11 +148,16 @@ func _clear_slow_effects() -> void:
 
 func start_shrink() -> void:
 	if whirlpool_sprite.visible:
+		# Reset to base scale before shrink animation (animation expects 1.5 start)
+		whirlpool_sprite.scale = Vector2.ONE * BASE_WHIRLPOOL_SCALE
 		animation_player.play("shrink")
 	_clear_slow_effects()
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == &"shrink":
+	if anim_name == &"grow":
+		# Apply the bonus scale after grow animation completes
+		whirlpool_sprite.scale = Vector2.ONE * target_whirlpool_scale
+	elif anim_name == &"shrink":
 		whirlpool_sprite.hide()
 		destroy()

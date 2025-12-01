@@ -46,6 +46,14 @@ func spawn_projectile(target: Enemy) -> void:
 	
 	var projectile: TridentProjectile = TridentProjectileScene.instantiate()
 	get_tree().current_scene.add_child(projectile)
-	projectile.setup_trident(spawn_pos, target_pos, target, weapon_stats.damage, drop_speed, slow_effect, self)
+	
+	# Get bonuses from level manager
+	var whirlpool_scale_bonus := 0.0
+	var slow_strength_bonus := 0.0
+	if level_manager:
+		whirlpool_scale_bonus = level_manager.get_whirlpool_scale_bonus()
+		slow_strength_bonus = level_manager.get_slow_strength_bonus()
+	
+	projectile.setup_trident(spawn_pos, target_pos, target, weapon_stats.damage, drop_speed, slow_effect, self, whirlpool_scale_bonus, slow_strength_bonus)
 	
 	current_projectile = projectile

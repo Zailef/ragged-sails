@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cppck52jvbshe"]
+[gd_scene load_steps=7 format=3 uid="uid://cppck52jvbshe"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" path="res://scenes/weapons/trident/trident.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
 [ext_resource type="Script" path="res://scenes/weapons/targeting/targeting_strategy_random_in_space.gd" id="4_targeting"]
 [ext_resource type="Resource" uid="uid://byjvoxr43dxwx" path="res://scenes/weapons/trident/trident_slow_effect.tres" id="5_slow"]
+[ext_resource type="Resource" path="res://scenes/weapons/trident/progression/trident_progression.tres" id="6_progression"]
 
 [sub_resource type="Resource" id="Resource_stats"]
 script = ExtResource("3_stats")
-cooldown = 2.0
+cooldown = 4.0
 metadata/_custom_type_script = "uid://dfpkint1tllcj"
 
 [sub_resource type="Resource" id="Resource_targeting"]
@@ -23,3 +24,6 @@ targeting_radius = 150.0
 slow_effect = ExtResource("5_slow")
 weapon_stats = SubResource("Resource_stats")
 targeting_strategy = SubResource("Resource_targeting")
+
+[node name="WeaponLevelManager" parent="." index="0"]
+progression = ExtResource("6_progression")

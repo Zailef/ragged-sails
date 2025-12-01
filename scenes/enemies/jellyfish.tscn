@@ -103,12 +103,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ctx0m"]
-radius = 7.0
+radius = 8.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cuhdu"]
-radius = 6.0
-height = 24.0
+radius = 8.0
+height = 28.0
 
 [node name="Jellyfish" instance=ExtResource("1_tgu21")]
 stats = SubResource("Resource_1egoa")

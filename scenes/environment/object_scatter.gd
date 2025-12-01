@@ -188,7 +188,7 @@ func _spawn_object(entry: ScatterEntry, pos: Vector2) -> void:
 	
 	if entry.random_scale:
 		var scale_factor := _rng.randf_range(entry.min_scale, entry.max_scale)
-		obj.scale = Vector2(scale_factor, scale_factor)
+		obj.scale *= scale_factor
 	
 	# Handle flipping (for Sprite2D children or if object is a Sprite2D)
 	_apply_random_flip(obj, entry)

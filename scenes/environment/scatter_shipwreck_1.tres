@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ScatterEntry" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/environment/scatter_entry.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dshipwreck1scatter" path="res://scenes/environment/shipwreck_1.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_script")
+scene = ExtResource("2_scene")
+weight = 0.4
+min_count = 1
+max_count = 3
+min_spacing = 200.0
+allow_near_player_start = false
+player_start_exclusion_radius = 300.0
+random_rotation = false
+random_scale = true
+min_scale = 0.9
+max_scale = 1.1
+random_flip_h = true
+random_flip_v = false

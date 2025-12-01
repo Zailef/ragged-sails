@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://darc8183kixlr"]
+
+[ext_resource type="Texture2D" uid="uid://dtwnrrxeukiis" path="res://sprites/environment/SeaRock1.png" id="1_rock"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_rock1"]
+points = PackedVector2Array(-72.21327, 14.47863, -51.529526, 25.450012, -31.20549, 29.586761, 14.298767, 29.766624, 54.407272, 24.191002, 73.292435, 16.457077, 72.573, 11.780746, 46.31363, -16.816792, 32.82422, -18.975094, 19.154953, -34.622803, 6.384987, -36.960968, -4.5863953, -46.8532, -36.60125, -46.49348, -44.335175, -35.34224, -57.464863, -17.356365, -67.89667, 0.8093643)
+
+[node name="SeaRock1" type="StaticBody2D"]
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rock")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_rock1")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-75, -50, 150, 90)

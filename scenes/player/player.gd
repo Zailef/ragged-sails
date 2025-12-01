@@ -58,6 +58,7 @@ func _unlock_starting_weapons() -> void:
 		var weapon_data = load(data_path)
 		if weapon_data and weapon_data.starts_unlocked:
 			weapon_manager.unlock_weapon(weapon_id)
+			SignalManager.weapon_acquired.emit()
 
 func _setup_mobile_controls() -> void:
 	is_mobile = OS.has_feature("android") or OS.has_feature("ios") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls

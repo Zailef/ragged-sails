@@ -5,3 +5,4 @@ class_name LifeRingPickupEffect
 
 func apply_effect(_pickup: Pickup, player: Player) -> void:
 	player.current_health += health_gain
+	SignalManager.health_pickup_collected.emit(health_gain)

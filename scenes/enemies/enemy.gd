@@ -145,7 +145,7 @@ func _handle_self_damage(amount: int) -> void:
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	if current_health <= 0:
-		SignalManager.enemy_defeated.emit()
+		SignalManager.enemy_defeated.emit(is_boss)
 		var context = DropStrategyContext.new()
 		context.enemy = self
 		drop_strategy.perform_drops(context)

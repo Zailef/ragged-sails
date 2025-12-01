@@ -2,7 +2,7 @@ extends Node
 
 @warning_ignore_start("unused_signal")
 
-signal enemy_defeated
+signal enemy_defeated(is_boss: bool)
 signal exp_gained(amount: int)
 signal player_levelled_up(new_level: int, exp_to_next: int)
 signal max_level_reached
@@ -21,6 +21,11 @@ signal boss_incoming
 # Chest/Weapon upgrade signals
 signal chest_collected
 signal weapon_upgrade_selected(weapon: BaseWeapon)
+signal weapon_acquired
+signal weapon_upgraded
+
+# Pickup signals
+signal health_pickup_collected(amount: int)
 
 # Player signals
 signal player_died

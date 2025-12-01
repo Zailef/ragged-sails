@@ -160,8 +160,10 @@ func _on_weapon_selected(weapon_data: Resource, is_upgrade: bool) -> void:
 	if weapon_mgr:
 		if is_upgrade:
 			weapon_mgr.upgrade_weapon(weapon_data.id)
+			SignalManager.weapon_upgraded.emit()
 		else:
 			weapon_mgr.unlock_weapon(weapon_data.id)
+			SignalManager.weapon_acquired.emit()
 
 	hide()
 	get_tree().paused = false

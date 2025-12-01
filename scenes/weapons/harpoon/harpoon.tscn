@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bytbk5v6e66do" path="res://scenes/weapons/harpoon/harpoon.gd" id="2_gcysc"]
 [ext_resource type="Texture2D" uid="uid://b2pq6bhlo6yw2" path="res://sprites/weapons/harpoon.png" id="2_vfj41"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_lk600"]
-[ext_resource type="Script" uid="uid://fpury8437p87" path="res://scenes/weapons/targeting/targeting_strategy_toughest.gd" id="3_qffnh"]
+[ext_resource type="Script" path="res://scenes/weapons/targeting/targeting_strategy_toughest.gd" id="3_qffnh"]
 
 [sub_resource type="Resource" id="Resource_4td4i"]
 script = ExtResource("3_lk600")

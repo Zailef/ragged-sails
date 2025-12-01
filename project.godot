@@ -24,6 +24,7 @@ buses/default_bus_layout="res://config/default_bus_layout.tres"
 SignalManager="*res://autoloads/signal_manager.gd"
 MusicManager="*res://autoloads/music_manager.tscn"
 GameManager="*res://autoloads/game_manager.gd"
+GameClock="*res://autoloads/game_clock.gd"
 
 [display]
 

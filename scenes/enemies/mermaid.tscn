@@ -149,7 +149,7 @@ drop_strategy = SubResource("Resource_5erkt")
 motion_animation_strategy = SubResource("Resource_pe30f")
 attack_animation_strategy = SubResource("Resource_qj0dc")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_h0e5o")
 sprite_frames = SubResource("SpriteFrames_1mrfq")
 animation = &"attack_right"
@@ -157,7 +157,7 @@ animation = &"attack_right"
 [node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
 position = Vector2(14, 7)
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p783r")
 
@@ -166,5 +166,5 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4ecc8")
 debug_color = Color(0.8489705, 0.34218907, 0.40922636, 0.41960785)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 rect = Rect2(-32, -16, 64, 32)

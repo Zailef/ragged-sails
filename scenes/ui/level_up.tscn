@@ -50,3 +50,6 @@ size_flags_horizontal = 3
 [node name="Control3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_sw2ff")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="focus_entered" from="MarginContainer/HBoxContainer/Control" to="MarginContainer/HBoxContainer/Control" method="_on_focus_entered"]
+[connection signal="focus_exited" from="MarginContainer/HBoxContainer/Control" to="MarginContainer/HBoxContainer/Control" method="_on_focus_exited"]

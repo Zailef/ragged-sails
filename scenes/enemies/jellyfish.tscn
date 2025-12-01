@@ -117,7 +117,7 @@ drop_strategy = SubResource("Resource_cuhdu")
 motion_animation_strategy = SubResource("Resource_ywsy2")
 attack_animation_strategy = SubResource("Resource_undyx")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_i47tk")
 sprite_frames = SubResource("SpriteFrames_dda0u")
 animation = &"move"
@@ -126,7 +126,7 @@ autoplay = "move"
 [node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
 position = Vector2(0, -7)
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("CapsuleShape2D_ctx0m")
 
 [node name="CollisionShape2D" parent="HitArea" index="0"]

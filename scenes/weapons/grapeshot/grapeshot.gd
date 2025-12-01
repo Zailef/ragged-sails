@@ -3,6 +3,7 @@ class_name Grapeshot
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shape_cast: ShapeCast2D = $ShapeCast2D
+@onready var fire_sound: AudioStreamPlayer = $FireSound
 
 var direction: Vector2 = Vector2.ZERO
 var damaged_enemies: Array[Enemy] = []
@@ -62,3 +63,4 @@ func _activate() -> void:
 	shape_cast.enabled = true
 	show()
 	animated_sprite.play()
+	fire_sound.play()

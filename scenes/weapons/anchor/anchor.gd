@@ -1,30 +1,59 @@
+## Anchor weapon that spawns orbiting anchors around the player.
 extends BaseWeapon
 class_name Anchor
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var damage_area: Area2D = $DamageArea
+const AnchorProjectileScene = preload("res://scenes/weapons/projectiles/anchor_projectile.tscn")
 
 @export var orbit_radius: float = 48.0
-var orbit_angle: float = 0.0
 
-func _process(delta: float) -> void:
-	if not is_visible():
-		return
+var anchors: Array[AnchorProjectile] = []
 
-	orbit_angle += weapon_stats.speed * delta
-	var player_pos = get_player().global_position
-	global_position = player_pos + Vector2(cos(orbit_angle), sin(orbit_angle)) * orbit_radius
-	rotation = orbit_angle
 
 func _fire_weapon() -> void:
-	_activate()
+	# Default: spawn one anchor at angle 0
+	spawn_anchor(0.0)
 
-func _reset_weapon() -> void:
-	damage_area.monitoring = false
-	orbit_angle = 0.0
-	global_position = get_player().global_position
-	hide()
 
 func _activate() -> void:
-	damage_area.monitoring = true
-	show()
+	for anchor in anchors:
+		if is_instance_valid(anchor):
+			anchor.activate()
+
+
+func _reset_weapon() -> void:
+	for anchor in anchors:
+		if is_instance_valid(anchor):
+			anchor.deactivate()
+			anchor.queue_free()
+	anchors.clear()
+
+
+func spawn_anchor(start_angle: float) -> AnchorProjectile:
+	var anchor: AnchorProjectile = AnchorProjectileScene.instantiate()
+	get_tree().current_scene.add_child(anchor)
+	anchor.setup_anchor(get_player(), weapon_stats.damage, orbit_radius, weapon_stats.speed, start_angle, self)
+	anchors.append(anchor)
+	return anchor
+
+
+func get_anchor_count() -> int:
+	return anchors.size()
+
+
+## Adds a new anchor and redistributes all anchors evenly around the circle.
+func add_anchor_and_redistribute() -> void:
+	# Spawn new anchor (angle doesn't matter, we'll fix it)
+	spawn_anchor(0.0)
+	redistribute_anchors()
+
+
+## Redistributes all anchors evenly around the circle.
+func redistribute_anchors() -> void:
+	var count = anchors.size()
+	if count == 0:
+		return
+	
+	var angle_step = TAU / count
+	for i in range(count):
+		if is_instance_valid(anchors[i]):
+			anchors[i].orbit_angle = i * angle_step

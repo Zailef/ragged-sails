@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://grapevolley001"]
+
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/grapeshot_volley.gd" id="1_proj"]
+[ext_resource type="Texture2D" uid="uid://bjqgn7m7q6hqn" path="res://sprites/weapons/grapeshot.png" id="2_sprite"]
+[ext_resource type="AudioStream" uid="uid://qjdhuf15nkps" path="res://audio/effects/Grapeshot.wav" id="3_sound"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2"]
+atlas = ExtResource("2_sprite")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3"]
+atlas = ExtResource("2_sprite")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4"]
+atlas = ExtResource("2_sprite")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grape"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shape"]
+size = Vector2(64, 32)
+
+[node name="GrapeshotVolley" type="Node2D"]
+script = ExtResource("1_proj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_grape")
+animation = &"default"
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(22, 0)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_shape")
+target_position = Vector2(0, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sound")
+bus = &"SFX"

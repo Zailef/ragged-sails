@@ -44,8 +44,12 @@ func _ready() -> void:
 	_unlock_starting_weapons.call_deferred()
 
 func _unlock_starting_weapons() -> void:
-	# Unlock cannon by default
-	weapon_manager.unlock_weapon("cannonball")
+	# Unlock all weapons that have starts_unlocked = true
+	for weapon_id in WeaponConstants.WEAPON_DATA_PATHS.keys():
+		var data_path = WeaponConstants.WEAPON_DATA_PATHS[weapon_id]
+		var weapon_data = load(data_path)
+		if weapon_data and weapon_data.starts_unlocked:
+			weapon_manager.unlock_weapon(weapon_id)
 
 func _setup_mobile_controls() -> void:
 	is_mobile = OS.has_feature("android") or OS.has_feature("ios") or OS.has_feature("web_android") or OS.has_feature("web_ios") or debug_mobile_controls

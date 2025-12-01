@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuadAnchorsUpgrade" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/anchor/upgrades/quad_anchors_upgrade.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+id = &"quad_anchors"
+display_name = "Quad Anchors"
+description = "Spawn a fourth anchor for complete coverage."

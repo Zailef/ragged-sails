@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://cannproj001"]
+
+[ext_resource type="Script" path="res://scenes/weapons/projectiles/cannonball_projectile.gd" id="1_proj"]
+[ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="2_sprite"]
+[ext_resource type="AudioStream" uid="uid://bgjut7l5x7r2p" path="res://audio/effects/Splash.wav" id="3_splash"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moving"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2"]
+atlas = ExtResource("2_sprite")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3"]
+atlas = ExtResource("2_sprite")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4"]
+atlas = ExtResource("2_sprite")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5"]
+atlas = ExtResource("2_sprite")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6"]
+atlas = ExtResource("2_sprite")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7"]
+atlas = ExtResource("2_sprite")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8"]
+atlas = ExtResource("2_sprite")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s9"]
+atlas = ExtResource("2_sprite")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cannon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moving")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s9")
+}],
+"loop": false,
+"name": &"splash",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_damage"]
+radius = 16.0
+
+[node name="CannonballProjectile" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_proj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cannon")
+animation = &"moving"
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_damage")
+
+[node name="SplashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_splash")
+bus = &"SFX"

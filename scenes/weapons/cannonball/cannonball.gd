@@ -1,33 +1,25 @@
 extends BaseWeapon
 class_name Cannonball
 
-# TODO: stat for max enemy penetration
+## The projectile scene to spawn
+const PROJECTILE_SCENE = preload("res://scenes/weapons/projectiles/cannonball_projectile.tscn")
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var damage_area: Area2D = $DamageArea
-@onready var splash_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var cannon_fire_sound: AudioStreamPlayer = $CannonFireSound
 
-var direction: Vector2 = Vector2.ZERO
-var distance_traveled: float = 0.0
-var max_distance: float = 150.0
+## Maximum travel distance for projectiles
+@export var max_distance: float = 150.0
+
+## Container node for spawned projectiles (found at runtime)
+var _projectile_container: Node = null
+
 
 func _ready() -> void:
 	super ()
-	animated_sprite.animation_finished.connect(_on_animation_finished)
+	# Find or create a container for projectiles in the scene tree
+	_projectile_container = get_tree().get_first_node_in_group("projectile_container")
+	if not _projectile_container:
+		_projectile_container = get_tree().current_scene
 
-func _process(delta: float) -> void:
-	if direction == Vector2.ZERO:
-		return
-
-	if distance_traveled >= (max_distance / 2) and animated_sprite.animation != "splash":
-		animated_sprite.play("splash")
-
-	if distance_traveled >= max_distance:
-		return
-
-	global_position += direction * weapon_stats.speed * delta
-	distance_traveled += weapon_stats.speed * delta
 
 func _fire_weapon() -> void:
 	var context: TargetingContext = TargetingContext.new()
@@ -38,34 +30,33 @@ func _fire_weapon() -> void:
 	var result: TargetingResult = targeting_strategy.get_target(context)
 
 	if result.has_target():
-		# Reset position to player before firing
-		global_position = get_player().global_position
-		distance_traveled = 0.0
-		direction = Vector2(result.target.global_position - global_position).normalized()
-	else:
-		# No target, so reset direction to prevent firing
-		direction = Vector2.ZERO
+		var spawn_pos = get_player().global_position
+		var direction = (result.target.global_position - spawn_pos).normalized()
+		_spawn_projectile(spawn_pos, direction)
+
+
+func _spawn_projectile(spawn_position: Vector2, direction: Vector2) -> void:
+	var projectile = PROJECTILE_SCENE.instantiate() as CannonballProjectile
+	_projectile_container.add_child(projectile)
+
+	projectile.global_position = spawn_position
+	projectile.setup(
+		direction,
+		get_effective_damage(),
+		get_effective_speed(),
+		max_distance,
+		self
+	)
+
+	cannon_fire_sound.play()
+
 
 func _reset_weapon() -> void:
-	damage_area.monitoring = false
-	global_position = get_player().global_position
-	direction = Vector2.ZERO
-	distance_traveled = 0.0
-	animated_sprite.animation = "moving"
-	hide()
+	# Nothing to reset - projectiles manage themselves
+	pass
 
-func _on_animation_finished() -> void:
-	if animated_sprite.animation == "splash":
-		splash_sound.play()
-		end_active_phase()
 
 func _activate() -> void:
-	# Only activate if we have a valid direction (i.e., a target was found)
-	if direction == Vector2.ZERO:
-		end_active_phase()
-		return
-
-	damage_area.monitoring = true
-	animated_sprite.play("moving")
-	cannon_fire_sound.play()
-	show()
+	# Activation is handled by _fire_weapon spawning the projectile
+	# Immediately end active phase since we're just an orchestrator
+	end_active_phase()

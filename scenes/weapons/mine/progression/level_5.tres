@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_level")
 level = 5
-damage_multiplier = 1.6
-cooldown_multiplier = 0.8
+damage_multiplier = 1.05
+cooldown_multiplier = 0.95
 duration_multiplier = 1.0
 speed_multiplier = 1.0
 range_multiplier = 1.2

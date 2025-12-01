@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_script")
 level = 10
-damage_multiplier = 1.35
-cooldown_multiplier = 0.8
+damage_multiplier = 1.1
+cooldown_multiplier = 0.95
 unlocked_upgrades = [ExtResource("2_upgrade")]

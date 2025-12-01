@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_script")
-id = "cannon"
+id = "cannonball"
 display_name = "Cannon"
 description = "Fires cannonballs at the nearest enemy. A reliable starting weapon."
 icon = ExtResource("2_icon")

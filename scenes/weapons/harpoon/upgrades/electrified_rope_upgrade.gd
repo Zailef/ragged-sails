@@ -61,8 +61,8 @@ func _update_enemies_on_rope(weapon: BaseWeapon, rope: Line2D) -> void:
 	var enemies = weapon.get_tree().get_nodes_in_group("enemies")
 	for enemy in enemies:
 		if enemy is Enemy and is_instance_valid(enemy):
-			# Simple distance-to-line check
-			if _point_near_line(enemy.global_position, start, end, 20.0):
+			# Simple distance-to-line check with generous threshold
+			if _point_near_line(enemy.global_position, start, end, 30.0):
 				_enemies_on_rope.append(enemy)
 
 
@@ -76,11 +76,10 @@ func _point_near_line(point: Vector2, line_start: Vector2, line_end: Vector2, th
 	var point_vec = point - line_start
 	var projection = point_vec.dot(line_dir)
 	
-	# Check if projection is within line segment
-	if projection < 0 or projection > line_length:
-		return false
+	# Clamp projection to line segment (allows endpoint detection)
+	projection = clampf(projection, 0.0, line_length)
 	
-	# Calculate perpendicular distance
+	# Calculate distance to closest point on line segment
 	var closest_point = line_start + line_dir * projection
 	return point.distance_to(closest_point) <= threshold
 

@@ -139,6 +139,16 @@ func get_effective_penetration(base_penetration: int) -> int:
 	return base_penetration + bonus
 
 
+## Gets the whirlpool scale bonus for trident
+func get_whirlpool_scale_bonus() -> float:
+	return _cached_modifiers.get("whirlpool_scale_bonus", 0.0)
+
+
+## Gets the slow strength bonus for trident (negative = stronger slow)
+func get_slow_strength_bonus() -> float:
+	return _cached_modifiers.get("slow_strength_bonus", 0.0)
+
+
 ## Called when level changes
 func _on_level_changed(old_level: int) -> void:
 	_refresh_level_data()

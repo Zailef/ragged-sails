@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ChainLightningUpgrade" load_steps=2 format=3 uid="uid://dorcyas07hn4g"]
+
+[ext_resource type="Script" path="res://scenes/weapons/harpoon/upgrades/chain_lightning_upgrade.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+id = &"chain_lightning"
+display_name = "Chain Lightning"
+description = "Electricity arcs from pinned enemies to nearby foes."

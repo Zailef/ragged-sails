@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://cannproj001"]
+[gd_scene load_steps=16 format=3 uid="uid://cannproj001"]
 
-[ext_resource type="Script" path="res://scenes/weapons/projectiles/cannonball_projectile.gd" id="1_proj"]
+[ext_resource type="Script" uid="uid://ixandtfa47ue" path="res://scenes/weapons/projectiles/cannonball_projectile.gd" id="1_proj"]
 [ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="2_sprite"]
 [ext_resource type="AudioStream" uid="uid://bgjut7l5x7r2p" path="res://audio/effects/Splash.wav" id="3_splash"]
 

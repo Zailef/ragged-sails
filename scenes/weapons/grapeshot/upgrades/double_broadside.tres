@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DoubleBroadsideUpgrade" load_steps=2 format=3 uid="uid://bxa2ctn8wugn4"]
+
+[ext_resource type="Script" path="res://scenes/weapons/grapeshot/upgrades/double_broadside_upgrade.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+id = &"double_broadside"
+display_name = "Double Broadside"
+description = "Fire 2 volleys per side in an alternating barrage."

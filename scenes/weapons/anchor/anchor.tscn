@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://86ipqkw1j7y5"]
+[gd_scene load_steps=8 format=3 uid="uid://86ipqkw1j7y5"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://su7hs53sdh0c" path="res://scenes/weapons/anchor/anchor.gd" id="2_script"]
@@ -9,7 +9,6 @@
 [sub_resource type="Resource" id="Resource_stats"]
 script = ExtResource("3_stats")
 weapon_type = 1
-damage = 5
 cooldown = 10.0
 duration = 10.0
 speed = 2.0

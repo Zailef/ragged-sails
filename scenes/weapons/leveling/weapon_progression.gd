@@ -64,6 +64,8 @@ func get_cumulative_modifiers(current_level: int) -> Dictionary:
 		"speed_bonus": 0.0,
 		"range_bonus": 0.0,
 		"penetration_bonus": 0,
+		"whirlpool_scale_bonus": 0.0,
+		"slow_strength_bonus": 0.0,
 	}
 	
 	# Apply defined levels
@@ -82,6 +84,8 @@ func get_cumulative_modifiers(current_level: int) -> Dictionary:
 		modifiers["speed_bonus"] += level.speed_bonus
 		modifiers["range_bonus"] += level.range_bonus
 		modifiers["penetration_bonus"] += level.penetration_bonus
+		modifiers["whirlpool_scale_bonus"] += level.whirlpool_scale_bonus
+		modifiers["slow_strength_bonus"] += level.slow_strength_bonus
 	
 	# Apply overflow scaling for levels beyond max_level
 	if allow_overflow and current_level > max_level:

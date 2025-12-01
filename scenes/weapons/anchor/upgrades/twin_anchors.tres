@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="TwinAnchorsUpgrade" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="TwinAnchorsUpgrade" load_steps=2 format=3 uid="uid://hw34x34rcj3k"]
 
-[ext_resource type="Script" path="res://scenes/weapons/anchor/upgrades/twin_anchors_upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" uid="uid://csqea7oow3sy7" path="res://scenes/weapons/anchor/upgrades/twin_anchors_upgrade.gd" id="1_upgrade"]
 
 [resource]
 script = ExtResource("1_upgrade")

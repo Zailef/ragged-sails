@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djtfrkuwr504u"]
+[gd_scene load_steps=20 format=3 uid="uid://djtfrkuwr504u"]
 
 [ext_resource type="Script" uid="uid://da3lswpm5mo22" path="res://scenes/weapons/projectiles/trident_projectile.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://dl8ngqut782by" path="res://sprites/weapons/trident.png" id="2_trident"]
@@ -152,7 +152,6 @@ script = ExtResource("1_script")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_trident")
-animation = &"default"
 autoplay = "default"
 
 [node name="WhirlpoolSprite" type="AnimatedSprite2D" parent="."]
@@ -161,7 +160,6 @@ z_index = -1
 z_as_relative = false
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_whirlpool")
-animation = &"default"
 autoplay = "default"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

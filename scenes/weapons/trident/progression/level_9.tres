@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponLevel" load_steps=3 format=3 uid="uid://dy4gfes5ffndr"]
+
+[ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Script" uid="uid://5rymv8cpp882" path="res://scenes/weapons/leveling/weapon_upgrade.gd" id="2_yawvx"]
+
+[resource]
+script = ExtResource("1_level")
+level = 9
+damage_bonus = 5
+duration_bonus = 1.0
+whirlpool_scale_bonus = 0.1
+level_up_description = "+5 Damage, +1s Duration, +10% Whirlpool Size"

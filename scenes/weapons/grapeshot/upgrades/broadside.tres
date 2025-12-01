@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="BroadsideUpgrade" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="BroadsideUpgrade" load_steps=2 format=3 uid="uid://dgcwae1j3g5j0"]
 
-[ext_resource type="Script" path="res://scenes/weapons/grapeshot/upgrades/broadside_upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" uid="uid://go12168rqno6" path="res://scenes/weapons/grapeshot/upgrades/broadside_upgrade.gd" id="1_upgrade"]
 
 [resource]
 script = ExtResource("1_upgrade")
+volley_delay = 0.3
 id = &"broadside"
 display_name = "Broadside"
 description = "Fire a second volley to the opposite side."
-volley_delay = 0.3

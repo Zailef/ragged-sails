@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponLevel" load_steps=4 format=3 uid="uid://jo51ygue3fnf"]
+
+[ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_level"]
+[ext_resource type="Script" uid="uid://5rymv8cpp882" path="res://scenes/weapons/leveling/weapon_upgrade.gd" id="2_1vg50"]
+[ext_resource type="Resource" uid="uid://bxa2ctn8wugn4" path="res://scenes/weapons/grapeshot/upgrades/double_broadside.tres" id="2_upgrade"]
+
+[resource]
+script = ExtResource("1_level")
+level = 10
+damage_bonus = 20
+unlocked_upgrades = Array[ExtResource("2_1vg50")]([ExtResource("2_upgrade")])
+level_up_description = "DOUBLE BROADSIDE: Fire 2 volleys per side (4 total), +20 Damage"

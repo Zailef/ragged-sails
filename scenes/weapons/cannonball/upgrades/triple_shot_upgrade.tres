@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="TripleShotUpgrade" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="TripleShotUpgrade" load_steps=2 format=3 uid="uid://cysj1htewdgca"]
 
-[ext_resource type="Script" path="res://scenes/weapons/cannonball/upgrades/triple_shot_upgrade.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cwvy5m8lhe00k" path="res://scenes/weapons/cannonball/upgrades/triple_shot_upgrade.gd" id="1_script"]
 
 [resource]
 script = ExtResource("1_script")
-shot_delay = 0.30

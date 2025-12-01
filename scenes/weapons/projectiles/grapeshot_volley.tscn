@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://grapevolley001"]
+[gd_scene load_steps=10 format=3 uid="uid://ygsag677g4tg"]
 
-[ext_resource type="Script" path="res://scenes/weapons/projectiles/grapeshot_volley.gd" id="1_proj"]
+[ext_resource type="Script" uid="uid://bqnuvgkocqxhb" path="res://scenes/weapons/projectiles/grapeshot_volley.gd" id="1_proj"]
 [ext_resource type="Texture2D" uid="uid://bjqgn7m7q6hqn" path="res://sprites/weapons/grapeshot.png" id="2_sprite"]
 [ext_resource type="AudioStream" uid="uid://qjdhuf15nkps" path="res://audio/effects/Grapeshot.wav" id="3_sound"]
 
@@ -49,7 +49,6 @@ script = ExtResource("1_proj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 0)
 sprite_frames = SubResource("SpriteFrames_grape")
-animation = &"default"
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(22, 0)

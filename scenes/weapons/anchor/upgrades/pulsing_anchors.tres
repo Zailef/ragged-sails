@@ -1,11 +1,9 @@
-[gd_resource type="Resource" script_class="PulsingAnchorsUpgrade" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="PulsingAnchorsUpgrade" load_steps=2 format=3 uid="uid://ecr7uimfva5e"]
 
-[ext_resource type="Script" path="res://scenes/weapons/anchor/upgrades/pulsing_anchors_upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" uid="uid://cjva4f4o1pqu4" path="res://scenes/weapons/anchor/upgrades/pulsing_anchors_upgrade.gd" id="1_upgrade"]
 
 [resource]
 script = ExtResource("1_upgrade")
 id = &"pulsing_anchors"
 display_name = "Pulsing Anchors"
 description = "Anchors pulse inward and outward while spinning."
-pulse_speed = 3.0
-pulse_amount = 20.0

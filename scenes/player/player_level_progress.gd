@@ -24,6 +24,13 @@ func _init() -> void:
 	_generate_exp_table()
 
 
+## Resets level progress to initial state (for new game)
+func reset() -> void:
+	level = 1
+	experience = 0
+	_max_level_signal_fired = false
+
+
 func _generate_exp_table() -> void:
 	_exp_table.clear()
 	_exp_table.append(0) # Level 1 requires 0 XP

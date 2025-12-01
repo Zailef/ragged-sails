@@ -1,4 +1,5 @@
 extends BaseWeapon
+class_name Harpoon
 
 @onready var rope: Line2D = $Line2D
 

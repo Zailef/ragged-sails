@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2rjp1l2ncjnr"]
+[gd_scene load_steps=9 format=3 uid="uid://c2rjp1l2ncjnr"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://2rq668shbgao" path="res://scenes/weapons/cannonball/cannonball.gd" id="2_script"]

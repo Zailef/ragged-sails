@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3x5lsb1tr55c"]
+[gd_scene load_steps=8 format=3 uid="uid://d3x5lsb1tr55c"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://boxs5034rdoo7" path="res://scenes/weapons/grapeshot/grapeshot.gd" id="2_script"]
 [ext_resource type="Script" uid="uid://dfpkint1tllcj" path="res://scenes/weapons/weapon_stats.gd" id="3_stats"]
 [ext_resource type="Script" uid="uid://dqsgoxm5jv0xg" path="res://scenes/weapons/targeting/targeting_strategy_side.gd" id="4_targeting"]
-[ext_resource type="Resource" path="res://scenes/weapons/grapeshot/progression/grapeshot_progression.tres" id="5_prog"]
+[ext_resource type="Resource" uid="uid://difi3c7cqwe4i" path="res://scenes/weapons/grapeshot/progression/grapeshot_progression.tres" id="5_prog"]
 
 [sub_resource type="Resource" id="Resource_stats"]
 script = ExtResource("3_stats")

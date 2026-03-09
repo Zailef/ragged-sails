@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://gxqipuahljlr"]
+[gd_scene format=3 uid="uid://gxqipuahljlr"]
 
 [ext_resource type="Script" uid="uid://dtd4nyjyhwccx" path="res://scenes/menus/death_screen.gd" id="1_script"]
 
@@ -23,11 +23,11 @@ _data = {
 &"fade_in": SubResource("Animation_fade_in")
 }
 
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="DeathScreen" type="CanvasLayer" unique_id=1858714564]
 layer = 100
 script = ExtResource("1_script")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=2108950788]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=368970101]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=15502489]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,39 +59,37 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer" unique_id=1198051283]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="Control/PanelContainer/VBoxContainer" unique_id=248238593]
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 80
 text = "You Died"
 horizontal_alignment = 1
 
-[node name="StatsLabel" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+[node name="StatsLabel" type="Label" parent="Control/PanelContainer/VBoxContainer" unique_id=480365304]
 layout_mode = 2
 theme_type_variation = &"UILabel"
 text = "You survived for 0:00"
 horizontal_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer" unique_id=1577544042]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ReplayButton" type="Button" parent="Control/PanelContainer/VBoxContainer/ButtonContainer"]
+[node name="ReplayButton" type="Button" parent="Control/PanelContainer/VBoxContainer/ButtonContainer" unique_id=1824804747]
 layout_mode = 2
 text = "Play Again"
 
-[node name="CreditsButton" type="Button" parent="Control/PanelContainer/VBoxContainer/ButtonContainer"]
+[node name="CreditsButton" type="Button" parent="Control/PanelContainer/VBoxContainer/ButtonContainer" unique_id=453392766]
 layout_mode = 2
 text = "Credits"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_main")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=938414515]
+libraries/ = SubResource("AnimationLibrary_main")
 
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/ButtonContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="pressed" from="Control/PanelContainer/VBoxContainer/ButtonContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

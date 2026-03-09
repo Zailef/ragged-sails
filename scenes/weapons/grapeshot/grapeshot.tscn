@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3x5lsb1tr55c"]
+[gd_scene format=3 uid="uid://d3x5lsb1tr55c"]
 
 [ext_resource type="PackedScene" uid="uid://cxh6iou2ulqw3" path="res://scenes/weapons/weapon.tscn" id="1_weapon"]
 [ext_resource type="Script" uid="uid://boxs5034rdoo7" path="res://scenes/weapons/grapeshot/grapeshot.gd" id="2_script"]
@@ -16,10 +16,10 @@ metadata/_custom_type_script = "uid://dfpkint1tllcj"
 script = ExtResource("4_targeting")
 metadata/_custom_type_script = "uid://dqsgoxm5jv0xg"
 
-[node name="Grapeshot" instance=ExtResource("1_weapon")]
+[node name="Grapeshot" unique_id=1448636037 instance=ExtResource("1_weapon")]
 script = ExtResource("2_script")
 weapon_stats = SubResource("Resource_stats")
 targeting_strategy = SubResource("Resource_targeting")
 
-[node name="WeaponLevelManager" parent="." index="0"]
+[node name="WeaponLevelManager" parent="." index="0" unique_id=1060084000]
 progression = ExtResource("5_prog")

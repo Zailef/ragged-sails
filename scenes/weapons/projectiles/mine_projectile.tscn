@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://mineproj001"]
+[gd_scene format=3 uid="uid://mineproj001"]
 
 [ext_resource type="Script" uid="uid://djeooknruyakg" path="res://scenes/weapons/projectiles/mine_projectile.gd" id="1_proj"]
 [ext_resource type="Texture2D" uid="uid://cobf5b1ure4gf" path="res://sprites/weapons/mine.png" id="2_mine"]
@@ -105,19 +105,19 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_explosion"]
 radius = 25.0
 
-[node name="MineProjectile" type="Node2D"]
+[node name="MineProjectile" type="Node2D" unique_id=445998996]
 script = ExtResource("1_proj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1506202423]
 sprite_frames = SubResource("SpriteFrames_mine")
 
-[node name="ExplosionCast" type="ShapeCast2D" parent="."]
+[node name="ExplosionCast" type="ShapeCast2D" parent="." unique_id=921145276]
 enabled = false
 shape = SubResource("CircleShape2D_explosion")
 target_position = Vector2(0, 0)
 collision_mask = 4
 collide_with_areas = true
 
-[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=450756282]
 stream = ExtResource("4_sound")
 bus = &"SFX"

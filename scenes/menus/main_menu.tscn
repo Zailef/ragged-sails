@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cafgygletq80s"]
+[gd_scene format=3 uid="uid://cafgygletq80s"]
 
 [ext_resource type="Script" uid="uid://j1y81a3sg4k8" path="res://scenes/menus/main_menu.gd" id="1_xqga4"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=268934562]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xqga4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=373982487]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.003921569, 0.078431375, 0.101960786, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=199477502]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,41 +28,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PageContent" type="VBoxContainer" parent="MarginContainer"]
+[node name="PageContent" type="VBoxContainer" parent="MarginContainer" unique_id=49112999]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/PageContent"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/PageContent" unique_id=210123803]
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
 text = "Ragged Sails"
 horizontal_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/PageContent"]
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/PageContent" unique_id=98649688]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="PlayButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer"]
+[node name="PlayButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer" unique_id=1970157068]
 layout_mode = 2
 text = "Play"
 flat = true
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer"]
+[node name="SettingsButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer" unique_id=1198001989]
 layout_mode = 2
 text = "Settings"
 flat = true
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer"]
+[node name="CreditsButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer" unique_id=2142470972]
 layout_mode = 2
 text = "Credits"
 flat = true
 
-[node name="QuitButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer"]
+[node name="QuitButton" type="Button" parent="MarginContainer/PageContent/ButtonContainer" unique_id=135492408]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 flat = true
 
-[node name="UIHoverSound" type="AudioStreamPlayer" parent="."]
+[node name="UIHoverSound" type="AudioStreamPlayer" parent="." unique_id=1193801822]
 bus = &"SFX"
 
 [connection signal="button_down" from="MarginContainer/PageContent/ButtonContainer/PlayButton" to="." method="_on_play_button_button_down"]

@@ -1,23 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxh6iou2ulqw3"]
+[gd_scene format=3 uid="uid://cxh6iou2ulqw3"]
 
 [ext_resource type="Script" uid="uid://ceug3uo7uvlh6" path="res://scenes/weapons/weapon.gd" id="1_nqevj"]
 [ext_resource type="Script" uid="uid://cra8hsnb1bh8p" path="res://scenes/weapons/leveling/weapon_level_manager.gd" id="2_level"]
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="Node2D" unique_id=283193085]
 script = ExtResource("1_nqevj")
 
-[node name="WeaponLevelManager" type="Node" parent="."]
+[node name="WeaponLevelManager" type="Node" parent="." unique_id=1060084000]
 script = ExtResource("2_level")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1443303256]
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="." unique_id=1831225537]
 collision_layer = 16
 collision_mask = 4
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=733902224]
 bus = &"SFX"
 
-[node name="CooldownTimer" type="Timer" parent="."]
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1008245990]
 
-[node name="DurationTimer" type="Timer" parent="."]
+[node name="DurationTimer" type="Timer" parent="." unique_id=77173130]

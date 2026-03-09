@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PulsingAnchorsUpgrade" load_steps=2 format=3 uid="uid://ecr7uimfva5e"]
+[gd_resource type="Resource" script_class="PulsingAnchorsUpgrade" format=3 uid="uid://ecr7uimfva5e"]
 
 [ext_resource type="Script" uid="uid://cjva4f4o1pqu4" path="res://scenes/weapons/anchor/upgrades/pulsing_anchors_upgrade.gd" id="1_upgrade"]
 

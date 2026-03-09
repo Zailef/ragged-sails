@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://on4oio1ejyxn"]
+[gd_scene format=3 uid="uid://on4oio1ejyxn"]
 
 [ext_resource type="Shader" uid="uid://bf6acoy0blukc" path="res://sprites/shaders/ocean.gdshader" id="1_6efej"]
 [ext_resource type="Texture2D" uid="uid://cs7vlc6k4pocm" path="res://sprites/environment/water_with_shadow.png" id="2_xffl0"]
@@ -14,9 +14,9 @@ shader_parameter/sine_time_scale = 0.03
 shader_parameter/sine_offset_scale = Vector2(0.3, 0.6)
 shader_parameter/sine_wave_size = 0.4
 
-[node name="Ocean" type="Node2D"]
+[node name="Ocean" type="Node2D" unique_id=73826788]
 
-[node name="Water" type="Sprite2D" parent="."]
+[node name="Water" type="Sprite2D" parent="." unique_id=1869959905]
 z_index = -10
 z_as_relative = false
 texture_filter = 1

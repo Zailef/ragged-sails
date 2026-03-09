@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ctuwgqlchklqy"]
+[gd_scene format=3 uid="uid://ctuwgqlchklqy"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_bmp7b"]
 [ext_resource type="Script" uid="uid://ccb5xuvqsxeik" path="res://scenes/enemies/enemy_stats.gd" id="2_1el3g"]
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://yni0r61mhe5h"
 script = ExtResource("4_7flyy")
 metadata/_custom_type_script = "uid://dxv0vun5p6jl1"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_osw5q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y838i"]
 resource_local_to_scene = true
 shader = ExtResource("5_wsy3x")
 shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
@@ -222,27 +222,27 @@ height = 48.0
 radius = 6.0
 height = 48.0
 
-[node name="Shark" instance=ExtResource("1_bmp7b")]
+[node name="Shark" unique_id=892043865 instance=ExtResource("1_bmp7b")]
 stats = SubResource("Resource_y838i")
 motion_animation_strategy = SubResource("Resource_7flyy")
 attack_animation_strategy = SubResource("Resource_wsy3x")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
-material = SubResource("ShaderMaterial_osw5q")
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1431938552]
+material = SubResource("ShaderMaterial_y838i")
 sprite_frames = SubResource("SpriteFrames_bmp7b")
 animation = &"move_right"
 autoplay = "move_up"
 
-[node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
+[node name="TargetMarker" parent="AnimatedSprite2D" index="0" unique_id=819834952]
 position = Vector2(19, 6)
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="2" unique_id=2017409380]
 shape = SubResource("CapsuleShape2D_7flyy")
 
-[node name="CollisionShape2D" parent="HitArea" index="0"]
+[node name="CollisionShape2D" parent="HitArea" parent_id_path=PackedInt32Array(1719780761) index="0" unique_id=903544241]
 shape = SubResource("CapsuleShape2D_jof6d")
 debug_color = Color(0.9609286, 6.738305e-07, 0.5159897, 0.41960785)
 
-[node name="DirectionalCollision" parent="." index="5"]
+[node name="DirectionalCollision" parent="." index="5" unique_id=1621631527]
 rotate_with_direction = true
 horizontal_offset = Vector2(12, 4)

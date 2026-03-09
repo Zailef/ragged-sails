@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://rv0h0ysb7ec2"]
+[gd_scene format=3 uid="uid://rv0h0ysb7ec2"]
 
 [ext_resource type="Script" uid="uid://ct6e8p1yerkk1" path="res://scenes/ui/weapon_bar.gd" id="1_script"]
 
-[node name="WeaponBar" type="MarginContainer"]
+[node name="WeaponBar" type="MarginContainer" unique_id=1639597135]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,7 +10,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Content" type="VBoxContainer" parent="."]
+[node name="Content" type="VBoxContainer" parent="." unique_id=251623457]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 8

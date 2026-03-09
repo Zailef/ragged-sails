@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ElectrifiedRopeUpgrade" load_steps=2 format=3 uid="uid://dxh7jqw6vi4fn"]
+[gd_resource type="Resource" script_class="ElectrifiedRopeUpgrade" format=3 uid="uid://dxh7jqw6vi4fn"]
 
 [ext_resource type="Script" uid="uid://dgwhyld0e1aug" path="res://scenes/weapons/harpoon/upgrades/electrified_rope_upgrade.gd" id="1_upgrade"]
 

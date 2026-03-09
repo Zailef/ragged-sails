@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cannproj001"]
+[gd_scene format=3 uid="uid://cannproj001"]
 
 [ext_resource type="Script" uid="uid://ixandtfa47ue" path="res://scenes/weapons/projectiles/cannonball_projectile.gd" id="1_proj"]
 [ext_resource type="Texture2D" uid="uid://d1wgiqbrnr04c" path="res://sprites/weapons/Canonball.png" id="2_sprite"]
@@ -90,21 +90,21 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_damage"]
 radius = 16.0
 
-[node name="CannonballProjectile" type="Node2D"]
+[node name="CannonballProjectile" type="Node2D" unique_id=1542555624]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_proj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=599561235]
 sprite_frames = SubResource("SpriteFrames_cannon")
 animation = &"moving"
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="." unique_id=713093947]
 collision_layer = 16
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=100901826]
 shape = SubResource("CircleShape2D_damage")
 
-[node name="SplashSound" type="AudioStreamPlayer2D" parent="."]
+[node name="SplashSound" type="AudioStreamPlayer2D" parent="." unique_id=1122252591]
 stream = ExtResource("3_splash")
 bus = &"SFX"

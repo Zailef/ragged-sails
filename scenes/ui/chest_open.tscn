@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://m54e2ffyq8ws"]
+[gd_scene format=3 uid="uid://m54e2ffyq8ws"]
 
 [ext_resource type="Script" uid="uid://cmqi1ypafwp5c" path="res://scenes/ui/chest_open.gd" id="1_chest"]
 [ext_resource type="Texture2D" uid="uid://brrkp8dr5ia2x" path="res://sprites/ui/big-chest-lock-jiggle.png" id="2_jiggle"]
@@ -161,7 +161,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="ChestOpen" type="Control"]
+[node name="ChestOpen" type="Control" unique_id=679577264]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -171,7 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_chest")
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="Dimmer" type="ColorRect" parent="." unique_id=1078619814]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,7 +181,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=192885770]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,13 +190,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=721144540]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_constants/separation = 160
 
-[node name="PromptLabel" type="Label" parent="VBoxContainer/VBoxContainer"]
+[node name="PromptLabel" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=1090325501]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"UILabel"
@@ -204,10 +204,10 @@ theme_override_font_sizes/font_size = 28
 text = "Click the chest to open!"
 horizontal_alignment = 1
 
-[node name="ChestContainer" type="CenterContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="ChestContainer" type="CenterContainer" parent="VBoxContainer/VBoxContainer" unique_id=273701397]
 layout_mode = 2
 
-[node name="ChestSprite" type="AnimatedSprite2D" parent="VBoxContainer/VBoxContainer/ChestContainer"]
+[node name="ChestSprite" type="AnimatedSprite2D" parent="VBoxContainer/VBoxContainer/ChestContainer" unique_id=1796636608]
 unique_name_in_owner = true
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_chest")
@@ -215,7 +215,7 @@ animation = &"open"
 autoplay = "jiggle"
 frame_progress = 0.76130986
 
-[node name="WeaponIconOverlay" type="TextureRect" parent="VBoxContainer/VBoxContainer/ChestContainer/ChestSprite"]
+[node name="WeaponIconOverlay" type="TextureRect" parent="VBoxContainer/VBoxContainer/ChestContainer/ChestSprite" unique_id=260349174]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(32, 32)
@@ -226,13 +226,13 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ResultContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ResultContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=2088550924]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="WeaponNameLabel" type="Label" parent="VBoxContainer/ResultContainer"]
+[node name="WeaponNameLabel" type="Label" parent="VBoxContainer/ResultContainer" unique_id=1081218821]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"UILabel"
@@ -240,7 +240,7 @@ theme_override_font_sizes/font_size = 32
 text = "Weapon Name"
 horizontal_alignment = 1
 
-[node name="LevelLabel" type="Label" parent="VBoxContainer/ResultContainer"]
+[node name="LevelLabel" type="Label" parent="VBoxContainer/ResultContainer" unique_id=562741821]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"UILabel"
@@ -248,7 +248,7 @@ theme_override_font_sizes/font_size = 24
 text = "Level 1 → 2"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer/ResultContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/ResultContainer" unique_id=1134663079]
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
@@ -257,7 +257,7 @@ text = "Upgrade description"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=2121036699]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 50)

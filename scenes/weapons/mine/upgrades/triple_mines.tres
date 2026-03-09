@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TripleMinesUpgrade" load_steps=2 format=3 uid="uid://cl30pvydyv2vd"]
+[gd_resource type="Resource" script_class="TripleMinesUpgrade" format=3 uid="uid://cl30pvydyv2vd"]
 
 [ext_resource type="Script" uid="uid://b76rm7g36m3qf" path="res://scenes/weapons/mine/upgrades/triple_mines_upgrade.gd" id="1_upgrade"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wcw07nlva6wu"]
+[gd_scene format=3 uid="uid://wcw07nlva6wu"]
 
 [ext_resource type="Texture2D" uid="uid://bn0n07kuay7vl" path="res://sprites/weapons/WhiskyBarrel.png" id="1_u63xm"]
 
@@ -80,8 +80,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="WhiskyBarrel" type="Node2D"]
+[node name="WhiskyBarrel" type="Node2D" unique_id=1065580170]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1882052294]
 sprite_frames = SubResource("SpriteFrames_cdsqi")
 frame_progress = 0.93373346

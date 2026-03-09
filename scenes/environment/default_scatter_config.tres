@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ScatterConfig" load_steps=7 format=3 uid="uid://bgllnj2k7hik5"]
+[gd_resource type="Resource" script_class="ScatterConfig" format=3 uid="uid://bgllnj2k7hik5"]
 
 [ext_resource type="Script" uid="uid://dsd4kmynavb4s" path="res://scenes/environment/scatter_entry.gd" id="1_6b2ox"]
 [ext_resource type="Script" uid="uid://cf6mu6jih6g7o" path="res://scenes/environment/scatter_config.gd" id="1_script"]

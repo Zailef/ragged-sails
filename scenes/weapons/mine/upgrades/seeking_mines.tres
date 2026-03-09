@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SeekingMinesUpgrade" load_steps=2 format=3 uid="uid://cee13d7djdhv3"]
+[gd_resource type="Resource" script_class="SeekingMinesUpgrade" format=3 uid="uid://cee13d7djdhv3"]
 
 [ext_resource type="Script" uid="uid://dvcgvukfwgfp7" path="res://scenes/weapons/mine/upgrades/seeking_mines_upgrade.gd" id="1_script"]
 

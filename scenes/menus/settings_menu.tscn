@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfqher7kkeued"]
+[gd_scene format=3 uid="uid://bfqher7kkeued"]
 
 [ext_resource type="Script" uid="uid://b4y1hfekf1xye" path="res://scenes/menus/settings_menu.gd" id="1_gxsv6"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="2_s2d1y"]
 [ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="3_ojvp1"]
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="Control" unique_id=1890518095]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gxsv6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=357604578]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.003921569, 0.078431375, 0.101960786, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=801036907]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,77 +32,77 @@ grow_vertical = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
 
-[node name="PageContent" type="VBoxContainer" parent="MarginContainer"]
+[node name="PageContent" type="VBoxContainer" parent="MarginContainer" unique_id=935874225]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/PageContent"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/PageContent" unique_id=1799532602]
 layout_mode = 2
 theme_type_variation = &"MenuTitle"
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PageContent"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PageContent" unique_id=650137453]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PageContent/VBoxContainer" unique_id=809652271]
 layout_mode = 2
 theme_type_variation = &"MenuTitle"
 theme_override_font_sizes/font_size = 50
 text = "Sound"
 
-[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer" unique_id=612363723]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "Master Volume"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer" unique_id=289810230]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer" unique_id=198355324]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer" unique_id=1626140898]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/PageContent/VBoxContainer" unique_id=1720902298]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "SFX Volume"
 
-[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer"]
+[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/PageContent/VBoxContainer" unique_id=1100035938]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="BackButton" type="Button" parent="MarginContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1245541979]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Back"
 flat = true
 
-[node name="UIHoverSound" type="AudioStreamPlayer" parent="."]
+[node name="UIHoverSound" type="AudioStreamPlayer" parent="." unique_id=785103139]
 stream = ExtResource("2_s2d1y")
 bus = &"SFX"
 
-[node name="SFXSampler" type="AudioStreamPlayer" parent="."]
+[node name="SFXSampler" type="AudioStreamPlayer" parent="." unique_id=1346537637]
 stream = ExtResource("3_ojvp1")
 bus = &"SFX"
 
-[node name="AudioSamplerDebounce" type="Timer" parent="."]
+[node name="AudioSamplerDebounce" type="Timer" parent="." unique_id=523035593]
 wait_time = 0.1
 one_shot = true
 

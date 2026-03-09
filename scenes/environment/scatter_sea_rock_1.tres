@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ScatterEntry" load_steps=3 format=3 uid="uid://cpavwwnbegdpp"]
+[gd_resource type="Resource" script_class="ScatterEntry" format=3 uid="uid://cpavwwnbegdpp"]
 
 [ext_resource type="Script" uid="uid://dsd4kmynavb4s" path="res://scenes/environment/scatter_entry.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://darc8183kixlr" path="res://scenes/environment/sea_rock_1.tscn" id="2_scene"]

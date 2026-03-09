@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://bvlo532mjkb6j"]
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bvlo532mjkb6j"]
 
 [ext_resource type="Script" uid="uid://bcwlmbrv8qgud" path="res://scenes/weapons/weapon_data.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://2lweqvci8c01" path="res://scenes/weapons/UI Icons/Grapeshot_Icon.png" id="2_icon"]

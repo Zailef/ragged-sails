@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DualMinesUpgrade" load_steps=2 format=3 uid="uid://lv1wa5j12rha"]
+[gd_resource type="Resource" script_class="DualMinesUpgrade" format=3 uid="uid://lv1wa5j12rha"]
 
 [ext_resource type="Script" uid="uid://die5smjhn4l7l" path="res://scenes/weapons/mine/upgrades/dual_mines_upgrade.gd" id="1_upgrade"]
 

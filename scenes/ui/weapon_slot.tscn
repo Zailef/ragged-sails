@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1dam2f6eu5fa"]
+[gd_scene format=3 uid="uid://d1dam2f6eu5fa"]
 
 [ext_resource type="Script" uid="uid://blv6nrreyp5sw" path="res://scenes/ui/weapon_slot.gd" id="1_script"]
 
-[node name="WeaponSlot" type="Control"]
+[node name="WeaponSlot" type="Control" unique_id=2009201111]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_script")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=783082278]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="IconTexture" type="TextureRect" parent="."]
+[node name="IconTexture" type="TextureRect" parent="." unique_id=1197849138]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LevelLabel" type="Label" parent="."]
+[node name="LevelLabel" type="Label" parent="." unique_id=1059327638]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

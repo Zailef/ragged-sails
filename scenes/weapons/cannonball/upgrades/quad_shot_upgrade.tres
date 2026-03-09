@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuadShotUpgrade" load_steps=2 format=3 uid="uid://b1w0au5o803ck"]
+[gd_resource type="Resource" script_class="QuadShotUpgrade" format=3 uid="uid://b1w0au5o803ck"]
 
 [ext_resource type="Script" uid="uid://bfrht2kkwaw8l" path="res://scenes/weapons/cannonball/upgrades/quad_shot_upgrade.gd" id="1_script"]
 

@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmwhpxb5vmpr3"]
+[gd_scene format=3 uid="uid://dmwhpxb5vmpr3"]
 
 [ext_resource type="Texture2D" uid="uid://dy4sik6o3kwiq" path="res://sprites/environment/shipwreck1.png" id="1_wreck"]
 
-[node name="Shipwreck1" type="StaticBody2D" groups=["shipwrecks"]]
+[node name="Shipwreck1" type="StaticBody2D" unique_id=1159609804 groups=["shipwrecks"]]
 scale = Vector2(1.5, 1.5)
 collision_mask = 6
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=882123675]
 texture = ExtResource("1_wreck")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=698444616]
 polygon = PackedVector2Array(19.2, -12.3, 14.5, -16, 11, -16, 11, -13.6, 12.799999, -11.8, 2.7000008, -9, 0.40000153, -9, 2.4000015, -5, 0.40000153, -5, 2.0999985, -1.6000004, 2, 0.6000004, 4, 1.6000004, 4, 4, 2.5999985, 4, 1.5999985, 2, -0.20000076, 2, -1.2000008, -2, -4.299999, -2, -5, -4, -5, -8.3, -8, -13.4, -8, -14.6, -9.1, -15.2, -12.299999, -13, -13.700001, -13, -14.200001, -11.8, -13, -10.6, -13.4, -10, -14.700001, -10, -16, -6.2, -16, -4.2, -12.200001, -3.3000002, -14.6, -3, -13.6, -1, -14.6, -2, -18.4, -2, -19.4, -4, -21.6, -4, -26.5, 4, -28.6, 4, -26.6, 8, -25, 8, -25, 9.4, -26.2, 10, -27.6, 10, -28.2, 11.1, -26, 14.299999, -26, 16, -24.9, 16, -22, 15, -21.1, 15, -6, 15.9, 28.400002, 16, 30, 14.4, 30, 11.6, 27, 8.6, 27, 7, 25, 7, 25, 4.3999996, 26.400002, 3, 27.7, 3, 28.2, 1.7999992, 27, 0.6000004, 27, -2.5, 30, -4.5, 30, -7.3999996, 27.400002, -10, 25.599998, -10, 22.599998, -7, 21, -7, 21, -5, 16, -5, 16, -2, 14.400002, -2, 16.7, -8, 18, -8, 18, -11, 18.7, -11)
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=251130287]
 rect = Rect2(-32.5, -17.5, 65, 35)

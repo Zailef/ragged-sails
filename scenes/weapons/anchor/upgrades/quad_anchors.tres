@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="QuadAnchorsUpgrade" load_steps=2 format=3 uid="uid://d1685m441pnwd"]
+[gd_resource type="Resource" script_class="QuadAnchorsUpgrade" format=3 uid="uid://d1685m441pnwd"]
 
 [ext_resource type="Script" uid="uid://bu8n0la5k2y3i" path="res://scenes/weapons/anchor/upgrades/quad_anchors_upgrade.gd" id="1_upgrade"]
 

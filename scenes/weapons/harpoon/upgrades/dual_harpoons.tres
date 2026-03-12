@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="DualHarpoonsUpgrade" load_steps=2 format=3 uid="uid://ic8aifkpcwnx"]
+[gd_resource type="Resource" script_class="DualHarpoonsUpgrade" format=3 uid="uid://ic8aifkpcwnx"]
 
-[ext_resource type="Script" path="res://scenes/weapons/harpoon/upgrades/dual_harpoons_upgrade.gd" id="1_upgrade"]
+[ext_resource type="Script" uid="uid://0wiwgrew42fy" path="res://scenes/weapons/harpoon/upgrades/dual_harpoons_upgrade.gd" id="1_upgrade"]
 
 [resource]
 script = ExtResource("1_upgrade")

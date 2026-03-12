@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c655ix3xi0swj"]
+[gd_scene format=3 uid="uid://c655ix3xi0swj"]
 
 [ext_resource type="Script" uid="uid://cwnpfmgviur61" path="res://scenes/pickups/pickup.gd" id="1_p3l0o"]
 
-[node name="Pickup" type="Node2D"]
+[node name="Pickup" type="Node2D" unique_id=858290665]
 script = ExtResource("1_p3l0o")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1260731455]
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="PickupArea" type="Area2D" parent="." unique_id=209920651]
 collision_layer = 8
 collision_mask = 2
 

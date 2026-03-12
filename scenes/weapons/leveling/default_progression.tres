@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponProgression" load_steps=3 format=3 uid="uid://dcr5v257g2s2v"]
+[gd_resource type="Resource" script_class="WeaponProgression" format=3 uid="uid://dcr5v257g2s2v"]
 
 [ext_resource type="Script" uid="uid://c3l2pr77fco01" path="res://scenes/weapons/leveling/weapon_progression.gd" id="1_prog"]
 [ext_resource type="Script" uid="uid://c0c70vk02is8h" path="res://scenes/weapons/leveling/weapon_level.gd" id="1_snvt6"]

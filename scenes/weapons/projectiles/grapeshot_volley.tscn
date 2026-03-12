@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ygsag677g4tg"]
+[gd_scene format=3 uid="uid://ygsag677g4tg"]
 
 [ext_resource type="Script" uid="uid://bqnuvgkocqxhb" path="res://scenes/weapons/projectiles/grapeshot_volley.gd" id="1_proj"]
 [ext_resource type="Texture2D" uid="uid://bjqgn7m7q6hqn" path="res://sprites/weapons/grapeshot.png" id="2_sprite"]
@@ -43,14 +43,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shape"]
 size = Vector2(64, 32)
 
-[node name="GrapeshotVolley" type="Node2D"]
+[node name="GrapeshotVolley" type="Node2D" unique_id=83989486]
 script = ExtResource("1_proj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1740875768]
 position = Vector2(48, 0)
 sprite_frames = SubResource("SpriteFrames_grape")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1043578250]
 position = Vector2(22, 0)
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_shape")
@@ -59,6 +59,6 @@ collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="FireSound" type="AudioStreamPlayer" parent="."]
+[node name="FireSound" type="AudioStreamPlayer" parent="." unique_id=1788573384]
 stream = ExtResource("3_sound")
 bus = &"SFX"

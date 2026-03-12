@@ -1,28 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://br475udsfkbu3"]
+[gd_scene format=3 uid="uid://br475udsfkbu3"]
 
 [ext_resource type="Script" uid="uid://bg5woo0fh58s3" path="res://scenes/ui/joystick/virtual_joystick.gd" id="1_h1yv7"]
 [ext_resource type="Texture2D" uid="uid://be8nd7as6w56t" path="res://sprites/ui/virtual_joystick_inner.png" id="2_cl83h"]
 [ext_resource type="Script" uid="uid://cdy181bu8arv5" path="res://scenes/ui/joystick/joystick_inner.gd" id="2_s8cih"]
 [ext_resource type="Texture2D" uid="uid://b85segy0l6k81" path="res://sprites/ui/virtual_joystick_outer.png" id="4_iqi4o"]
 
-[node name="VirtualJoystick" type="Node2D"]
-position = Vector2(82.585, 756.415)
-scale = Vector2(0.2517, 0.2517)
+[node name="VirtualJoystick" type="Node2D" unique_id=729741948]
+position = Vector2(82.675, 762.325)
+scale = Vector2(0.2535, 0.2535)
 script = ExtResource("1_h1yv7")
 colour_override = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 
-[node name="JoystickInner" type="Sprite2D" parent="."]
+[node name="JoystickInner" type="Sprite2D" parent="." unique_id=855333633]
 self_modulate = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 texture = ExtResource("2_cl83h")
 script = ExtResource("2_s8cih")
-max_length = 12.584999999999999
-deadzone = 1.2585
+max_length = 3.1902975000000002
+deadzone = 0.31902975
 
-[node name="JoystickOuter" type="Sprite2D" parent="."]
+[node name="JoystickOuter" type="Sprite2D" parent="." unique_id=1350309990]
 self_modulate = Color(0.8117647, 0.7372549, 0.58431375, 0.6862745)
 texture = ExtResource("4_iqi4o")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=530991076]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0

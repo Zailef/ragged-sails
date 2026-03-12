@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b07qgtxwwcm16"]
+[gd_scene format=3 uid="uid://b07qgtxwwcm16"]
 
 [ext_resource type="PackedScene" uid="uid://c655ix3xi0swj" path="res://scenes/pickups/pickup.tscn" id="1_upsts"]
 [ext_resource type="Script" uid="uid://dkb0m4ga54vko" path="res://scenes/pickups/effects/life_ring_pickup_effect.gd" id="2_crr1c"]
@@ -61,12 +61,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qbx2g"]
 radius = 14.0
 
-[node name="LifeRingPickup" instance=ExtResource("1_upsts")]
+[node name="LifeRingPickup" unique_id=1771777933 instance=ExtResource("1_upsts")]
 effect = SubResource("Resource_34v6a")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_nhbcx")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0" unique_id=1615215169]
 shape = SubResource("CircleShape2D_qbx2g")

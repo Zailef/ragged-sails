@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://0fvxkr3ekm5v"]
+[gd_scene format=3 uid="uid://0fvxkr3ekm5v"]
 
 [ext_resource type="PackedScene" uid="uid://dyijjk252n0j5" path="res://scenes/ui/level_up_item.tscn" id="2_sw2ff"]
 [ext_resource type="Script" uid="uid://qstghh3udnby" path="res://scenes/ui/level_up.gd" id="3_script"]
 
-[node name="LevelUp" type="Control"]
+[node name="LevelUp" type="Control" unique_id=1838165926]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_script")
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="Dimmer" type="ColorRect" parent="." unique_id=1614454413]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2106345234]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,19 +35,19 @@ theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 128
 theme_override_constants/margin_bottom = 128
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2070468489]
 layout_mode = 2
 theme_override_constants/separation = 64
 
-[node name="Control" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_sw2ff")]
+[node name="Control" parent="MarginContainer/HBoxContainer" unique_id=755784663 instance=ExtResource("2_sw2ff")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control2" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_sw2ff")]
+[node name="Control2" parent="MarginContainer/HBoxContainer" unique_id=297271515 instance=ExtResource("2_sw2ff")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control3" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_sw2ff")]
+[node name="Control3" parent="MarginContainer/HBoxContainer" unique_id=1058274586 instance=ExtResource("2_sw2ff")]
 layout_mode = 2
 size_flags_horizontal = 3
 

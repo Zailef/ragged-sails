@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://dlgmlwuec3427"]
+[gd_scene format=3 uid="uid://dlgmlwuec3427"]
 
 [ext_resource type="Script" uid="uid://ck6xkghmmk2wt" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://l06hw7vscafb" path="res://sprites/player/ship-sheet.png" id="2_dovo2"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5a0i4a1udg2w" path="res://scenes/ui/enemies_defeated_label.tscn" id="6_75vfm"]
 [ext_resource type="Script" uid="uid://df2r84kmfrmgp" path="res://scenes/components/directional_collision.gd" id="9_dircol"]
 [ext_resource type="AudioStream" uid="uid://cuivwdgio5jdo" path="res://audio/effects/LevelUp.wav" id="12_fm80t"]
-[ext_resource type="PackedScene" uid="uid://cs35coiy1ddg7" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
+[ext_resource type="PackedScene" uid="uid://bff1vn0xf1gvj" path="res://scenes/ui/game_timer_label.tscn" id="12_timer"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="13_gx1jg"]
 [ext_resource type="PackedScene" uid="uid://br475udsfkbu3" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="14_joystk"]
 [ext_resource type="Texture2D" uid="uid://bq8kfvsm2jyye" path="res://sprites/ui/arrow.png" id="15_arrow"]
@@ -1262,57 +1262,55 @@ corner_radius_bottom_left = 1
 [sub_resource type="CircleShape2D" id="CircleShape2D_attractor"]
 radius = 30.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=668051987 groups=["player"]]
 z_index = 2
 collision_layer = 2
 script = ExtResource("1_dovo2")
 level_progress = ExtResource("2_lvlprog")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1694350199]
 material = SubResource("ShaderMaterial_lvxji")
 sprite_frames = SubResource("SpriteFrames_x7p2l")
 animation = &"idle_down"
 
-[node name="BoundaryArrow" type="Sprite2D" parent="."]
+[node name="BoundaryArrow" type="Sprite2D" parent="." unique_id=752503234]
 visible = false
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("15_arrow")
 script = ExtResource("16_barrow")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=535781954]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_dovo2")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1066844569]
 zoom = Vector2(2, 2)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fcs02")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2124085334]
+libraries/ = SubResource("AnimationLibrary_fcs02")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=75321498]
 tree_root = SubResource("AnimationNodeStateMachine_8ydkj")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
-[node name="HurtArea" type="Area2D" parent="."]
+[node name="HurtArea" type="Area2D" parent="." unique_id=665170341]
 position = Vector2(0, 2)
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" unique_id=1881726073]
 shape = SubResource("CapsuleShape2D_je7p5")
 debug_color = Color(0.9818738, 0, 0.3713596, 0.41960785)
 
-[node name="DirectionalCollision" type="Node" parent="."]
+[node name="DirectionalCollision" type="Node" parent="." unique_id=2102452572]
 script = ExtResource("9_dircol")
 snap_to_cardinal = false
 include_diagonals = true
 horizontal_offset = Vector2(-4, 8)
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1277826896]
 offset_left = -32.0
 offset_top = 34.0
 offset_right = 32.0
@@ -1323,38 +1321,37 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="Weapons" type="Node" parent="."]
+[node name="Weapons" type="Node" parent="." unique_id=1968632917]
 script = ExtResource("17_weapmgr")
 
-[node name="Cannonball" parent="Weapons" instance=ExtResource("18_cannon")]
+[node name="Cannonball" parent="Weapons" unique_id=719662146 instance=ExtResource("18_cannon")]
 
-[node name="Anchor" parent="Weapons" instance=ExtResource("19_anchor")]
+[node name="Anchor" parent="Weapons" unique_id=51668106 instance=ExtResource("19_anchor")]
 
-[node name="Grapeshot" parent="Weapons" instance=ExtResource("20_grape")]
+[node name="Grapeshot" parent="Weapons" unique_id=1763674716 instance=ExtResource("20_grape")]
 
-[node name="Harpoon" parent="Weapons" instance=ExtResource("21_harpoon")]
+[node name="Harpoon" parent="Weapons" unique_id=351484738 instance=ExtResource("21_harpoon")]
 
-[node name="Mine" parent="Weapons" instance=ExtResource("22_mine")]
-rear_launch_distance = 60.0
+[node name="Mine" parent="Weapons" unique_id=1063076942 instance=ExtResource("22_mine")]
 
-[node name="Trident" parent="Weapons" instance=ExtResource("23_trident")]
+[node name="Trident" parent="Weapons" unique_id=504054340 instance=ExtResource("23_trident")]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1992361957]
 
-[node name="GameTimerLabel" parent="UI" instance=ExtResource("12_timer")]
+[node name="GameTimerLabel" parent="UI" unique_id=504987993 instance=ExtResource("12_timer")]
 
-[node name="EnemiesDefeatedLabel" parent="UI" instance=ExtResource("6_75vfm")]
+[node name="EnemiesDefeatedLabel" parent="UI" unique_id=740519665 instance=ExtResource("6_75vfm")]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ExperienceBar" parent="UI" instance=ExtResource("6_75vfg")]
+[node name="ExperienceBar" parent="UI" unique_id=1968159886 instance=ExtResource("6_75vfg")]
 
-[node name="VirtualJoystick" parent="UI" instance=ExtResource("14_joystk")]
+[node name="VirtualJoystick" parent="UI" unique_id=501589570 instance=ExtResource("14_joystk")]
 unique_name_in_owner = true
-position = Vector2(77.455, 419.545)
-scale = Vector2(0.1491, 0.1491)
+position = Vector2(82.675, 762.325)
+scale = Vector2(0.2535, 0.2535)
 
-[node name="Minimap" parent="UI" instance=ExtResource("22_007i1")]
+[node name="Minimap" parent="UI" unique_id=800088443 instance=ExtResource("22_007i1")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -1364,30 +1361,30 @@ grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="WeaponBar" parent="UI" instance=ExtResource("24_weapbar")]
+[node name="WeaponBar" parent="UI" unique_id=814845326 instance=ExtResource("24_weapbar")]
 
-[node name="LevelUp" parent="UI" instance=ExtResource("18_8ydkj")]
+[node name="LevelUp" parent="UI" unique_id=1082252538 instance=ExtResource("18_8ydkj")]
 
-[node name="ChestOpen" parent="UI" instance=ExtResource("25_chest")]
+[node name="ChestOpen" parent="UI" unique_id=410210643 instance=ExtResource("25_chest")]
 
-[node name="PickupAttractor" type="Area2D" parent="."]
+[node name="PickupAttractor" type="Area2D" parent="." unique_id=1253021589]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("26_attractor")
 attraction_radius = 30.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAttractor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupAttractor" unique_id=1923766095]
 shape = SubResource("CircleShape2D_attractor")
 debug_color = Color(0.25, 0.88, 0.81, 0.2)
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=105127881]
 
-[node name="LevelUpSound" type="AudioStreamPlayer" parent="Audio"]
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="Audio" unique_id=127283442]
 unique_name_in_owner = true
 stream = ExtResource("12_fm80t")
 bus = &"SFX"
 
-[node name="DamageSound" type="AudioStreamPlayer" parent="Audio"]
+[node name="DamageSound" type="AudioStreamPlayer" parent="Audio" unique_id=307366064]
 unique_name_in_owner = true
 stream = ExtResource("13_gx1jg")
 bus = &"SFX"

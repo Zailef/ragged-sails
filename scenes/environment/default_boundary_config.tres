@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MapBoundaryConfig" load_steps=2 format=3 uid="uid://dq8avil20og55"]
+[gd_resource type="Resource" script_class="MapBoundaryConfig" format=3 uid="uid://dq8avil20og55"]
 
 [ext_resource type="Script" path="res://scenes/environment/map_boundary_config.gd" id="1_config"]
 

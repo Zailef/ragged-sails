@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byb33pixpmdw4"]
+[gd_scene format=3 uid="uid://byb33pixpmdw4"]
 
 [ext_resource type="Script" uid="uid://7yq60gd2t6mi" path="res://scenes/ui/level_up_card.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b3a415iist1k1" path="res://sprites/menu/ItemFrame.png" id="2_frame"]
@@ -11,14 +11,14 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
-[node name="LevelUpCard" type="Control"]
+[node name="LevelUpCard" type="Control" unique_id=1295708005]
 custom_minimum_size = Vector2(280, 400)
 layout_mode = 3
 anchors_preset = 0
 pivot_offset = Vector2(140, 200)
 script = ExtResource("1_script")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1160172281]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_panel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=556002355]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,25 +40,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="IconContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="IconContainer" type="CenterContainer" parent="VBoxContainer" unique_id=1457344383]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer/IconContainer"]
+[node name="Icon" type="TextureRect" parent="VBoxContainer/IconContainer" unique_id=1010164805]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("3_placeholder")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=1171374984]
 layout_mode = 2
 theme_type_variation = &"UILabel"
 theme_override_font_sizes/font_size = 24
 text = "Weapon Name"
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=1306469223]
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"StandardLabel"
@@ -67,7 +67,7 @@ text = "Weapon description goes here and can wrap to multiple lines."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=728007250]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

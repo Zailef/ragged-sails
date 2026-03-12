@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://caoib5xcoo6fw"]
+[gd_scene format=3 uid="uid://caoib5xcoo6fw"]
 
 [ext_resource type="Script" uid="uid://bsou7yd6fvvpm" path="res://scenes/menus/pause_menu.gd" id="1_pause"]
 [ext_resource type="AudioStream" uid="uid://b1wl5gdp6pxof" path="res://audio/effects/Hurt.wav" id="2_hover"]
 [ext_resource type="AudioStream" uid="uid://4dtlv2ljxynp" path="res://audio/effects/Cannon.wav" id="3_sfx"]
 
-[node name="PauseMenu" type="CanvasLayer"]
+[node name="PauseMenu" type="CanvasLayer" unique_id=1426820047]
 layer = 10
 script = ExtResource("1_pause")
 
-[node name="Dimmer" type="ColorRect" parent="."]
+[node name="Dimmer" type="ColorRect" parent="." unique_id=1635786984]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,7 +17,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1356936617]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,103 +25,103 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PauseButton" type="Button" parent="MarginContainer"]
+[node name="PauseButton" type="Button" parent="MarginContainer" unique_id=1078207929]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "II"
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=969369989]
 layout_mode = 2
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/CenterContainer"]
+[node name="Panel" type="PanelContainer" parent="MarginContainer/CenterContainer" unique_id=1185986160]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/Panel" unique_id=1429755067]
 layout_mode = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer" unique_id=1630526044]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=840817156]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=235810885]
 layout_mode = 2
 
-[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=759049434]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "Master Volume"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=434819498]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1021597722]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "Music Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1257109866]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=615063674]
 layout_mode = 2
 theme_type_variation = &"StandardLabel"
 text = "SFX Volume"
 
-[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1630709099]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=254277437]
 layout_mode = 2
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=472843266]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ResumeButton" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="ResumeButton" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer" unique_id=1245709973]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
-[node name="MainMenuButton" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer"]
+[node name="MainMenuButton" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsContainer" unique_id=787457200]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Main Menu"
 
-[node name="UIHoverSound" type="AudioStreamPlayer" parent="MarginContainer"]
+[node name="UIHoverSound" type="AudioStreamPlayer" parent="MarginContainer" unique_id=1865873156]
 stream = ExtResource("2_hover")
 bus = &"SFX"
 
-[node name="SFXSampler" type="AudioStreamPlayer" parent="MarginContainer"]
+[node name="SFXSampler" type="AudioStreamPlayer" parent="MarginContainer" unique_id=274750410]
 unique_name_in_owner = true
 stream = ExtResource("3_sfx")
 bus = &"SFX"
 
-[node name="AudioSamplerDebounce" type="Timer" parent="MarginContainer"]
+[node name="AudioSamplerDebounce" type="Timer" parent="MarginContainer" unique_id=1475234482]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true

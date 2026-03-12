@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DoubleShotUpgrade" load_steps=2 format=3 uid="uid://bpiogyin3hi1q"]
+[gd_resource type="Resource" script_class="DoubleShotUpgrade" format=3 uid="uid://bpiogyin3hi1q"]
 
 [ext_resource type="Script" uid="uid://cugt6d3wxlkc8" path="res://scenes/weapons/cannonball/upgrades/double_shot_upgrade.gd" id="1_script"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg3t5ee803vm7"]
+[gd_scene format=3 uid="uid://cg3t5ee803vm7"]
 
 [ext_resource type="PackedScene" uid="uid://c655ix3xi0swj" path="res://scenes/pickups/pickup.tscn" id="1_4xpk5"]
 [ext_resource type="Texture2D" uid="uid://td32yrhsrrck" path="res://sprites/collectables/Experience_Orb.png" id="2_5wfwu"]
@@ -103,7 +103,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbjh7"]
 radius = 16.05546
 
-[node name="ExpPickup" instance=ExtResource("1_4xpk5")]
+[node name="ExpPickup" unique_id=728028985 instance=ExtResource("1_4xpk5")]
 scale = Vector2(0.75, 0.75)
 effect = SubResource("Resource_o3e0v")
 attractable = true
@@ -113,5 +113,5 @@ sprite_frames = SubResource("SpriteFrames_m1awn")
 autoplay = "default"
 frame_progress = 0.6236778
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0" unique_id=1726139212]
 shape = SubResource("CircleShape2D_fbjh7")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4dl3taqnso0s"]
+[gd_scene format=3 uid="uid://c4dl3taqnso0s"]
 
 [ext_resource type="PackedScene" uid="uid://cr62ag5gmpai3" path="res://scenes/enemies/enemy.tscn" id="1_p344i"]
 [ext_resource type="Texture2D" uid="uid://cmx6vifiw30tp" path="res://sprites/enemies/mermaid/mermaid_sheet.png" id="2_lujby"]
@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://b1800rc5cg4cq"
 script = ExtResource("4_pe30f")
 metadata/_custom_type_script = "uid://g5bs1wnrma2c"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0e5o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52sw7"]
 resource_local_to_scene = true
 shader = ExtResource("9_52sw7")
 shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
@@ -142,29 +142,29 @@ height = 44.0
 radius = 9.0
 height = 40.0
 
-[node name="Mermaid" instance=ExtResource("1_p344i")]
+[node name="Mermaid" unique_id=1792181295 instance=ExtResource("1_p344i")]
 stats = SubResource("Resource_rdap4")
 loot_table = SubResource("Resource_7cfag")
 drop_strategy = SubResource("Resource_5erkt")
 motion_animation_strategy = SubResource("Resource_pe30f")
 attack_animation_strategy = SubResource("Resource_qj0dc")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
-material = SubResource("ShaderMaterial_h0e5o")
+[node name="AnimatedSprite2D" parent="." index="1" unique_id=1431938552]
+material = SubResource("ShaderMaterial_52sw7")
 sprite_frames = SubResource("SpriteFrames_1mrfq")
 animation = &"attack_right"
 
-[node name="TargetMarker" parent="AnimatedSprite2D" index="0"]
+[node name="TargetMarker" parent="AnimatedSprite2D" index="0" unique_id=819834952]
 position = Vector2(14, 7)
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="2" unique_id=2017409380]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p783r")
 
-[node name="CollisionShape2D" parent="HitArea" index="0"]
+[node name="CollisionShape2D" parent="HitArea" parent_id_path=PackedInt32Array(1719780761) index="0" unique_id=903544241]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4ecc8")
 debug_color = Color(0.8489705, 0.34218907, 0.40922636, 0.41960785)
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=28565679]
 rect = Rect2(-32, -16, 64, 32)

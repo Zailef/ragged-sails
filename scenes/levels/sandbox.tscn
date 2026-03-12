@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddnu2h0canibh"]
+[gd_scene format=3 uid="uid://ddnu2h0canibh"]
 
 [ext_resource type="PackedScene" uid="uid://dlgmlwuec3427" path="res://scenes/player/player.tscn" id="1_6ivci"]
 [ext_resource type="Script" uid="uid://0j6nyu5328j5" path="res://scenes/levels/sandbox.gd" id="1_sandbox"]
@@ -12,39 +12,39 @@
 [ext_resource type="Resource" uid="uid://bgllnj2k7hik5" path="res://scenes/environment/default_scatter_config.tres" id="14_scatter_config"]
 [ext_resource type="PackedScene" uid="uid://caoib5xcoo6fw" path="res://scenes/menus/pause_menu.tscn" id="15_pause_menu"]
 
-[node name="Sandbox" type="Node2D"]
+[node name="Sandbox" type="Node2D" unique_id=851269243]
 script = ExtResource("1_sandbox")
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="Obstacles" type="Node2D" parent="." unique_id=568459529]
 
-[node name="ObjectScatter" type="Node" parent="Obstacles"]
+[node name="ObjectScatter" type="Node" parent="Obstacles" unique_id=1103406919]
 script = ExtResource("13_scatter")
 config = ExtResource("14_scatter_config")
 boundary_manager_path = NodePath("../../BoundaryManager")
 player_path = NodePath("../../Player")
 
-[node name="Ocean" parent="." instance=ExtResource("3_xf1sy")]
+[node name="Ocean" parent="." unique_id=1501233524 instance=ExtResource("3_xf1sy")]
 z_index = -1
 texture_filter = 1
 
-[node name="Player" parent="." instance=ExtResource("1_6ivci")]
+[node name="Player" parent="." unique_id=2038767726 instance=ExtResource("1_6ivci")]
 position = Vector2(305, 181)
 move_speed = 100.0
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=317288663]
 
-[node name="EnemySpawner" type="Node" parent="."]
+[node name="EnemySpawner" type="Node" parent="." unique_id=81177198]
 script = ExtResource("5_spawner")
 config = ExtResource("6_config")
 enemies_container = NodePath("../Enemies")
 
-[node name="BoundaryManager" type="Node" parent="." groups=["boundary_manager"]]
+[node name="BoundaryManager" type="Node" parent="." unique_id=1139866745 groups=["boundary_manager"]]
 script = ExtResource("10_boundary")
 config = ExtResource("11_boundary_config")
 player_path = NodePath("../Player")
 ocean_sprite_path = NodePath("../Ocean/Water")
 
-[node name="BoundaryWarningOverlay" parent="." instance=ExtResource("12_warning_overlay")]
+[node name="BoundaryWarningOverlay" parent="." unique_id=581014740 instance=ExtResource("12_warning_overlay")]
 boundary_manager_path = NodePath("../BoundaryManager")
 
-[node name="PauseMenu" parent="." instance=ExtResource("15_pause_menu")]
+[node name="PauseMenu" parent="." unique_id=372110513 instance=ExtResource("15_pause_menu")]

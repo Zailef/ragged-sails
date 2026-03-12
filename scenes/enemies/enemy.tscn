@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cr62ag5gmpai3"]
+[gd_scene format=3 uid="uid://cr62ag5gmpai3"]
 
 [ext_resource type="Script" uid="uid://q624c01uluba" path="res://scenes/enemies/enemy.gd" id="1_6xk8f"]
 [ext_resource type="Script" uid="uid://vy46impuqjhp" path="res://scenes/enemies/loot_table.gd" id="2_lu5c6"]
@@ -23,7 +23,7 @@ shader = ExtResource("6_nb6gf")
 shader_parameter/flash_color = Color(1, 0.4544071, 0.44399953, 1)
 shader_parameter/flash_strength = 0.0
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=941197917 groups=["enemies"]]
 z_index = 1
 collision_layer = 4
 collision_mask = 5
@@ -31,26 +31,26 @@ script = ExtResource("1_6xk8f")
 loot_table = SubResource("Resource_qch6t")
 drop_strategy = SubResource("Resource_y5th1")
 
-[node name="StatusEffectManager" type="Node" parent="."]
+[node name="StatusEffectManager" type="Node" parent="." unique_id=1931791516]
 script = ExtResource("7_status")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1431938552]
 material = SubResource("ShaderMaterial_jt03m")
 
-[node name="TargetMarker" type="Marker2D" parent="AnimatedSprite2D"]
+[node name="TargetMarker" type="Marker2D" parent="AnimatedSprite2D" unique_id=819834952]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2017409380]
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="HitArea" type="Area2D" parent="." unique_id=1719780761]
 collision_layer = 4
 collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=903544241]
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=28565679]
 rect = Rect2(-16, -16, 32, 32)
 
-[node name="DirectionalCollision" type="Node" parent="."]
+[node name="DirectionalCollision" type="Node" parent="." unique_id=1621631527]
 script = ExtResource("7_dircol")
 rotate_with_direction = false
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ScatterEntry" load_steps=3 format=3 uid="uid://duqwroxk38pxr"]
+[gd_resource type="Resource" script_class="ScatterEntry" format=3 uid="uid://duqwroxk38pxr"]
 
 [ext_resource type="Script" uid="uid://dsd4kmynavb4s" path="res://scenes/environment/scatter_entry.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://dmwhpxb5vmpr3" path="res://scenes/environment/shipwreck_1.tscn" id="2_scene"]

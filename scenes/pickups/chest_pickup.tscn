@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://xpqlp8axfhc1"]
+[gd_scene format=3 uid="uid://xpqlp8axfhc1"]
 
 [ext_resource type="PackedScene" uid="uid://c655ix3xi0swj" path="res://scenes/pickups/pickup.tscn" id="1_pickup"]
 [ext_resource type="Script" uid="uid://dicm38dqy7i1t" path="res://scenes/pickups/effects/chest_pickup_effect.gd" id="2_effect"]
@@ -88,7 +88,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_chest"]
 radius = 16.0
 
-[node name="ChestPickup" groups=["chests"] instance=ExtResource("1_pickup")]
+[node name="ChestPickup" unique_id=1643320099 groups=["chests"] instance=ExtResource("1_pickup")]
 scale = Vector2(0.6, 0.6)
 effect = SubResource("Resource_chest_effect")
 
@@ -99,5 +99,5 @@ sprite_frames = SubResource("SpriteFrames_ut48y")
 autoplay = "default"
 frame_progress = 0.60954463
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0" unique_id=660182429]
 shape = SubResource("CircleShape2D_chest")
